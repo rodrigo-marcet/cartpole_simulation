@@ -17,7 +17,7 @@ running_var = scaler_state["running_variance"].float().tolist()
 
 def float_array_to_c(name, values):
     inner = ", ".join(f"{v:.8f}f" for v in values)
-    return f"float {name}[] = {{{inner}}};\n"
+    return f"constexpr float {name}[] = {{{inner}}};\n"
 
 
 # Load TFLite model
@@ -25,17 +25,16 @@ with open(args.input, "rb") as f:
     data = f.read()
 
 with open(args.output, "w") as f:
-    # Guard
-    f.write("#ifndef POLICY_MODEL_H\n#define POLICY_MODEL_H\n\n")
+    f.write("#pragma once\n\n")
 
     # Scaler arrays
     f.write("// Input normalisation (running mean / variance from SKRL preprocessor)\n")
-    f.write(float_array_to_c("input_mean", running_mean))
-    f.write(float_array_to_c("input_var", running_var))
-    f.write(f"const int input_size = {len(running_mean)};\n\n")
+    f.write(float_array_to_c("MODEL_INPUT_MEAN", running_mean))
+    f.write(float_array_to_c("MODEL_INPUT_VAR", running_var))
+    f.write(f"constexpr int MODEL_INPUT_SIZE = {len(running_mean)};\n\n")
 
     # Model weights
-    f.write("unsigned char policy_model[] = {\n    ")
+    f.write("inline constexpr unsigned char policy_model[] = {\n    ")
     for i, byte in enumerate(data):
         f.write(f"0x{byte:02x}")
         if i != len(data) - 1:
@@ -43,9 +42,7 @@ with open(args.output, "w") as f:
         if (i + 1) % 12 == 0 and i != len(data) - 1:
             f.write("\n    ")
     f.write("\n};\n")
-    f.write(f"unsigned int policy_model_len = {len(data)};\n\n")
-
-    f.write("#endif // POLICY_MODEL_H\n")
+    f.write(f"inline constexpr unsigned int policy_model_len = {len(data)};\n")
 
 print(f"Header generated: {args.output}")
 print(f"Model size: {len(data)} bytes")
