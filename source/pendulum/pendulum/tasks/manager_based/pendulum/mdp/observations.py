@@ -80,6 +80,9 @@ def cart_vel_noisy(
     range_m: float = 0.8,
 ) -> torch.Tensor:
     vel = mdp.joint_vel_rel(env, asset_cfg)
+    # TODO
+    # pulley_radius_m = 0.01
+    # resolution = 2.0 * math.pi * pulley_radius_m / ticks
     resolution = range_m / ticks
     return add_encoder_tick_noise(vel, resolution)
 

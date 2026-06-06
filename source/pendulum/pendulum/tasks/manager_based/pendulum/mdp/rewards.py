@@ -34,16 +34,6 @@ def joint_pos_target_l2(env: ManagerBasedRLEnv, target: float, asset_cfg: SceneE
     return torch.sum(torch.square(joint_pos - target), dim=1)
 
 
-def joint_pos_target_exp(
-    env: ManagerBasedRLEnv, target: float, sigma: float, asset_cfg: SceneEntityCfg
-) -> torch.Tensor:
-    """Reward joint position proximity to a target value using a gaussian kernel."""
-    asset: Articulation = env.scene[asset_cfg.name]
-    joint_pos = wrap_to_pi(asset.data.joint_pos[:, asset_cfg.joint_ids])
-    error = torch.sum(torch.square(joint_pos - target), dim=1)
-    return torch.exp(-error / sigma**2)
-
-
 def joint_effort_l2(env, asset_cfg: SceneEntityCfg) -> torch.Tensor:
     """Penalize large effort commands (action magnitude) using L2."""
     return torch.sum(env.action_manager.action**2, dim=1)
