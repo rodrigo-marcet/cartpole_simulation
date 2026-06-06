@@ -79,5 +79,5 @@ tests/
 .eridani
 
 venv/
-
+.vscode/
 **/*.csv
