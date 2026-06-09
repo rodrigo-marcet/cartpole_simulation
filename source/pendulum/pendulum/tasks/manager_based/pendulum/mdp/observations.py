@@ -73,18 +73,36 @@ def cart_pos_quantized(env, asset_cfg: SceneEntityCfg, ticks: int = 16384, range
     return (torch.round(pos / resolution) * resolution).unsqueeze(-1)
 
 
+def cart_pos_noisy(
+    env,
+    asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+    ticks: int = 16384,
+    pulley_radius_m: float = 0.01,
+) -> torch.Tensor:
+    pos = mdp.joint_pos_rel(env, asset_cfg)
+    tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks  # ≈ 3.83e-6 m
+    return add_encoder_tick_noise(pos, tick_size_m, max_ticks=3)
+
+
 def cart_vel_noisy(
     env,
     asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
     ticks: int = 16384,
-    range_m: float = 0.8,
+    pulley_radius_m: float = 0.01,
+    encoder_bandwidth_hz: float = 1000.0,
+    max_pos_ticks: int = 3,
 ) -> torch.Tensor:
     vel = mdp.joint_vel_rel(env, asset_cfg)
-    # TODO
-    # pulley_radius_m = 0.01
-    # resolution = 2.0 * math.pi * pulley_radius_m / ticks
-    resolution = range_m / ticks
-    return add_encoder_tick_noise(vel, resolution)
+
+    # Correct resolution: one tick = one full motor revolution / CPR, scaled by pulley circumference
+    tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks  # ≈ 3.83e-6 m
+
+    # ODrive PLL: kp = 2 * bandwidth, critically damped
+    # Vel noise ≈ pll_kp * position_noise
+    pll_kp = 2.0 * encoder_bandwidth_hz
+    vel_noise_per_tick = pll_kp * tick_size_m  # ≈ 0.00766 m/s per tick
+
+    return add_encoder_tick_noise(vel, vel_noise_per_tick, max_ticks=max_pos_ticks)
 
 
 def pole_angular_vel_noisy(

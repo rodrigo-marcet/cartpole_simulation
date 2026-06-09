@@ -61,17 +61,18 @@ class ObservationsCfg:
     class PolicyCfg(ObsGroup):
         """Observations for policy group."""
 
-        # TODO: improve how noise is added to the observations
         cart_pos = ObsTerm(
-            func=mdp.joint_pos_rel,
-            params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
+            func=mdp.cart_pos_noisy,
+            params={
+                "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+                "ticks": 16384,
+            },
         )
         cart_vel = ObsTerm(
             func=mdp.cart_vel_noisy,
             params={
                 "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
                 "ticks": 16384,
-                "range_m": 0.8,
             },
         )
         pole_sin = ObsTerm(func=mdp.pole_angle_sin_quantized, params={"ticks_per_rev": 4096})
@@ -199,7 +200,7 @@ class RewardsCfg:
     # (6) Shaping tasks: keep cart near the middle
     cart_pos = RewTerm(
         func=mdp.joint_pos_target_l2,
-        weight=-0.3,
+        weight=-0.1,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "target": 0.0},
     )
     # (7) Shaping tasks: penalize large effort commands directly

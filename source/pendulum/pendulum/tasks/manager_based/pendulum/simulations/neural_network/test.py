@@ -24,7 +24,7 @@ sys.path.insert(0, r"D:/omniverse/pendulum/source/pendulum")
 
 from pendulum.tasks.manager_based.pendulum import mdp
 
-POLICY_PATH = r"D:/omniverse/pendulum/logs/eridani/weights/pos_0.3/skrl_pendulum_v0_057/skrl/pendulum_direct/2026-06-05_17-38-30_ppo_torch/checkpoints/best_agent.pt"
+POLICY_PATH = r"D:/omniverse/pendulum/logs/eridani/weights/skrl_pendulum_v0_061/skrl_pendulum_v0_061/skrl/pendulum_direct/2026-06-08_18-44-46_ppo_torch/checkpoints/best_agent.pt"
 DURATION = 10.0
 DECIMATION = 10
 

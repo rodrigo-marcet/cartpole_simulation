@@ -19,13 +19,7 @@ OBS_SIZE = 5
 
 
 def build_model() -> nn.Module:
-    return nn.Sequential(
-        nn.Linear(OBS_SIZE, 32),
-        nn.ELU(),
-        nn.Linear(32, 32),
-        nn.ELU(),
-        nn.Linear(32, 1),
-    )
+    return nn.Sequential(nn.Linear(OBS_SIZE, 32), nn.ELU(), nn.Linear(32, 32), nn.ELU(), nn.Linear(32, 1), nn.Tanh())
 
 
 # ── loaders ───────────────────────────────────────────────────────────────────
