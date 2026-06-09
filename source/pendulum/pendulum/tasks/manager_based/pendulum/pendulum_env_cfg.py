@@ -209,7 +209,7 @@ class RewardsCfg:
         weight=-0.05,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
     )
-    # (7) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
+    # (8) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
     action_rate = RewTerm(
         func=mdp.action_rate_l2,
         weight=-0.5,
@@ -230,8 +230,6 @@ class TerminationsCfg:
 ##
 # Environment configuration
 ##
-
-
 @configclass
 class PendulumEnvCfg(ManagerBasedRLEnvCfg):
     scene: PendulumSceneCfg = PendulumSceneCfg(num_envs=4096, env_spacing=1.0)

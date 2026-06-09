@@ -33,38 +33,6 @@ def add_encoder_tick_noise(value: torch.Tensor, resolution: float, max_ticks: in
     return value + offsets
 
 
-def pole_angle_sin(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
-    angle = mdp.joint_pos_rel(env, asset_cfg)
-    # print("angle shape:", angle.shape)
-    # result = torch.sin(angle)
-    # print("sin shape:", result.shape)
-    # return result
-    return torch.sin(angle)
-
-
-def pole_angle_cos(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
-    angle = mdp.joint_pos_rel(env, asset_cfg)
-    return torch.cos(angle)
-
-
-def pole_angle_sin_quantized(
-    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
-) -> torch.Tensor:
-    angle = mdp.joint_pos_rel(env, asset_cfg)
-    resolution = (2 * math.pi) / ticks_per_rev
-    angle_q = torch.round(angle / resolution) * resolution
-    return torch.sin(angle_q)
-
-
-def pole_angle_cos_quantized(
-    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
-) -> torch.Tensor:
-    angle = mdp.joint_pos_rel(env, asset_cfg)
-    resolution = (2 * math.pi) / ticks_per_rev
-    angle_q = torch.round(angle / resolution) * resolution
-    return torch.cos(angle_q)
-
-
 def cart_pos_quantized(env, asset_cfg: SceneEntityCfg, ticks: int = 16384, range_m: float = 0.8) -> torch.Tensor:
     """Quantize cart position to 14-bit encoder resolution."""
     asset = env.scene[asset_cfg.name]
@@ -103,6 +71,58 @@ def cart_vel_noisy(
     vel_noise_per_tick = pll_kp * tick_size_m  # ≈ 0.00766 m/s per tick
 
     return add_encoder_tick_noise(vel, vel_noise_per_tick, max_ticks=max_pos_ticks)
+
+
+def pole_angle_sin(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    # print("angle shape:", angle.shape)
+    # result = torch.sin(angle)
+    # print("sin shape:", result.shape)
+    # return result
+    return torch.sin(angle)
+
+
+def pole_angle_cos(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    return torch.cos(angle)
+
+
+def pole_angle_sin_quantized(
+    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    resolution = (2 * math.pi) / ticks_per_rev
+    angle_q = torch.round(angle / resolution) * resolution
+    return torch.sin(angle_q)
+
+
+def pole_angle_cos_quantized(
+    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    resolution = (2 * math.pi) / ticks_per_rev
+    angle_q = torch.round(angle / resolution) * resolution
+    return torch.cos(angle_q)
+
+
+def pole_angle_sin_noisy(
+    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    resolution = (2 * math.pi) / ticks_per_rev
+    angle_q = torch.round(angle / resolution) * resolution
+    angle_q = add_encoder_tick_noise(angle_q, resolution)
+    return torch.sin(angle_q)
+
+
+def pole_angle_cos_noisy(
+    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+) -> torch.Tensor:
+    angle = mdp.joint_pos_rel(env, asset_cfg)
+    resolution = (2 * math.pi) / ticks_per_rev
+    angle_q = torch.round(angle / resolution) * resolution
+    angle_q = add_encoder_tick_noise(angle_q, resolution)
+    return torch.cos(angle_q)
 
 
 def pole_angular_vel_noisy(

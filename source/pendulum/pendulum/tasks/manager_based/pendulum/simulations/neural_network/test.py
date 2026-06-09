@@ -24,7 +24,7 @@ sys.path.insert(0, r"D:/omniverse/pendulum/source/pendulum")
 
 from pendulum.tasks.manager_based.pendulum import mdp
 
-POLICY_PATH = r"D:/omniverse/pendulum/logs/eridani/weights/skrl_pendulum_v0_061/skrl_pendulum_v0_061/skrl/pendulum_direct/2026-06-08_18-44-46_ppo_torch/checkpoints/best_agent.pt"
+POLICY_PATH = r"D:\omniverse\pendulum\logs\eridani\weights\better_pole_noise\skrl_pendulum_v0_067\skrl\pendulum_direct\2026-06-09_16-51-19_ppo_torch\checkpoints\best_agent.pt"
 DURATION = 10.0
 DECIMATION = 10
 
@@ -136,7 +136,7 @@ def main():
             obs_scaled = (obs - running_mean) / (running_var.sqrt() + 1e-8)
             with torch.no_grad():
                 action = model(obs_scaled)
-            force = action[0, 0].item() * 40.0
+            force = action[0, 0].item() * 30.0
             torque = force * 0.01  # F * r
 
             cart_pos = obs[0, 0].item()
