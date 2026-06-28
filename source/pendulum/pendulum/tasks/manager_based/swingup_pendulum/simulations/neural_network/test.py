@@ -21,11 +21,12 @@ from isaaclab.sim import SimulationContext
 
 sys.path.insert(0, r"D:/omniverse/pendulum/source/pendulum")
 
-from pendulum.tasks.manager_based.pendulum import mdp
+from pendulum.tasks.manager_based.swingup_pendulum import mdp
 
-POLICY_PATH = r"D:\omniverse\pendulum\logs\skrl\pendulum_direct\swingup\checkpoints\best_agent.pt"
+POLICY_PATH = r"D:\omniverse\pendulum\logs\skrl\pendulum_direct\2026-06-26_12-37-19_ppo_torch\checkpoints\best_agent.pt"
 DURATION = 10.0
 DECIMATION = 10
+SCALE = 30.0
 
 
 def _tick_noise(resolution: float, max_ticks: int = 3) -> float:
@@ -75,6 +76,8 @@ def main():
     robot = Articulation(robot_cfg)
 
     sim.reset()
+    print("masses   :", robot.root_physx_view.get_masses()[0].tolist())
+    print("inertias :", robot.root_physx_view.get_inertias()[0].tolist())
     robot.update(sim.get_physics_dt())
 
     slider_idx, _ = robot.find_joints("slider_to_cart")
@@ -113,15 +116,13 @@ def main():
 
     # randomize cart
     # joint_pos[0, slider_idx] += random.uniform(-0.2, 0.2)
-    # joint_vel[0, slider_idx] += random.uniform(-0.2, 0.2)
+    # joint_vel[0, slider_idx] += random.uniform(-1.0, 1.0)
     joint_pos[0, slider_idx] += 0.0
     joint_vel[0, slider_idx] += 0.0
 
     # randomize pole
-    # joint_pos[0, pole_idx] += random.uniform(-0.1 * math.pi, 0.1 * math.pi)
-    # joint_vel[0, pole_idx] += random.uniform(-0.1 * math.pi, 0.1 * math.pi)
-    # joint_pos[0, pole_idx] += 0.0
-    # joint_vel[0, pole_idx] += 0.1
+    # joint_pos[0, pole_idx] += random.uniform(-2.0 * math.pi, 2.0 * math.pi)
+    # joint_vel[0, pole_idx] += random.uniform(-2.0 * math.pi, 2.0 * math.pi)
     joint_pos[0, pole_idx] += math.pi
     joint_vel[0, pole_idx] += 0.05
 
@@ -132,14 +133,15 @@ def main():
     effort = torch.zeros_like(robot.data.joint_effort_target)
     dt = sim.get_physics_dt()
     steps = int(DURATION / dt)
+    force = 0.0
 
     for i in range(steps):
         if i % DECIMATION == 0:
             obs = get_obs(robot, slider_idx, pole_idx)
-            obs_scaled = (obs - running_mean) / (running_var.sqrt() + 1e-8)
+            obs_scaled = ((obs - running_mean) / (running_var.sqrt() + 1e-8)).clamp(-5.0, 5.0)
             with torch.no_grad():
                 action = model(obs_scaled)
-            force = action[0, 0].item() * 30.0
+            force = action[0, 0].item() * SCALE
             torque = force * 0.01  # F * r
 
             cart_pos = obs[0, 0].item()
@@ -162,10 +164,11 @@ def main():
                 f"torque={torque:+.5f}Nm"
             )
 
-            effort[0, slider_idx] = force
-            robot.set_joint_effort_target(effort)
-            robot.write_data_to_sim()
+        effort[0, slider_idx] = force
+        robot.set_joint_effort_target(effort)
+        robot.write_data_to_sim()
 
+        # print("applied: ", robot.data.applied_torque[0,slider_idx].item())
         sim.step()
         robot.update(dt)
 

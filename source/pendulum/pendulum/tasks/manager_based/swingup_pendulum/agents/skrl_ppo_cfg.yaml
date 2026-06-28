@@ -15,6 +15,7 @@ models:
     network:
       - name: net
         input: OBSERVATIONS
+        # layers: [128, 128]
         layers: [32, 32]
         activations: elu
     output: tanh(ACTIONS)
@@ -24,6 +25,7 @@ models:
     network:
       - name: net
         input: OBSERVATIONS
+        # layers: [128, 128]
         layers: [32, 32]
         activations: elu
     output: ONE
@@ -73,6 +75,7 @@ agent:
     experiment_name: ""
     write_interval: auto
     checkpoint_interval: auto
+
 
 
 # Sequential trainer

@@ -23,7 +23,7 @@ from pendulum.tasks.manager_based.pendulum import mdp
 
 def main():
     sim = SimulationContext(sim_utils.SimulationCfg(dt=1 / 1000))
-    sim.set_camera_view([0.0, -1.5, 2.5], [0.0, 4.0, 1.0])
+    sim.set_camera_view([0.0, -5.0, 3.0], [0.0, 0.0, 2.0])
 
     # add light and ground
     sim_utils.DomeLightCfg(intensity=500.0, color=(0.9, 0.9, 0.9)).func(
@@ -48,8 +48,8 @@ def main():
 
     # joint_vel[0, slider_idx[0]] = 1.1  # m/s
     # joint_pos[0, slider_idx[0]] = -.4036  # m/s
-    joint_vel[0, slider_idx[0]] = 2.0  # m/s
-    joint_pos[0, slider_idx[0]] = -0.30  # m/s
+    joint_vel[0, slider_idx[0]] = 2.1  # m/s
+    joint_pos[0, slider_idx[0]] = -0.176  # m/s
 
     robot.write_root_state_to_sim(root_state)
     robot.write_joint_state_to_sim(joint_pos, joint_vel)

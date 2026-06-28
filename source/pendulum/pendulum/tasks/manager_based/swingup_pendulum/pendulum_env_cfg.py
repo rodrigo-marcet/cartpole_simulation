@@ -2,7 +2,6 @@
 # All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
-# ruff: noqa: E501
 
 import math
 
@@ -99,10 +98,10 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            # "position_range": (-0.2, 0.2),
-            # "velocity_range": (-0.2, 0.2),
             "position_range": (-0.0, 0.0),
             "velocity_range": (-0.0, 0.0),
+            # "position_range": (-0.1, 0.1),
+            # "velocity_range": (-1.0, 1.0),
         },
     )
 
@@ -111,8 +110,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            # "position_range": (-0.25 * math.pi, 0.25 * math.pi),
-            # "velocity_range": (-0.25 * math.pi, 0.25 * math.pi),
+            # "position_range": (-2 * math.pi, 2 * math.pi),
+            # "velocity_range": (-2 * math.pi * 15.0, 2 * math.pi * 15.0),
             "position_range": (math.pi - 0.1, math.pi + 0.1),
             "velocity_range": (-0.0, 0.0),
         },
@@ -243,6 +242,34 @@ class RewardsCfg:
     )
 
 
+# @configclass
+# class RewardsCfg:
+#     alive = RewTerm(func=mdp.is_alive, weight=1.0)
+#     swingup = RewTerm(
+#         func=mdp.swingup_reward_energy_pump,
+#         # func=mdp.swingup_reward_gated,
+#         weight=4.0,
+#         params={
+#             "pole_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
+#             "cart_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+#         },
+#     )
+#     # (7) Shaping tasks: penalize large effort commands directly
+#     effort_penalty = RewTerm(
+#         func=mdp.joint_effort_l2,
+#         # weight=-0.05,
+#         weight=-0.5,
+#         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
+#     )
+#     # (8) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
+#     action_rate = RewTerm(
+#         func=mdp.action_rate_l2,
+#         # weight=-0.5, # Best so far
+#         weight=-0.05, # Best long so far
+#         # weight=-0.01,
+#     )
+
+
 @configclass
 class TerminationsCfg:
     """Termination terms for the MDP."""
@@ -250,13 +277,23 @@ class TerminationsCfg:
     time_out = DoneTerm(func=mdp.time_out, time_out=True)
     cart_out_of_bounds = DoneTerm(
         func=mdp.joint_pos_out_of_manual_limit,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.4, 0.4)},
+        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.2, 0.2)},
     )
 
-    # pole_out_of_bounds = DoneTerm(
-    #     func=mdp.joint_pos_out_of_manual_limit,
-    #     params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "bounds": (-(math.pi / 2.0), (math.pi / 2.0))},
-    # )
+
+# @configclass
+# class CurriculumsCfg:
+#     """Curriculum terms for the MDP."""
+
+#     narrow_cart_bounds = CurriculumTermCfg(
+#         func=mdp.NarrowCartBoundsCurriculum,
+#         params={
+#             "term_name": "cart_out_of_bounds",
+#             "start_bound": 0.4,
+#             "end_bound": 0.2,
+#             "num_steps": 7_500,  # adjust to 75% of your total training steps
+#         },
+#     )
 
 
 ##
@@ -270,10 +307,11 @@ class PendulumEnvCfg(ManagerBasedRLEnvCfg):
     events: EventCfg = EventCfg()
     rewards: RewardsCfg = RewardsCfg()
     terminations: TerminationsCfg = TerminationsCfg()
+    # curriculum: CurriculumsCfg = CurriculumsCfg()  # <-- add this line
 
     def __post_init__(self) -> None:
         self.decimation = 10
-        self.episode_length_s = 10
+        self.episode_length_s = 5
         self.viewer.eye = (8.0, 0.0, 5.0)
         self.sim.dt = 1 / 1000
         self.sim.render_interval = self.decimation

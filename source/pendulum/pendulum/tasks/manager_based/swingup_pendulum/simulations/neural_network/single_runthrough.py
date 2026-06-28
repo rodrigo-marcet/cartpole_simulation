@@ -28,6 +28,7 @@ model.load_state_dict(
 )
 model.eval()
 
+
 scaler_state = checkpoint["state_preprocessor"]
 running_mean = scaler_state["running_mean"].float()
 running_var = scaler_state["running_variance"].float()
@@ -41,15 +42,26 @@ pole_vel = -8.63943
 force_real = -29.914629
 torque_real = -0.299146
 
-
 obs_raw = torch.tensor([[cart_pos, cart_vel, sin_angle, cos_angle, pole_vel]], dtype=torch.float32)
-obs_scaled = ((obs_raw - running_mean) / (running_var.sqrt() + 1e-8)).clip(-5.0, 5.0)
+obs_scaled = ((obs_raw - running_mean) / (running_var.sqrt() + 1e-8)).clamp(-5.0, 5.0)
+
+print("CLIP_THRESHOLD:", 5.0)  # the value YOU hardcoded in .clip(-5, 5)
+print("EPSILON       :", 1e-8)
+print("MEAN:", running_mean.flatten().tolist())
+print("VAR :", running_var.flatten().tolist())
+
+pre_clip = (obs_raw - running_mean) / (running_var.sqrt() + 1e-8)
+print("SR SCALED (pre-clip) :", pre_clip.flatten().tolist())
+print("SR SCALED (post-clip):", obs_scaled.flatten().tolist())  # what your net actually receives
+
+print("policy keys:", list(policy_state.keys()))
+print(model)
 
 with torch.no_grad():
     action = model(obs_scaled)
 
 force_unscaled = action[0, 0].item()
-force = force_unscaled * 40.0
+force = force_unscaled * 30.0
 
 print(f"obs raw:      {obs_raw.numpy()}")
 print(f"obs scaled:   {obs_scaled.numpy()}")

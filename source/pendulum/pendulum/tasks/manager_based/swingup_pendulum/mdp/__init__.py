@@ -16,10 +16,11 @@ from isaaclab.envs.mdp import (
     is_alive,
     is_terminated,
     joint_vel_l1,
+    joint_vel_l2,
     time_out,
     joint_pos_out_of_manual_limit,
     apply_external_force_torque,
-    randomize_actuator_gains,
+    randomize_actuator_gains
 )
 
 from .rewards import *  # noqa: F401, F403
@@ -31,3 +32,5 @@ from .observations import *
 from .configurations import *
 
 from .actions import *
+
+from .curriculums import *

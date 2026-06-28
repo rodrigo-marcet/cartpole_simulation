@@ -208,9 +208,20 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
     runner.agent.load(resume_path)
     # set agent to evaluation mode
     runner.agent.set_running_mode("eval")
+    # import torch
+    # probe = torch.tensor([[-0.345092, -2.589072, -0.53195, 0.84678, 24.96285]],
+    #                     device=runner.agent.device)
+    # sp = runner.agent._state_preprocessor
+    # print("CLIP_THRESHOLD:", getattr(sp, "clip_threshold", None))   # is it really 5.0?
+    # print("EPSILON       :", getattr(sp, "epsilon", None))
+    # print("MEAN:", sp.running_mean.flatten().tolist())
+    # print("VAR :", sp.running_variance.flatten().tolist())
+    # print("PLAY SCALED:", sp(probe).flatten().tolist())             # what the net actually receives
+    # print(runner.agent.policy)                                      # the REAL architecture
 
     # reset environment
     obs, _ = env.reset()
+    # print("play masses:", env.unwrapped.scene["robot"].root_physx_view.get_masses()[:5].tolist())
     timestep = 0
     # simulate environment
     while simulation_app.is_running():
