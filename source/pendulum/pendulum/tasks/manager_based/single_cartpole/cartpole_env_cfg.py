@@ -3,7 +3,19 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-import math
+"""Shared cart-pole configuration for the single_cartpole task family.
+
+Both tasks (Swingup-Cartpole-v0, Balancing-Cartpole-v0) run the SAME rig, observations,
+actions, domain randomization and sim settings -- all defined here. The two tasks differ
+in only four things, which live in their own modules (swingup_env_cfg.py / balancing_env_cfg.py):
+  1. action scale        (swingup 30, balancing 40)
+  2. pole reset          (swingup starts hanging, balancing starts near-upright)
+  3. rewards             (energy-pump swing-up vs upright-balance shaping)
+  4. terminations        (cart bounds; balancing also has a pole-angle limit)
+
+The `reset_pole_position` event is the only per-task EVENT, so `CartpoleEventCfg` below holds
+every shared event and each task subclasses it to add its own `reset_pole_position`.
+"""
 
 import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
@@ -11,9 +23,7 @@ from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
 from isaaclab.managers import ObservationTermCfg as ObsTerm
-from isaaclab.managers import RewardTermCfg as RewTerm
 from isaaclab.managers import SceneEntityCfg
-from isaaclab.managers import TerminationTermCfg as DoneTerm
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.utils import configclass
 
@@ -24,7 +34,7 @@ from . import mdp
 # Scene definition
 ##
 @configclass
-class PendulumSceneCfg(InteractiveSceneCfg):
+class CartpoleSceneCfg(InteractiveSceneCfg):
     """Configuration for a cart-pole scene."""
 
     ground = AssetBaseCfg(
@@ -45,7 +55,11 @@ class PendulumSceneCfg(InteractiveSceneCfg):
 ##
 @configclass
 class ActionsCfg:
-    """Action specifications for the MDP."""
+    """Action specifications for the MDP.
+
+    Base scale is 30 (the value the deployed swing-up policy was trained with).
+    BalancingEnvCfg bumps this to 40 in its __post_init__.
+    """
 
     joint_effort = mdp.JointEffortActionCfg(asset_name="robot", joint_names=["slider_to_cart"], scale=30.0)
 
@@ -87,8 +101,14 @@ class ObservationsCfg:
 
 
 @configclass
-class EventCfg:
-    """Configuration for events."""
+class CartpoleEventCfg:
+    """Shared reset + domain-randomization events (identical across both tasks).
+
+    Subclasses add the one per-task event, `reset_pole_position`. The friction-effort term MUST
+    stay before the slider-armature term: randomize_slider_friction_effort writes the friction via
+    the Isaac Lab wrapper (updating asset.data), and a later randomize_joint_parameters rewrites the
+    whole joint-props array from that buffer -- reversing the order would clobber the friction.
+    """
 
     reset_cart_position = EventTerm(
         func=mdp.reset_joints_by_offset,
@@ -97,16 +117,6 @@ class EventCfg:
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
             "position_range": (-0.1, 0.1),
             "velocity_range": (-0.5, 0.5),
-        },
-    )
-
-    reset_pole_position = EventTerm(
-        func=mdp.reset_joints_by_offset,
-        mode="reset",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "position_range": (math.pi - 0.5, math.pi + 0.5),
-            "velocity_range": (-1.0, 1.0),
         },
     )
 
@@ -130,7 +140,6 @@ class EventCfg:
             "distribution": "gaussian",
         },
     )
-
     randomize_pole_mass = EventTerm(
         func=mdp.randomize_rigid_body_mass,
         mode="reset",
@@ -141,7 +150,6 @@ class EventCfg:
             "distribution": "gaussian",
         },
     )
-
     randomize_weight_mass = EventTerm(
         func=mdp.randomize_rigid_body_mass,
         mode="reset",
@@ -204,55 +212,17 @@ class EventCfg:
     )
 
 
-@configclass
-class RewardsCfg:
-    # (1) Shaping tasks: penalize large effort commands directly
-    alive = RewTerm(func=mdp.is_alive, weight=1.0)
-
-    # (2) Shaping tasks: penalize large effort commands directly
-    swingup = RewTerm(
-        func=mdp.swingup_reward_energy_pump,
-        weight=4.0,
-        params={
-            "pole_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "cart_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-        },
-    )
-    # (3) Shaping tasks: penalize large effort commands directly
-    effort_penalty = RewTerm(
-        func=mdp.joint_effort_l2,
-        weight=-0.05,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
-    )
-    # (4) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
-    action_rate = RewTerm(
-        func=mdp.action_rate_l2,
-        weight=-0.01,
-    )
-
-
-@configclass
-class TerminationsCfg:
-    """Termination terms for the MDP."""
-
-    time_out = DoneTerm(func=mdp.time_out, time_out=True)
-    cart_out_of_bounds = DoneTerm(
-        func=mdp.joint_pos_out_of_manual_limit,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.3, 0.3)},
-    )
-
-
 ##
-# Environment configuration
+# Base environment configuration
 ##
 @configclass
-class PendulumEnvCfg(ManagerBasedRLEnvCfg):
-    scene: PendulumSceneCfg = PendulumSceneCfg(num_envs=4096, env_spacing=1.0)
+class CartpoleEnvCfg(ManagerBasedRLEnvCfg):
+    """Shared base env cfg. Subclasses set `events`, `rewards`, `terminations`
+    (and BalancingEnvCfg overrides the action scale)."""
+
+    scene: CartpoleSceneCfg = CartpoleSceneCfg(num_envs=4096, env_spacing=1.0)
     observations: ObservationsCfg = ObservationsCfg()
     actions: ActionsCfg = ActionsCfg()
-    events: EventCfg = EventCfg()
-    rewards: RewardsCfg = RewardsCfg()
-    terminations: TerminationsCfg = TerminationsCfg()
 
     def __post_init__(self) -> None:
         self.decimation = 10
