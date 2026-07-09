@@ -36,6 +36,12 @@ parser.add_argument(
     ),
 )
 parser.add_argument("--checkpoint", type=str, default=None, help="Path to model checkpoint.")
+parser.add_argument(
+    "--freeze_dr",
+    action="store_true",
+    default=False,
+    help="Collapse domain randomization to its MIDPOINT (every env == the nominal calibrated rig).",
+)
 parser.add_argument("--seed", type=int, default=None, help="Seed used for the environment")
 parser.add_argument(
     "--use_pretrained_checkpoint",
@@ -124,6 +130,65 @@ else:
     algorithm = agent_cfg_entry_point.split("_cfg")[0].split("skrl_")[-1].lower()
 
 
+def _freeze_dr(env_cfg):
+    """Freeze the RIG (physics + sensor noise) DR to its nominal midpoint, per env.
+
+    The START-STATE resets (pole position/velocity, cart position) are LEFT RANDOMIZED on
+    purpose, so the policy is still tested from the normal variety of initial conditions --
+    only the rig parameters are pinned. static range -> midpoint; gaussians -> (center, std=0);
+    the per-episode pole-noise std -> its mean (noise stays ON, just not randomized). Edits
+    env_cfg in memory, so the config file is untouched.
+    """
+    ev = getattr(env_cfg, "events", None)
+    if ev is None:
+        print("[freeze_dr] no events on env_cfg; nothing to freeze.")
+        return
+
+    def mid_range(term, key):
+        try:
+            a, b = term.params[key]
+            m = 0.5 * (float(a) + float(b))
+            term.params[key] = (m, m)
+        except Exception as e:  # noqa: BLE001
+            print(f"[freeze_dr] skip {key}: {e}")
+
+    def zero_std(term, key):
+        try:
+            p = term.params[key]
+            term.params[key] = (p[0], 0.0)
+        except Exception as e:  # noqa: BLE001
+            print(f"[freeze_dr] skip {key}: {e}")
+
+    def get(name):
+        return getattr(ev, name, None)
+
+    # NOTE: reset_cart_position / reset_pole_position are deliberately NOT frozen -- the pole
+    # still starts across its configured range (pi +/- 0.5) so the policy faces varied swing-ups.
+    # slider friction: static range -> midpoint; dynamic -> center (std 0); viscous unchanged
+    t = get("randomize_slider_friction")
+    if t:
+        mid_range(t, "static_range")
+        zero_std(t, "dynamic_params")
+    # gaussian (center, std) terms -> (center, 0)
+    for nm, key in (
+        ("randomize_slider_armature", "armature_distribution_params"),
+        ("randomize_cart_mass", "mass_distribution_params"),
+        ("randomize_shaft_mass", "mass_distribution_params"),
+        ("randomize_pole_mass", "mass_distribution_params"),
+        ("randomize_weight_mass", "mass_distribution_params"),
+        ("randomize_pole_friction", "friction_distribution_params"),
+        ("randomize_pole_damping", "damping_distribution_params"),
+    ):
+        t = get(nm)
+        if t:
+            zero_std(t, key)
+    # per-episode pole-velocity noise std -> its mean (noise still applied at the midpoint level)
+    t = get("randomize_pole_vel_noise")
+    if t and "std" in t.params:
+        t.params["std"] = 0.0
+    print("[freeze_dr] DR frozen to midpoint -- every env is the nominal rig (noise kept at its mean).")
+
+
 @hydra_task_config(args_cli.task, agent_cfg_entry_point)
 def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, experiment_cfg: dict):
     """Play with skrl agent."""
@@ -147,6 +212,10 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
     # note: certain randomization occur in the environment initialization so we set the seed here
     experiment_cfg["seed"] = args_cli.seed if args_cli.seed is not None else experiment_cfg["seed"]
     env_cfg.seed = experiment_cfg["seed"]
+
+    # optional: collapse DR to its midpoint so the policy is evaluated in the nominal rig
+    if args_cli.freeze_dr:
+        _freeze_dr(env_cfg)
 
     # specify directory for logging experiments (load checkpoint)
     log_root_path = os.path.join("logs", "skrl", experiment_cfg["agent"]["experiment"]["directory"])
@@ -208,22 +277,55 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
     runner.agent.load(resume_path)
     # set agent to evaluation mode
     runner.agent.set_running_mode("eval")
-    # import torch
-    # probe = torch.tensor([[-0.345092, -2.589072, -0.53195, 0.84678, 24.96285]],
-    #                     device=runner.agent.device)
-    # sp = runner.agent._state_preprocessor
-    # print("CLIP_THRESHOLD:", getattr(sp, "clip_threshold", None))   # is it really 5.0?
-    # print("EPSILON       :", getattr(sp, "epsilon", None))
-    # print("MEAN:", sp.running_mean.flatten().tolist())
-    # print("VAR :", sp.running_variance.flatten().tolist())
-    # print("PLAY SCALED:", sp(probe).flatten().tolist())             # what the net actually receives
-    # print(runner.agent.policy)                                      # the REAL architecture
+    probe = torch.tensor([[-0.345092, -2.589072, -0.53195, 0.84678, 24.96285]], device=runner.agent.device)
+    sp = runner.agent._state_preprocessor
+    print("CLIP_THRESHOLD:", getattr(sp, "clip_threshold", None))  # is it really 5.0?
+    print("EPSILON       :", getattr(sp, "epsilon", None))
+    print("MEAN:", sp.running_mean.flatten().tolist())
+    print("VAR :", sp.running_variance.flatten().tolist())
+    print("PLAY SCALED:", sp(probe).flatten().tolist())  # what the net actually receives
+    print(runner.agent.policy)  # the REAL architecture
+    e = env.unwrapped
+    print("PLAY decimation:", e.cfg.decimation, "| sim.dt:", e.physics_dt, "| step_dt:", e.step_dt)
+    print("PLAY resume_path:", resume_path)
 
     # reset environment
     obs, _ = env.reset()
-    # print("play masses:", env.unwrapped.scene["robot"].root_physx_view.get_masses()[:5].tolist())
+    print("play masses:", env.unwrapped.scene["robot"].root_physx_view.get_masses()[:5].tolist())
+    print("play inertias:", env.unwrapped.scene["robot"].root_physx_view.get_inertias()[:5].tolist())
+    rb = env.unwrapped.scene["robot"]
+    v = rb.root_physx_view
+    print("PLAY friction :", v.get_dof_friction_coefficients()[0].tolist())
+    print("PLAY armature :", v.get_dof_armatures()[0].tolist())
+    print("PLAY stiffness:", v.get_dof_stiffnesses()[0].tolist())
+    print("PLAY damping  :", v.get_dof_dampings()[0].tolist())
+    print("PLAY max_vel  :", v.get_dof_max_velocities()[0].tolist())
+    print("PLAY max_force:", v.get_dof_max_forces()[0].tolist())
+
+    v = env.unwrapped.scene["robot"].root_physx_view
+    try:
+        print("PLAY solver_pos_iters:", int(v.get_solver_position_iteration_counts()[0]))
+        print("PLAY solver_vel_iters:", int(v.get_solver_velocity_iteration_counts()[0]))
+    except Exception as e:
+        print("PLAY solver iters: <unavailable>", e)
+    try:
+        pc = env.unwrapped.sim.get_physics_context()
+        print(
+            "PLAY gpu_dynamics:",
+            pc.is_gpu_dynamics_enabled(),
+            "| solver_type:",
+            pc.get_solver_type(),
+            "| gravity:",
+            pc.get_gravity(),
+        )
+    except Exception as e:
+        print("PLAY physics_context: <unavailable>", e)
+
     timestep = 0
     # simulate environment
+
+    sidx = env.unwrapped.scene["robot"].find_joints("slider_to_cart")[0][0]  # MINE
+
     while simulation_app.is_running():
         start_time = time.time()
 
@@ -239,6 +341,13 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
                 actions = outputs[-1].get("mean_actions", outputs[0])
             # env stepping
             obs, _, _, _, _ = env.step(actions)
+
+            rb = env.unwrapped.scene["robot"]
+            sidx = rb.find_joints("slider_to_cart")[0][0]  # MINE
+            print(
+                "PLAY cart_vel:", rb.data.joint_vel[0, sidx].item(), "applied:", rb.data.applied_torque[0, sidx].item()
+            )  # MINE
+
         if args_cli.video:
             timestep += 1
             # exit the play loop after recording one video
