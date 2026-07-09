@@ -126,8 +126,34 @@ def pole_angle_cos_noisy(
 
 
 def pole_angular_vel_noisy(
-    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+    env,
+    asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]),
+    ticks_per_rev: int = 4096,  # kept for call-site compatibility; unused (see below)
+    # noise_std: float = 0.28,  # rad/s -- measured from the rig; DR-able later
+    noise_std: float = 0.4,  # rad/s -- measured from the rig; DR-able later
 ) -> torch.Tensor:
+    """Pole angular velocity with REALISTIC additive Gaussian sensor noise.
+
+    The pole joint is passive (no motor / no ODrive PLL): the rig derives its angular
+    velocity by software finite-difference of the 12-bit absolute encoder at the ~100 Hz
+    control rate. That differentiation amplifies the position tick by ~1/dt, and the result
+    is dominated by broadband mechanical/electrical noise -- NOT clean quantization ticks.
+
+    Measured from the rig free-swing (analysis/data/pole_analysis/ground_truth/001.csv,
+    12 Hz high-pass): noise std ~= 0.28 rad/s, essentially FLAT with speed (only +12% at
+    18 rad/s), and ~4x larger than the pure encoder-quantization-differencing prediction.
+    So the right model is additive Gaussian(0, ~0.28), not the discrete tick model.
+
+    The OLD model added ``add_encoder_tick_noise`` at the raw ANGLE resolution
+    (2*pi/4096 -> ~0.0024 rad/s std) -- about 115x too small. It forgot the
+    finite-difference amplification (1/dt) that ``cart_vel_noisy`` DOES apply via its
+    ``pll_kp`` factor. Training on a near-perfect pole velocity is a prime sim2real gap;
+    even for balancing, the controller keys off the pole angular velocity.
+    """
     vel = mdp.joint_vel_rel(env, asset_cfg)
-    resolution = (2 * math.pi) / ticks_per_rev
-    return add_encoder_tick_noise(vel, resolution)
+    # Per-episode DR: randomize_pole_vel_noise_std sets env.pole_vel_noise_std (num_envs, 1).
+    # Use it when present; otherwise fall back to the scalar noise_std (bare probes / no events).
+    std = getattr(env, "pole_vel_noise_std", None)
+    if std is None:
+        std = noise_std
+    return vel + torch.randn_like(vel) * std

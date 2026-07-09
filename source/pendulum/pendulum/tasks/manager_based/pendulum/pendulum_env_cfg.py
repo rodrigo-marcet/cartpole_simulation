@@ -2,7 +2,6 @@
 # All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
-# ruff: noqa: E501
 
 import math
 
@@ -51,7 +50,7 @@ class PendulumSceneCfg(InteractiveSceneCfg):
 class ActionsCfg:
     """Action specifications for the MDP."""
 
-    joint_effort = mdp.JointEffortActionCfg(asset_name="robot", joint_names=["slider_to_cart"], scale=30.0)
+    joint_effort = mdp.JointEffortActionCfg(asset_name="robot", joint_names=["slider_to_cart"], scale=40.0)
 
 
 @configclass
@@ -99,10 +98,9 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            # "position_range": (-0.2, 0.2),
-            # "velocity_range": (-0.2, 0.2),
-            "position_range": (-0.0, 0.0),
-            "velocity_range": (-0.0, 0.0),
+            # adopted from swingup_pendulum (task-envelope sync): tighter start, more velocity spread
+            "position_range": (-0.1, 0.1),
+            "velocity_range": (-0.5, 0.5),
         },
     )
 
@@ -111,10 +109,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            # "position_range": (-0.25 * math.pi, 0.25 * math.pi),
-            # "velocity_range": (-0.25 * math.pi, 0.25 * math.pi),
-            "position_range": (math.pi - 0.1, math.pi + 0.1),
-            "velocity_range": (-0.0, 0.0),
+            "position_range": (-0.25 * math.pi, 0.25 * math.pi),
+            "velocity_range": (-0.25 * math.pi, 0.25 * math.pi),
         },
     )
 
@@ -160,11 +156,22 @@ class EventCfg:
     )
 
     randomize_slider_friction = EventTerm(
+        func=mdp.randomize_slider_friction_effort,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+            "static_range": (1.7, 2.0),
+            "dynamic_params": (1.41, 0.15),
+            "viscous_value": 0.48,
+        },
+    )
+
+    randomize_slider_armature = EventTerm(
         func=mdp.randomize_joint_parameters,
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            "friction_distribution_params": (0.4, 0.05),
+            "armature_distribution_params": (0.37, 0.05),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -175,8 +182,7 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            # "friction_distribution_params": (0.00005, 0.00002),
-            "friction_distribution_params": (0.00007, 0.000018),
+            "friction_distribution_params": (1.5e-5, 3.9e-6),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -187,10 +193,16 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "damping_distribution_params": (0.00001, 3.04e-06),
+            "damping_distribution_params": (7.5e-6, 2.25e-06),
             "operation": "abs",
             "distribution": "gaussian",
         },
+    )
+
+    randomize_pole_vel_noise = EventTerm(
+        func=mdp.randomize_pole_vel_noise_std,
+        mode="reset",
+        params={"mean": 0.4, "std": 0.122, "clip": (0.05, 0.8)},
     )
 
 
@@ -253,10 +265,13 @@ class TerminationsCfg:
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.4, 0.4)},
     )
 
-    # pole_out_of_bounds = DoneTerm(
-    #     func=mdp.joint_pos_out_of_manual_limit,
-    #     params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "bounds": (-(math.pi / 2.0), (math.pi / 2.0))},
-    # )
+    pole_out_of_bounds = DoneTerm(
+        func=mdp.joint_pos_out_of_manual_limit,
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
+            "bounds": (-(math.pi / 2.0), (math.pi / 2.0)),
+        },
+    )
 
 
 ##
@@ -273,7 +288,7 @@ class PendulumEnvCfg(ManagerBasedRLEnvCfg):
 
     def __post_init__(self) -> None:
         self.decimation = 10
-        self.episode_length_s = 10
+        self.episode_length_s = 5  # adopted from swingup_pendulum (task-envelope sync; was 10)
         self.viewer.eye = (8.0, 0.0, 5.0)
         self.sim.dt = 1 / 1000
         self.sim.render_interval = self.decimation
