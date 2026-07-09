@@ -14,13 +14,11 @@ from isaaclab.assets import ArticulationCfg
 
 FUSION_CARTPOLE_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(
-        # usd_path=f"{ISAACLAB_NUCLEUS_DIR}/Robots/Classic/Cartpole/cartpole.usd",
-        usd_path=os.path.join(os.path.dirname(__file__), "assets/cartpole_acc/cartpole_acc.usda"),
-        # usd_path=os.path.join(os.path.dirname(__file__), "assets/cartpole_acc/cartpole_acc_copy.usda"),
+        usd_path=os.path.join(os.path.dirname(__file__), "assets/cartpole/cartpole.usda"),
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
             rigid_body_enabled=True,
             max_linear_velocity=1000.0,
-            max_angular_velocity=1000.0,
+            max_angular_velocity=6000.0,
             max_depenetration_velocity=100.0,
             enable_gyroscopic_forces=True,
         ),
@@ -38,17 +36,18 @@ FUSION_CARTPOLE_CFG = ArticulationCfg(
     actuators={
         "cart_actuator": DCMotorCfg(
             joint_names_expr=["slider_to_cart"],
-            saturation_effort=30.0,  # peak stall force
-            velocity_limit=3.3,  # no-load speed
+            saturation_effort=62.8,
+            velocity_limit=2.65,
             stiffness=0.0,
             damping=0.0,
-            effort_limit_sim=30.0,
+            effort_limit_sim=40.0,
+            armature=0.37,
         ),
         "pole_actuator": ImplicitActuatorCfg(
             joint_names_expr=["cart_to_pole"],
             effort_limit_sim=1000.0,
             stiffness=0.0,
-            damping=0.00001,  # BEST ONE SO FAR
+            damping=0.00001,
         ),
     },
 )

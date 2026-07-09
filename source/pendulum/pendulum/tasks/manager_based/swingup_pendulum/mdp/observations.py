@@ -21,8 +21,8 @@ if TYPE_CHECKING:
 def add_encoder_tick_noise(value: torch.Tensor, resolution: float, max_ticks: int = 3) -> torch.Tensor:
     """Add discrete tick noise with center-peaked distribution."""
     # weights: [1, 2, 3, 4, 3, 2, 1] for max_ticks=3 (triangular)
-    ticks = torch.arange(-max_ticks, max_ticks + 1)  # [-3, -2, -1, 0, 1, 2, 3]
-    weights = (max_ticks + 1 - ticks.abs()).float()  # triangular weights
+    ticks = torch.arange(-max_ticks, max_ticks + 1)
+    weights = (max_ticks + 1 - ticks.abs()).float()
     probs = weights / weights.sum()
 
     indices = (
@@ -62,11 +62,8 @@ def cart_vel_noisy(
 ) -> torch.Tensor:
     vel = mdp.joint_vel_rel(env, asset_cfg)
 
-    # Correct resolution: one tick = one full motor revolution / CPR, scaled by pulley circumference
     tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks  # ≈ 3.83e-6 m
 
-    # ODrive PLL: kp = 2 * bandwidth, critically damped
-    # Vel noise ≈ pll_kp * position_noise
     pll_kp = 2.0 * encoder_bandwidth_hz
     vel_noise_per_tick = pll_kp * tick_size_m  # ≈ 0.00766 m/s per tick
 
@@ -75,10 +72,6 @@ def cart_vel_noisy(
 
 def pole_angle_sin(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
     angle = mdp.joint_pos_rel(env, asset_cfg)
-    # print("angle shape:", angle.shape)
-    # result = torch.sin(angle)
-    # print("sin shape:", result.shape)
-    # return result
     return torch.sin(angle)
 
 
@@ -126,8 +119,13 @@ def pole_angle_cos_noisy(
 
 
 def pole_angular_vel_noisy(
-    env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]), ticks_per_rev: int = 4096
+    env,
+    asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]),
+    ticks_per_rev: int = 4096,
+    noise_std: float = 0.4,
 ) -> torch.Tensor:
     vel = mdp.joint_vel_rel(env, asset_cfg)
-    resolution = (2 * math.pi) / ticks_per_rev
-    return add_encoder_tick_noise(vel, resolution)
+    std = getattr(env, "pole_vel_noise_std", None)
+    if std is None:
+        std = noise_std
+    return vel + torch.randn_like(vel) * std

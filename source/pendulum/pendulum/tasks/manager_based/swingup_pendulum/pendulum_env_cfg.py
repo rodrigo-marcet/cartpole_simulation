@@ -19,11 +19,10 @@ from isaaclab.utils import configclass
 
 from . import mdp
 
+
 ##
 # Scene definition
 ##
-
-
 @configclass
 class PendulumSceneCfg(InteractiveSceneCfg):
     """Configuration for a cart-pole scene."""
@@ -44,8 +43,6 @@ class PendulumSceneCfg(InteractiveSceneCfg):
 ##
 # MDP settings
 ##
-
-
 @configclass
 class ActionsCfg:
     """Action specifications for the MDP."""
@@ -98,10 +95,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            "position_range": (-0.0, 0.0),
-            "velocity_range": (-0.0, 0.0),
-            # "position_range": (-0.1, 0.1),
-            # "velocity_range": (-1.0, 1.0),
+            "position_range": (-0.1, 0.1),
+            "velocity_range": (-0.5, 0.5),
         },
     )
 
@@ -110,10 +105,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            # "position_range": (-2 * math.pi, 2 * math.pi),
-            # "velocity_range": (-2 * math.pi * 15.0, 2 * math.pi * 15.0),
-            "position_range": (math.pi - 0.1, math.pi + 0.1),
-            "velocity_range": (-0.0, 0.0),
+            "position_range": (math.pi - 0.5, math.pi + 0.5),
+            "velocity_range": (-1.0, 1.0),
         },
     )
 
@@ -137,6 +130,7 @@ class EventCfg:
             "distribution": "gaussian",
         },
     )
+
     randomize_pole_mass = EventTerm(
         func=mdp.randomize_rigid_body_mass,
         mode="reset",
@@ -147,6 +141,7 @@ class EventCfg:
             "distribution": "gaussian",
         },
     )
+
     randomize_weight_mass = EventTerm(
         func=mdp.randomize_rigid_body_mass,
         mode="reset",
@@ -159,11 +154,22 @@ class EventCfg:
     )
 
     randomize_slider_friction = EventTerm(
+        func=mdp.randomize_slider_friction_effort,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+            "static_range": (1.7, 2.0),
+            "dynamic_params": (1.41, 0.15),
+            "viscous_value": 0.48,
+        },
+    )
+
+    randomize_slider_armature = EventTerm(
         func=mdp.randomize_joint_parameters,
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            "friction_distribution_params": (0.4, 0.05),
+            "armature_distribution_params": (0.37, 0.05),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -174,8 +180,7 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            # "friction_distribution_params": (0.00005, 0.00002),
-            "friction_distribution_params": (0.00007, 0.000018),
+            "friction_distribution_params": (1.5e-5, 3.9e-6),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -186,88 +191,44 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "damping_distribution_params": (0.00001, 3.04e-06),
+            "damping_distribution_params": (7.5e-6, 2.25e-06),
             "operation": "abs",
             "distribution": "gaussian",
         },
     )
 
+    randomize_pole_vel_noise = EventTerm(
+        func=mdp.randomize_pole_vel_noise_std,
+        mode="reset",
+        params={"mean": 0.4, "std": 0.122, "clip": (0.05, 0.8)},
+    )
+
 
 @configclass
 class RewardsCfg:
-    """Reward terms for the MDP."""
-
-    # (1) Constant running reward
+    # (1) Shaping tasks: penalize large effort commands directly
     alive = RewTerm(func=mdp.is_alive, weight=1.0)
-    # (2) Failure penalty
-    terminating = RewTerm(func=mdp.is_terminated, weight=-2.0)
-    # (3) Primary task: keep pole upright
-    pole_pos = RewTerm(
-        func=mdp.joint_pos_target_l2,
-        weight=-1.0,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "target": 0.0},
+
+    # (2) Shaping tasks: penalize large effort commands directly
+    swingup = RewTerm(
+        func=mdp.swingup_reward_energy_pump,
+        weight=4.0,
+        params={
+            "pole_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
+            "cart_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+        },
     )
-    # (4) Shaping tasks: lower cart velocity
-    cart_vel = RewTerm(
-        func=mdp.joint_vel_l1,
-        weight=-0.01,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
-    )
-    # (5) Shaping tasks: lower pole angular velocity
-    pole_vel = RewTerm(
-        func=mdp.joint_vel_l1,
-        weight=-0.005,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"])},
-    )
-    # (6) Shaping tasks: keep cart near the middle
-    cart_pos = RewTerm(
-        # func=mdp.joint_pos_target_l2, # Best so far
-        # weight=-0.1,
-        func=mdp.joint_pos_target_l1,
-        weight=-1.0,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "target": 0.0},
-    )
-    # (7) Shaping tasks: penalize large effort commands directly
+    # (3) Shaping tasks: penalize large effort commands directly
     effort_penalty = RewTerm(
         func=mdp.joint_effort_l2,
         weight=-0.05,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
     )
-    # (8) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
+    # (4) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
     action_rate = RewTerm(
         func=mdp.action_rate_l2,
-        # weight=-0.5, # Best so far
-        # weight=-0.05, # Best long so far
         weight=-0.01,
     )
-
-
-# @configclass
-# class RewardsCfg:
-#     alive = RewTerm(func=mdp.is_alive, weight=1.0)
-#     swingup = RewTerm(
-#         func=mdp.swingup_reward_energy_pump,
-#         # func=mdp.swingup_reward_gated,
-#         weight=4.0,
-#         params={
-#             "pole_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-#             "cart_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-#         },
-#     )
-#     # (7) Shaping tasks: penalize large effort commands directly
-#     effort_penalty = RewTerm(
-#         func=mdp.joint_effort_l2,
-#         # weight=-0.05,
-#         weight=-0.5,
-#         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
-#     )
-#     # (8) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
-#     action_rate = RewTerm(
-#         func=mdp.action_rate_l2,
-#         # weight=-0.5, # Best so far
-#         weight=-0.05, # Best long so far
-#         # weight=-0.01,
-#     )
 
 
 @configclass
@@ -277,23 +238,8 @@ class TerminationsCfg:
     time_out = DoneTerm(func=mdp.time_out, time_out=True)
     cart_out_of_bounds = DoneTerm(
         func=mdp.joint_pos_out_of_manual_limit,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.2, 0.2)},
+        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.3, 0.3)},
     )
-
-
-# @configclass
-# class CurriculumsCfg:
-#     """Curriculum terms for the MDP."""
-
-#     narrow_cart_bounds = CurriculumTermCfg(
-#         func=mdp.NarrowCartBoundsCurriculum,
-#         params={
-#             "term_name": "cart_out_of_bounds",
-#             "start_bound": 0.4,
-#             "end_bound": 0.2,
-#             "num_steps": 7_500,  # adjust to 75% of your total training steps
-#         },
-#     )
 
 
 ##
@@ -307,7 +253,6 @@ class PendulumEnvCfg(ManagerBasedRLEnvCfg):
     events: EventCfg = EventCfg()
     rewards: RewardsCfg = RewardsCfg()
     terminations: TerminationsCfg = TerminationsCfg()
-    # curriculum: CurriculumsCfg = CurriculumsCfg()  # <-- add this line
 
     def __post_init__(self) -> None:
         self.decimation = 10
