@@ -98,7 +98,6 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            # adopted from swingup_pendulum (task-envelope sync): tighter start, more velocity spread
             "position_range": (-0.1, 0.1),
             "velocity_range": (-0.5, 0.5),
         },
@@ -234,8 +233,6 @@ class RewardsCfg:
     )
     # (6) Shaping tasks: keep cart near the middle
     cart_pos = RewTerm(
-        # func=mdp.joint_pos_target_l2, # Best so far
-        # weight=-0.1,
         func=mdp.joint_pos_target_l1,
         weight=-1.0,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "target": 0.0},
@@ -249,8 +246,6 @@ class RewardsCfg:
     # (8) Shaping tasks: penalize rapid changes between consecutive actions (jerk)
     action_rate = RewTerm(
         func=mdp.action_rate_l2,
-        # weight=-0.5, # Best so far
-        # weight=-0.05, # Best long so far
         weight=-0.01,
     )
 

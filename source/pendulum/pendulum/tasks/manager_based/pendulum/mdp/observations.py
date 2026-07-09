@@ -21,8 +21,8 @@ if TYPE_CHECKING:
 def add_encoder_tick_noise(value: torch.Tensor, resolution: float, max_ticks: int = 3) -> torch.Tensor:
     """Add discrete tick noise with center-peaked distribution."""
     # weights: [1, 2, 3, 4, 3, 2, 1] for max_ticks=3 (triangular)
-    ticks = torch.arange(-max_ticks, max_ticks + 1)  # [-3, -2, -1, 0, 1, 2, 3]
-    weights = (max_ticks + 1 - ticks.abs()).float()  # triangular weights
+    ticks = torch.arange(-max_ticks, max_ticks + 1)
+    weights = (max_ticks + 1 - ticks.abs()).float()
     probs = weights / weights.sum()
 
     indices = (
@@ -65,8 +65,6 @@ def cart_vel_noisy(
     # Correct resolution: one tick = one full motor revolution / CPR, scaled by pulley circumference
     tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks  # ≈ 3.83e-6 m
 
-    # ODrive PLL: kp = 2 * bandwidth, critically damped
-    # Vel noise ≈ pll_kp * position_noise
     pll_kp = 2.0 * encoder_bandwidth_hz
     vel_noise_per_tick = pll_kp * tick_size_m  # ≈ 0.00766 m/s per tick
 
@@ -75,10 +73,6 @@ def cart_vel_noisy(
 
 def pole_angle_sin(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1])) -> torch.Tensor:
     angle = mdp.joint_pos_rel(env, asset_cfg)
-    # print("angle shape:", angle.shape)
-    # result = torch.sin(angle)
-    # print("sin shape:", result.shape)
-    # return result
     return torch.sin(angle)
 
 
@@ -128,31 +122,10 @@ def pole_angle_cos_noisy(
 def pole_angular_vel_noisy(
     env,
     asset_cfg: SceneEntityCfg = SceneEntityCfg("robot", joint_ids=[1]),
-    ticks_per_rev: int = 4096,  # kept for call-site compatibility; unused (see below)
-    # noise_std: float = 0.28,  # rad/s -- measured from the rig; DR-able later
-    noise_std: float = 0.4,  # rad/s -- measured from the rig; DR-able later
+    ticks_per_rev: int = 4096,
+    noise_std: float = 0.4,
 ) -> torch.Tensor:
-    """Pole angular velocity with REALISTIC additive Gaussian sensor noise.
-
-    The pole joint is passive (no motor / no ODrive PLL): the rig derives its angular
-    velocity by software finite-difference of the 12-bit absolute encoder at the ~100 Hz
-    control rate. That differentiation amplifies the position tick by ~1/dt, and the result
-    is dominated by broadband mechanical/electrical noise -- NOT clean quantization ticks.
-
-    Measured from the rig free-swing (analysis/data/pole_analysis/ground_truth/001.csv,
-    12 Hz high-pass): noise std ~= 0.28 rad/s, essentially FLAT with speed (only +12% at
-    18 rad/s), and ~4x larger than the pure encoder-quantization-differencing prediction.
-    So the right model is additive Gaussian(0, ~0.28), not the discrete tick model.
-
-    The OLD model added ``add_encoder_tick_noise`` at the raw ANGLE resolution
-    (2*pi/4096 -> ~0.0024 rad/s std) -- about 115x too small. It forgot the
-    finite-difference amplification (1/dt) that ``cart_vel_noisy`` DOES apply via its
-    ``pll_kp`` factor. Training on a near-perfect pole velocity is a prime sim2real gap;
-    even for balancing, the controller keys off the pole angular velocity.
-    """
     vel = mdp.joint_vel_rel(env, asset_cfg)
-    # Per-episode DR: randomize_pole_vel_noise_std sets env.pole_vel_noise_std (num_envs, 1).
-    # Use it when present; otherwise fall back to the scalar noise_std (bare probes / no events).
     std = getattr(env, "pole_vel_noise_std", None)
     if std is None:
         std = noise_std

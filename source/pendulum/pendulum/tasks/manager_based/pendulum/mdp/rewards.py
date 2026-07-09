@@ -26,11 +26,8 @@ def joint_pos_target_l1(env: ManagerBasedRLEnv, target: float, asset_cfg: SceneE
 
 def joint_pos_target_l2(env: ManagerBasedRLEnv, target: float, asset_cfg: SceneEntityCfg) -> torch.Tensor:
     """Penalize joint position deviation from a target value."""
-    # extract the used quantities (to enable type-hinting)
     asset: Articulation = env.scene[asset_cfg.name]
-    # wrap the joint positions to (-pi, pi)
     joint_pos = wrap_to_pi(asset.data.joint_pos[:, asset_cfg.joint_ids])
-    # compute the reward
     return torch.sum(torch.square(joint_pos - target), dim=1)
 
 
