@@ -13,10 +13,11 @@ models:
     max_log_std: 2.0
     initial_log_std: 0.0
     network:
+      # double pendulum is harder than the single -> more capacity
       - name: net
         input: OBSERVATIONS
-        # layers: [128, 128]
-        layers: [32, 32]
+        layers: [128, 128]
+        # layers: [64, 64]
         activations: elu
     output: tanh(ACTIONS)
   value:  # see deterministic_model parameters
@@ -25,14 +26,13 @@ models:
     network:
       - name: net
         input: OBSERVATIONS
-        # layers: [128, 128]
-        layers: [32, 32]
+        layers: [128, 128]
+        # layers: [64, 64]
         activations: elu
     output: ONE
 
 
 # Rollout memory
-# https://skrl.readthedocs.io/en/latest/api/memoFries/random.html
 memory:
   class: RandomMemory
   memory_size: -1  # automatically determined (same as agent:rollouts)
@@ -43,12 +43,10 @@ memory:
 agent:
   class: PPO
   rollouts: 32
-  # rollouts: 512
   learning_epochs: 8
   mini_batches: 8
-  discount_factor: 0.997
+  discount_factor: 0.997  # ~3.3 s horizon at 100 Hz control (see single_cartpole)
   lambda: 0.95
-  # learning_rate: 5.0e-04
   learning_rate: 3.0e-04
   learning_rate_scheduler: KLAdaptiveLR
   learning_rate_scheduler_kwargs:
@@ -63,26 +61,24 @@ agent:
   ratio_clip: 0.2
   value_clip: 0.2
   clip_predicted_values: True
-  # entropy_loss_scale: 0.0
   entropy_loss_scale: 0.005
   value_loss_scale: 2.0
   kl_threshold: 0.0
-  rewards_shaper_scale: 0.1 # este estaba comentao
+  rewards_shaper_scale: 0.1
   time_limit_bootstrap: True
   # logging and checkpoint
   experiment:
-    directory: "pendulum_direct"
+    directory: "double_pendulum_direct"
     experiment_name: ""
     write_interval: auto
     checkpoint_interval: auto
-
 
 
 # Sequential trainer
 # https://skrl.readthedocs.io/en/latest/api/trainers/sequential.html
 trainer:
   class: SequentialTrainer
-  # timesteps: 100000
-  timesteps: 30000
-  # timesteps: 15000
+  # double swing-up is hard -> raise well past this once the skeleton is validated
+  timesteps: 15000
+  # timesteps: 200000
   environment_info: log

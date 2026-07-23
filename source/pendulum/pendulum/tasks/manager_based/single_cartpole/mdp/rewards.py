@@ -267,3 +267,69 @@ def swingup_reward_faithful(
     arrive = at_top * slow * centered
 
     return r_energy + arrive_bonus * arrive
+
+
+def swingup_reward_unified(
+    env: ManagerBasedRLEnv,
+    pole_cfg: SceneEntityCfg,
+    cart_cfg: SceneEntityCfg,
+    omega_n: float = 8.9,
+    energy_excess: float = 0.0,
+    k_energy: float = 4.0,
+    balance_bonus: float = 2.5,
+    upright_angle_deg: float = 25.0,
+    pole_vel_margin: float = 2.5,
+    cart_vel_margin: float = 0.6,
+    cart_pos_margin: float = 0.15,
+) -> torch.Tensor:
+    """Single-net swing-up + balance. Energy shaping drives the pole up; a smooth, damped basin makes
+    upright-and-still strictly better than merely orbiting, so one policy both swings up and balances.
+    Only omega_n is needed for the energy term (E/mgl = 0.5*(w/wn)^2 + cos(theta), = 1 at rest upright).
+    """
+    asset: Articulation = env.scene[pole_cfg.name]
+    pole_pos = asset.data.joint_pos[:, pole_cfg.joint_ids[0]]
+    pole_vel = asset.data.joint_vel[:, pole_cfg.joint_ids[0]]
+    cart_asset: Articulation = env.scene[cart_cfg.name]
+    cart_pos = cart_asset.data.joint_pos[:, cart_cfg.joint_ids[0]]
+    cart_vel = cart_asset.data.joint_vel[:, cart_cfg.joint_ids[0]]
+
+    # (1) energy shaping to swing up: peaks on the upright homoclinic orbit (dimensionless energy)
+    e_norm = 0.5 * (pole_vel / omega_n) ** 2 + torch.cos(pole_pos)
+    r_energy = torch.exp(-k_energy * (e_norm - (1.0 + energy_excess)) ** 2)
+
+    # (2) smooth, damped balance basin: upright AND slow pole AND slow cart AND centered
+    ang = wrap_to_pi(pole_pos)
+    at_top = torch.exp(-0.5 * (ang / math.radians(upright_angle_deg)) ** 2)
+    pole_still = torch.exp(-0.5 * (pole_vel / pole_vel_margin) ** 2)
+    cart_still = torch.exp(-0.5 * (cart_vel / cart_vel_margin) ** 2)
+    centered = torch.exp(-0.5 * (cart_pos / cart_pos_margin) ** 2)
+    r_balance = at_top * pole_still * cart_still * centered
+
+    return r_energy + balance_bonus * r_balance
+
+
+def swingup_reward_quadratic(
+    env: ManagerBasedRLEnv,
+    pole_cfg: SceneEntityCfg,
+    cart_cfg: SceneEntityCfg,
+    w_angle: float = 0.5,
+    w_cart: float = 0.3,
+    w_effort: float = 0.2,
+    x_max: float = 0.35,
+) -> torch.Tensor:
+    """Dense LQR-like cost for single-net swing-up + balance (Manrique Escobar et al., Appl. Sci.
+    2020): reward = 1 - normalized quadratic cost on pole angle (deviation from upright), cart
+    position, and control effort. Unlike an energy/basin BONUS, this cost is paid every step the
+    pole is off-upright or the cart is off-center or effort is nonzero, so a limit-cycle 'orbit'
+    (which must keep pumping) is strictly worse than settling upright-and-centered at ~zero effort
+    -- the balanced state is the unique optimum and there is no cycle to farm. Weights are on
+    normalized [0,1] terms, so they compare directly; sum ~1 keeps the reward in ~[0,1].
+    """
+    asset: Articulation = env.scene[pole_cfg.name]
+    pole_pos = asset.data.joint_pos[:, pole_cfg.joint_ids[0]]
+    cart_pos = env.scene[cart_cfg.name].data.joint_pos[:, cart_cfg.joint_ids[0]]
+    u = env.action_manager.action[:, 0]
+
+    theta = wrap_to_pi(pole_pos)  # 0 upright, +/-pi hanging
+    cost = w_angle * (theta / math.pi) ** 2 + w_cart * (cart_pos / x_max) ** 2 + w_effort * u**2
+    return 1.0 - cost

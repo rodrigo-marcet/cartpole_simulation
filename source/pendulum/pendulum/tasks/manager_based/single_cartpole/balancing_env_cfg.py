@@ -25,6 +25,16 @@ from .cartpole_env_cfg import CartpoleEnvCfg, CartpoleEventCfg
 class BalancingEventCfg(CartpoleEventCfg):
     """Shared events + pole starts NEAR-UPRIGHT (theta ~ 0, within +/-45 deg)."""
 
+    reset_cart_position = EventTerm(
+        func=mdp.reset_joints_by_offset,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
+            "position_range": (-0.1, 0.1),
+            "velocity_range": (-0.5, 0.5),
+        },
+    )
+
     reset_pole_position = EventTerm(
         func=mdp.reset_joints_by_offset,
         mode="reset",

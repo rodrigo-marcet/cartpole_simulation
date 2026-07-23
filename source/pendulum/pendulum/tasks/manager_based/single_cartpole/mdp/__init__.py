@@ -20,7 +20,8 @@ from isaaclab.envs.mdp import (
     time_out,
     joint_pos_out_of_manual_limit,
     apply_external_force_torque,
-    randomize_actuator_gains
+    randomize_actuator_gains,
+    push_by_setting_velocity
 )
 
 from .rewards import *  # noqa: F401, F403
