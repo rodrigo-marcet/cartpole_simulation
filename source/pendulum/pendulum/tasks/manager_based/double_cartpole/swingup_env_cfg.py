@@ -5,8 +5,16 @@
 
 """Double cart-pole swing-up + balance: bring both links from hanging to fully upright and hold.
 
-Everything shared lives in double_cartpole_env_cfg.py; this module only defines the swing-up deltas
-(reset, reward, terminations). The reward drives both joint angles to 0 (fully inverted).
+One task, one policy, replicating Lee, Ju & Lee (Machines 2025, 13, 186) -- the only published
+end-to-end RL swing-up of a CART double pendulum on real hardware, and notably at a 100 Hz policy
+rate with no LQR handoff. Multiplicative [0,1] reward, positive, with a rail termination.
+Alternatives considered: scripts/double_swingup_policies.md.
+Everything shared (scene, actions, observations, DR) lives in double_cartpole_env_cfg.py.
+
+For a BALANCE-ONLY run: set near_fraction=1.0 / mid_fraction=0.0 in `reset_poles` and add
+    pole_fell = DoneTerm(func=mdp.tip_below_height,
+                         params={"ipole_cfg": IPOLE, "opole_cfg": OPOLE, "min_height_frac": 0.5})
+to SwingupTerminationsCfg. Both together, never one without the other.
 """
 
 import math
@@ -20,76 +28,105 @@ from isaaclab.utils import configclass
 from . import mdp
 from .double_cartpole_env_cfg import DoubleCartpoleEnvCfg, DoubleCartpoleEventCfg
 
+IPOLE = SceneEntityCfg("robot", joint_names=["cart_to_ipole"])
+OPOLE = SceneEntityCfg("robot", joint_names=["ipole_to_opole"])
+CART = SceneEntityCfg("robot", joint_names=["slider_to_cart"])
+
 
 @configclass
 class SwingupEventCfg(DoubleCartpoleEventCfg):
-    """Shared events + cart/pole resets."""
-
     reset_cart_position = EventTerm(
         func=mdp.reset_joints_by_offset,
         mode="reset",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            "position_range": (-0.3, 0.3),
-            "velocity_range": (-1.0, 1.0),
-        },
+        params={"asset_cfg": CART, "position_range": (-0.1, 0.1), "velocity_range": (-1.0, 1.0)},
     )
-
-    # Reverse-curriculum reset on BOTH revolute joints together: a fraction of envs start near-upright
-    # (both angles ~0 -> the policy practices balancing), the rest are full-circle random (rich swing-up
-    # starts). One coupled term so 'both up' happens together, not independently.
-    # A/B (classic hanging-rest start): replace with two reset_joints_by_offset terms --
-    #   cart_to_ipole position_range=(pi-0.3, pi+0.3), ipole_to_opole position_range=(-0.3, 0.3).
-    reset_pole_position = EventTerm(
-        func=mdp.reset_joints_by_offset_mixed,
+    reset_poles = EventTerm(
+        func=mdp.reset_double_poles_graded,
         mode="reset",
         params={
-            "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_ipole", "ipole_to_opole"]),
-            "near_fraction": 0.2,  # 20% start near fully-upright
-            "near_pos_range": (-0.2, 0.2),  # ~ +/-11 deg from upright, both joints
-            "near_vel_range": (-1.0, 1.0),
-            "far_pos_range": (0.0, 2 * math.pi),  # full-circle random starts
-            "far_vel_range": (-10.0, 10.0),
+            "ipole_cfg": IPOLE,
+            "opole_cfg": OPOLE,
+            "near_fraction": 1.0,  # balancing
+            "mid_fraction": 0.0,  # balancing
+            # "near_fraction": 0.5,     #initial swingup
+            # "mid_fraction": 0.25,     #initial swingup
+            # "near_fraction": 0.2,       #final swingup
+            # "mid_fraction": 0.2,        #final swingup
+            "near_pos_range": (-0.15, 0.15),
+            "near_vel_range": (-0.5, 0.5),
+            "mid_ipos_range": (0.5 * math.pi, 1.5 * math.pi),
+            "mid_opos_range": (-0.5, 0.5),
+            "mid_vel_range": (-3.0, 3.0),
+            "far_ipos_mean": math.pi,
+            "far_ipos_std": 0.05,
+            "far_opos_std": 0.10,
+            "far_vel_std": 0.05,
         },
     )
+    # reset_poles = EventTerm(
+    #     func=mdp.reset_double_poles_uniform,
+    #     mode="reset",
+    #     params={
+    #         "ipole_cfg": IPOLE,
+    #         "opole_cfg": OPOLE,
+    #         "near_fraction": 0.2,
+    #         "hang_fraction": 0.2,
+    #         "near_pos_range": (-0.15, 0.15),
+    #         "near_vel_range": (-0.5, 0.5),
+    #         "hang_ipos_std": 0.05,
+    #         "hang_opos_std": 0.10,
+    #         "hang_vel_std": 0.05,
+    #         "ipos_range": (-math.pi, math.pi),
+    #         "opos_range": (-math.pi, math.pi),
+    #         "ivel_range": (-10.0, 10.0),
+    #         "ovel_range": (-20.0, 20.0),
+    #     },
+    # )
+
+    def __post_init__(self) -> None:
+        # reset_poles owns both revolute joints; drop the base hard-pi inner reset
+        self.reset_ipole_position = None
 
 
 @configclass
 class SwingupRewardsCfg:
-    """Dense LQR-like quadratic cost -> single-net swing-up + balance of the double pendulum."""
+    """Single self-contained term, the Lee et al. product of six [0,1] factors.
 
-    # (1) constant running reward
-    alive = RewTerm(func=mdp.is_alive, weight=1.0)
-    # (2) failure penalty: leaving the track is strictly bad
+    Constants deliberately left to the function defaults in mdp/rewards.py so there is one source of
+    truth -- k_effort in particular is derived from their exp(-0.015|u|) with u in m/s^2, not guessed.
+    """
+
     terminating = RewTerm(func=mdp.is_terminated, weight=-2.0)
-    # (3) primary task: both links upright, cart centered, low effort
+
     swingup = RewTerm(
-        func=mdp.double_swingup_reward_quadratic,
-        weight=4.0,
-        params={
-            "ipole_cfg": SceneEntityCfg("robot", joint_names=["cart_to_ipole"]),
-            "opole_cfg": SceneEntityCfg("robot", joint_names=["ipole_to_opole"]),
-            "cart_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-        },
+        func=mdp.multiplicative_swingup_reward,
+        weight=1.0,
+        params={"ipole_cfg": IPOLE, "opole_cfg": OPOLE, "cart_cfg": CART},
     )
-    # (4) penalize large effort commands directly
-    effort_penalty = RewTerm(
-        func=mdp.joint_effort_l2,
-        weight=-0.05,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
-    )
-    # (5) penalize rapid changes between consecutive actions (jerk)
-    action_rate = RewTerm(func=mdp.action_rate_l2, weight=-0.01)
 
 
 @configclass
 class SwingupTerminationsCfg:
-    """Time-out + cart off the (safety-margined) track. No pole-angle limit (swing-up)."""
+    """Time-out + cart off the (safety-margined) track. No pole-angle limit -- this is the swing-up.
+
+    Adding a fall termination here would make the goal unreachable from hanging, and would also prune
+    the pumping motion (a swing-up has to dip lower before it can come up). See the docstring on
+    mdp.reset_double_poles_graded.
+
+    The rail termination is correct BECAUSE the reward is positive: ending early forfeits the
+    remaining stream, so leaving the track is a real loss. Lee et al. do the same (|y| > 0.4 m).
+    """
 
     time_out = DoneTerm(func=mdp.time_out, time_out=True)
     cart_out_of_bounds = DoneTerm(
         func=mdp.joint_pos_out_of_manual_limit,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-0.35, 0.35)},
+        params={"asset_cfg": CART, "bounds": (-0.35, 0.35)},
+    )
+
+    # Only for balancing task
+    pole_fell = DoneTerm(
+        func=mdp.tip_below_height,
+        params={"ipole_cfg": IPOLE, "opole_cfg": OPOLE, "min_height_frac": 0.5},
     )
 
 

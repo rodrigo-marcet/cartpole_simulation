@@ -21,6 +21,7 @@ from isaaclab.envs.mdp import (
     randomize_actuator_gains,
     is_alive,
     is_terminated,
+    last_action,
     joint_vel_l1,
     joint_vel_l2,
     time_out,
@@ -55,3 +56,6 @@ from ...single_cartpole.mdp.rewards import (
 # --- double_cartpole specific ---
 from .rewards import *  # noqa: F401, F403
 from .configurations import *  # noqa: F401, F403
+from .observations import *  # noqa: F401, F403
+from .terminations import *  # noqa: F401, F403
+from .events import *  # noqa: F401, F403

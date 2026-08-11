@@ -11,13 +11,15 @@ models:
     clip_log_std: True
     min_log_std: -20.0
     max_log_std: 2.0
-    initial_log_std: 0.0
+    # initial_log_std: 0.0
+    initial_log_std: -1.0
     network:
       # double pendulum is harder than the single -> more capacity
       - name: net
         input: OBSERVATIONS
         layers: [128, 128]
         # layers: [64, 64]
+        # layers: [32, 32]
         activations: elu
     output: tanh(ACTIONS)
   value:  # see deterministic_model parameters
@@ -28,6 +30,7 @@ models:
         input: OBSERVATIONS
         layers: [128, 128]
         # layers: [64, 64]
+        # layers: [32, 32]
         activations: elu
     output: ONE
 
@@ -45,7 +48,10 @@ agent:
   rollouts: 32
   learning_epochs: 8
   mini_batches: 8
-  discount_factor: 0.997  # ~3.3 s horizon at 100 Hz control (see single_cartpole)
+  # discount_factor: 0.997
+  # discount_factor: 0.99
+  # discount_factor: 0.995
+  discount_factor: 1.0
   lambda: 0.95
   learning_rate: 3.0e-04
   learning_rate_scheduler: KLAdaptiveLR
@@ -61,10 +67,13 @@ agent:
   ratio_clip: 0.2
   value_clip: 0.2
   clip_predicted_values: True
-  entropy_loss_scale: 0.005
+  entropy_loss_scale: 0.01
+  # entropy_loss_scale: 0.002
+  # entropy_loss_scale: 0.005
   value_loss_scale: 2.0
   kl_threshold: 0.0
-  rewards_shaper_scale: 0.1
+  # rewards_shaper_scale: 0.1
+  rewards_shaper_scale: 1.0
   time_limit_bootstrap: True
   # logging and checkpoint
   experiment:
@@ -78,7 +87,5 @@ agent:
 # https://skrl.readthedocs.io/en/latest/api/trainers/sequential.html
 trainer:
   class: SequentialTrainer
-  # double swing-up is hard -> raise well past this once the skeleton is validated
-  timesteps: 15000
-  # timesteps: 200000
+  timesteps: 60000
   environment_info: log

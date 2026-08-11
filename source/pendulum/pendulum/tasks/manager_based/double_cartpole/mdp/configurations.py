@@ -12,11 +12,10 @@ from isaaclab.assets import ArticulationCfg
 
 DOUBLE_PENDULUM_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(
-        usd_path=os.path.join(os.path.dirname(__file__), "assets/double_pendulum.usda"),
+        usd_path=os.path.join(os.path.dirname(__file__), "assets/double_cartpole/double_pendulum.usda"),
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
             rigid_body_enabled=True,
             max_linear_velocity=1000.0,
-            # deg/s -- keep high; 1000 (=17.45 rad/s) clamps swing-up. See single_cartpole.
             max_angular_velocity=6000.0,
             max_depenetration_velocity=100.0,
             enable_gyroscopic_forces=True,
