@@ -1,0 +1,632 @@
+[LOOP] [FUNCTION] dt_s = 0.010623, cart_pos_m = 0.000206,	cart_vel_mps = 0.000479,	inner_cos = -0.999753,	inner_sin = -0.022238,	inner_angular_vel_radps = 4.185718,	outer_cos = 0.999882,	outer_sin = -0.015339,	outer_angular_vel_radps = -2.887584
+[LOOP] [NN] force_n = 24.663723,	torque_nm = 0.246637
+[LOOP] [FUNCTION] dt_s = 0.010234, cart_pos_m = 0.000094,	cart_vel_mps = -0.037391,	inner_cos = -0.999753,	inner_sin = -0.022238,	inner_angular_vel_radps = 0.000000,	outer_cos = 0.999905,	outer_sin = -0.013805,	outer_angular_vel_radps = 0.149891
+[LOOP] [NN] force_n = 19.556421,	torque_nm = 0.195564
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = -0.002078,	cart_vel_mps = -0.288580,	inner_cos = -0.999350,	inner_sin = -0.036038,	inner_angular_vel_radps = 1.345695,	outer_cos = 0.999575,	outer_sin = -0.029142,	outer_angular_vel_radps = -1.495195
+[LOOP] [NN] force_n = 21.753975,	torque_nm = 0.217540
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = -0.007101,	cart_vel_mps = -0.534017,	inner_cos = -0.997234,	inner_sin = -0.074327,	inner_angular_vel_radps = 3.736500,	outer_cos = 0.997723,	outer_sin = -0.067444,	outer_angular_vel_radps = -3.736489
+[LOOP] [NN] force_n = 23.708408,	torque_nm = 0.237084
+[LOOP] [FUNCTION] dt_s = 0.010236, cart_pos_m = -0.014855,	cart_vel_mps = -0.825473,	inner_cos = -0.991210,	inner_sin = -0.132297,	inner_angular_vel_radps = 5.691476,	outer_cos = 0.992480,	outer_sin = -0.122411,	outer_angular_vel_radps = -5.392266
+[LOOP] [NN] force_n = 21.813887,	torque_nm = 0.218139
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.025800,	cart_vel_mps = -1.165825,	inner_cos = -0.976204,	inner_sin = -0.216853,	inner_angular_vel_radps = 8.369678,	outer_cos = 0.980182,	outer_sin = -0.198098,	outer_angular_vel_radps = -7.474771
+[LOOP] [NN] force_n = 14.547577,	torque_nm = 0.145476
+[LOOP] [FUNCTION] dt_s = 0.010230, cart_pos_m = -0.039413,	cart_vel_mps = -1.378186,	inner_cos = -0.950248,	inner_sin = -0.311493,	inner_angular_vel_radps = 9.581324,	outer_cos = 0.959139,	outer_sin = -0.282937,	outer_angular_vel_radps = -8.536220
+[LOOP] [NN] force_n = 7.296829,	torque_nm = 0.072968
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = -0.055045,	cart_vel_mps = -1.591985,	inner_cos = -0.912650,	inner_sin = -0.408742,	inner_angular_vel_radps = 10.165178,	outer_cos = 0.931327,	outer_sin = -0.364185,	outer_angular_vel_radps = -8.376190
+[LOOP] [NN] force_n = 2.284674,	torque_nm = 0.022847
+[LOOP] [FUNCTION] dt_s = 0.010264, cart_pos_m = -0.071563,	cart_vel_mps = -1.584315,	inner_cos = -0.864360,	inner_sin = -0.502873,	inner_angular_vel_radps = 10.292963,	outer_cos = 0.902673,	outer_sin = -0.430326,	outer_angular_vel_radps = -7.018185
+[LOOP] [NN] force_n = 2.957379,	torque_nm = 0.029574
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = -0.087680,	cart_vel_mps = -1.604928,	inner_cos = -0.811804,	inner_sin = -0.583929,	inner_angular_vel_radps = 9.410054,	outer_cos = 0.879743,	outer_sin = -0.475450,	outer_angular_vel_radps = -4.934632
+[LOOP] [NN] force_n = 4.889766,	torque_nm = 0.048898
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.103862,	cart_vel_mps = -1.554114,	inner_cos = -0.757711,	inner_sin = -0.652590,	inner_angular_vel_radps = 8.514557,	outer_cos = 0.863973,	outer_sin = -0.503538,	outer_angular_vel_radps = -3.140410
+[LOOP] [NN] force_n = 5.878067,	torque_nm = 0.058781
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.120406,	cart_vel_mps = -1.651426,	inner_cos = -0.705480,	inner_sin = -0.708730,	inner_angular_vel_radps = 7.476980,	outer_cos = 0.858516,	outer_sin = -0.512786,	outer_angular_vel_radps = -1.047781
+[LOOP] [NN] force_n = 2.568749,	torque_nm = 0.025687
+[LOOP] [FUNCTION] dt_s = 0.010238, cart_pos_m = -0.137109,	cart_vel_mps = -1.589588,	inner_cos = -0.654916,	inner_sin = -0.755702,	inner_angular_vel_radps = 6.737062,	outer_cos = 0.862424,	outer_sin = -0.506187,	outer_angular_vel_radps = 0.749151
+[LOOP] [NN] force_n = -2.974576,	torque_nm = -0.029746
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.153757,	cart_vel_mps = -1.644715,	inner_cos = -0.604903,	inner_sin = -0.796299,	inner_angular_vel_radps = 6.280639,	outer_cos = 0.875329,	outer_sin = -0.483527,	outer_angular_vel_radps = 2.543628
+[LOOP] [NN] force_n = -9.482660,	torque_nm = -0.094827
+[LOOP] [FUNCTION] dt_s = 0.010260, cart_pos_m = -0.169581,	cart_vel_mps = -1.505219,	inner_cos = -0.565102,	inner_sin = -0.825021,	inner_angular_vel_radps = 4.782386,	outer_cos = 0.894599,	outer_sin = -0.446869,	outer_angular_vel_radps = 4.035638
+[LOOP] [NN] force_n = -15.960908,	torque_nm = -0.159609
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = -0.184324,	cart_vel_mps = -1.399758,	inner_cos = -0.539528,	inner_sin = -0.841967,	inner_angular_vel_radps = 2.994718,	outer_cos = 0.918508,	outer_sin = -0.395401,	outer_angular_vel_radps = 5.538106
+[LOOP] [NN] force_n = -21.654591,	torque_nm = -0.216546
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = -0.196599,	cart_vel_mps = -1.098234,	inner_cos = -0.521323,	inner_sin = -0.853359,	inner_angular_vel_radps = 2.096065,	outer_cos = 0.945107,	outer_sin = -0.326760,	outer_angular_vel_radps = 7.180534
+[LOOP] [NN] force_n = -24.238411,	torque_nm = -0.242384
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.205570,	cart_vel_mps = -0.789041,	inner_cos = -0.520014,	inner_sin = -0.854158,	inner_angular_vel_radps = 0.149685,	outer_cos = 0.970031,	outer_sin = -0.242980,	outer_angular_vel_radps = 8.521226
+[LOOP] [NN] force_n = -27.269974,	torque_nm = -0.272700
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.211353,	cart_vel_mps = -0.454442,	inner_cos = -0.540819,	inner_sin = -0.841139,	inner_angular_vel_radps = -2.394508,	outer_cos = 0.989841,	outer_sin = -0.142177,	outer_angular_vel_radps = 10.010330
+[LOOP] [NN] force_n = -28.234951,	torque_nm = -0.282349
+[LOOP] [FUNCTION] dt_s = 0.010260, cart_pos_m = -0.213603,	cart_vel_mps = -0.074302,	inner_cos = -0.572671,	inner_sin = -0.819785,	inner_angular_vel_radps = -3.736816,	outer_cos = 0.999735,	outer_sin = -0.023008,	outer_angular_vel_radps = 11.634037
+[LOOP] [NN] force_n = -24.080944,	torque_nm = -0.240809
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = -0.211987,	cart_vel_mps = 0.240164,	inner_cos = -0.627851,	inner_sin = -0.778333,	inner_angular_vel_radps = -6.733817,	outer_cos = 0.992480,	outer_sin = 0.122411,	outer_angular_vel_radps = 14.176811
+[LOOP] [NN] force_n = -16.450169,	torque_nm = -0.164502
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = -0.207070,	cart_vel_mps = 0.556547,	inner_cos = -0.692315,	inner_sin = -0.721595,	inner_angular_vel_radps = -8.363152,	outer_cos = 0.959139,	outer_sin = 0.282937,	outer_angular_vel_radps = 15.927472
+[LOOP] [NN] force_n = -6.183896,	torque_nm = -0.061839
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = -0.200101,	cart_vel_mps = 0.744460,	inner_cos = -0.768615,	inner_sin = -0.639712,	inner_angular_vel_radps = -10.896790,	outer_cos = 0.892533,	outer_sin = 0.450981,	outer_angular_vel_radps = 17.554651
+[LOOP] [NN] force_n = 19.969887,	torque_nm = 0.199699
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.192335,	cart_vel_mps = 0.750212,	inner_cos = -0.836969,	inner_sin = -0.547250,	inner_angular_vel_radps = -11.201674,	outer_cos = 0.793976,	outer_sin = 0.607950,	outer_angular_vel_radps = 18.008131
+[LOOP] [NN] force_n = 33.809864,	torque_nm = 0.338099
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = -0.186451,	cart_vel_mps = 0.478890,	inner_cos = -0.888698,	inner_sin = -0.458492,	inner_angular_vel_radps = -10.018178,	outer_cos = 0.699473,	outer_sin = 0.714659,	outer_angular_vel_radps = 13.883139
+[LOOP] [NN] force_n = 36.908070,	torque_nm = 0.369081
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.184665,	cart_vel_mps = 0.069508,	inner_cos = -0.917597,	inner_sin = -0.397511,	inner_angular_vel_radps = -6.579226,	outer_cos = 0.642657,	outer_sin = 0.766154,	outer_angular_vel_radps = 7.474743
+[LOOP] [NN] force_n = 36.068909,	torque_nm = 0.360689
+[LOOP] [FUNCTION] dt_s = 0.010511, cart_pos_m = -0.187868,	cart_vel_mps = -0.533058,	inner_cos = -0.932718,	inner_sin = -0.360608,	inner_angular_vel_radps = -3.793458,	outer_cos = 0.627252,	outer_sin = 0.778816,	outer_angular_vel_radps = 1.897103
+[LOOP] [NN] force_n = 27.576303,	torque_nm = 0.275763
+[LOOP] [FUNCTION] dt_s = 0.010218, cart_pos_m = -0.196145,	cart_vel_mps = -0.927100,	inner_cos = -0.925922,	inner_sin = -0.377715,	inner_angular_vel_radps = 1.801409,	outer_cos = 0.665856,	outer_sin = 0.746080,	outer_angular_vel_radps = -4.952033
+[LOOP] [NN] force_n = -12.275338,	torque_nm = -0.122753
+[LOOP] [FUNCTION] dt_s = 0.010264, cart_pos_m = -0.206837,	cart_vel_mps = -1.015783,	inner_cos = -0.909488,	inner_sin = -0.415730,	inner_angular_vel_radps = 4.034076,	outer_cos = 0.724247,	outer_sin = 0.689541,	outer_angular_vel_radps = -7.912233
+[LOOP] [NN] force_n = -27.893419,	torque_nm = -0.278934
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.216298,	cart_vel_mps = -0.842731,	inner_cos = -0.899682,	inner_sin = -0.436545,	inner_angular_vel_radps = 2.244876,	outer_cos = 0.781695,	outer_sin = 0.623661,	outer_angular_vel_radps = -8.520422
+[LOOP] [NN] force_n = -27.651777,	torque_nm = -0.276518
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = -0.221982,	cart_vel_mps = -0.469302,	inner_cos = -0.903004,	inner_sin = -0.429632,	inner_angular_vel_radps = -0.748059,	outer_cos = 0.820226,	outer_sin = 0.572040,	outer_angular_vel_radps = -6.279365
+[LOOP] [NN] force_n = -20.564571,	torque_nm = -0.205646
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = -0.223624,	cart_vel_mps = -0.069029,	inner_cos = -0.918812,	inner_sin = -0.394694,	inner_angular_vel_radps = -3.739779,	outer_cos = 0.826321,	outer_sin = 0.563199,	outer_angular_vel_radps = -1.047377
+[LOOP] [NN] force_n = 0.036699,	torque_nm = 0.000367
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.222400,	cart_vel_mps = 0.174490,	inner_cos = -0.943340,	inner_sin = -0.331827,	inner_angular_vel_radps = -6.576065,	outer_cos = 0.814036,	outer_sin = 0.580814,	outer_angular_vel_radps = 2.093812
+[LOOP] [NN] force_n = 16.356852,	torque_nm = 0.163569
+[LOOP] [FUNCTION] dt_s = 0.010233, cart_pos_m = -0.220670,	cart_vel_mps = 0.161068,	inner_cos = -0.962747,	inner_sin = -0.270404,	inner_angular_vel_radps = -6.291638,	outer_cos = 0.803207,	outer_sin = 0.595699,	outer_angular_vel_radps = 1.798771
+[LOOP] [NN] force_n = 17.305511,	torque_nm = 0.173055
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = -0.220438,	cart_vel_mps = -0.046499,	inner_cos = -0.977839,	inner_sin = -0.209359,	inner_angular_vel_radps = -6.130702,	outer_cos = 0.807753,	outer_sin = 0.589521,	outer_angular_vel_radps = -0.748135
+[LOOP] [NN] force_n = 7.136724,	torque_nm = 0.071367
+[LOOP] [FUNCTION] dt_s = 0.010266, cart_pos_m = -0.222346,	cart_vel_mps = -0.256942,	inner_cos = -0.985147,	inner_sin = -0.171715,	inner_angular_vel_radps = -3.734679,	outer_cos = 0.834863,	outer_sin = 0.550458,	outer_angular_vel_radps = -4.630395
+[LOOP] [NN] force_n = -8.749337,	torque_nm = -0.087493
+[LOOP] [FUNCTION] dt_s = 0.010374, cart_pos_m = -0.225610,	cart_vel_mps = -0.315904,	inner_cos = -0.988141,	inner_sin = -0.153552,	inner_angular_vel_radps = -1.774319,	outer_cos = 0.872346,	outer_sin = 0.488889,	outer_angular_vel_radps = -6.943787
+[LOOP] [NN] force_n = -16.041946,	torque_nm = -0.160419
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.227838,	cart_vel_mps = -0.151960,	inner_cos = -0.991210,	inner_sin = -0.132297,	inner_angular_vel_radps = -2.095653,	outer_cos = 0.905947,	outer_sin = 0.423391,	outer_angular_vel_radps = -7.179107
+[LOOP] [NN] force_n = -13.259040,	torque_nm = -0.132590
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = -0.227890,	cart_vel_mps = 0.061838,	inner_cos = -0.995408,	inner_sin = -0.095724,	inner_angular_vel_radps = -3.594419,	outer_cos = 0.934639,	outer_sin = 0.355598,	outer_angular_vel_radps = -7.184060
+[LOOP] [NN] force_n = -8.220009,	torque_nm = -0.082200
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = -0.226113,	cart_vel_mps = 0.215237,	inner_cos = -0.998758,	inner_sin = -0.049831,	inner_angular_vel_radps = -4.486377,	outer_cos = 0.957826,	outer_sin = 0.287348,	outer_angular_vel_radps = -7.025003
+[LOOP] [NN] force_n = -4.805881,	torque_nm = -0.048059
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = -0.223253,	cart_vel_mps = 0.309193,	inner_cos = -0.999993,	inner_sin = 0.003838,	inner_angular_vel_radps = -5.235488,	outer_cos = 0.977028,	outer_sin = 0.213110,	outer_angular_vel_radps = -7.475517
+[LOOP] [NN] force_n = -3.214473,	torque_nm = -0.032145
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.219700,	cart_vel_mps = 0.361444,	inner_cos = -0.998346,	inner_sin = 0.057495,	inner_angular_vel_radps = -5.236992,	outer_cos = 0.989177,	outer_sin = 0.146730,	outer_angular_vel_radps = -6.581841
+[LOOP] [NN] force_n = -3.566958,	torque_nm = -0.035670
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = -0.215807,	cart_vel_mps = 0.385413,	inner_cos = -0.993122,	inner_sin = 0.117083,	inner_angular_vel_radps = -5.826869,	outer_cos = 0.997723,	outer_sin = 0.067444,	outer_angular_vel_radps = -7.765537
+[LOOP] [NN] force_n = -4.346130,	torque_nm = -0.043461
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = -0.211558,	cart_vel_mps = 0.420886,	inner_cos = -0.985146,	inner_sin = 0.171720,	inner_angular_vel_radps = -5.389100,	outer_cos = 0.999905,	outer_sin = -0.013805,	outer_angular_vel_radps = -7.929259
+[LOOP] [NN] force_n = -7.854996,	torque_nm = -0.078550
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = -0.207028,	cart_vel_mps = 0.450127,	inner_cos = -0.973116,	inner_sin = 0.230315,	inner_angular_vel_radps = -5.830870,	outer_cos = 0.995185,	outer_sin = -0.098017,	outer_angular_vel_radps = -8.218147
+[LOOP] [NN] force_n = -11.286648,	torque_nm = -0.112866
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = -0.201923,	cart_vel_mps = 0.509569,	inner_cos = -0.957605,	inner_sin = 0.288085,	inner_angular_vel_radps = -5.830278,	outer_cos = 0.985278,	outer_sin = -0.170962,	outer_angular_vel_radps = -7.173531
+[LOOP] [NN] force_n = -16.047146,	torque_nm = -0.160471
+[LOOP] [FUNCTION] dt_s = 0.010233, cart_pos_m = -0.195873,	cart_vel_mps = 0.626056,	inner_cos = -0.934911,	inner_sin = 0.354883,	inner_angular_vel_radps = -6.889921,	outer_cos = 0.973293,	outer_sin = -0.229565,	outer_angular_vel_radps = -5.842820
+[LOOP] [NN] force_n = -19.037481,	torque_nm = -0.190375
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.188010,	cart_vel_mps = 0.833623,	inner_cos = -0.905621,	inner_sin = 0.424088,	inner_angular_vel_radps = -7.321270,	outer_cos = 0.963776,	outer_sin = -0.266713,	outer_angular_vel_radps = -3.737947
+[LOOP] [NN] force_n = -25.380489,	torque_nm = -0.253805
+[LOOP] [FUNCTION] dt_s = 0.010265, cart_pos_m = -0.177758,	cart_vel_mps = 1.066117,	inner_cos = -0.862034,	inner_sin = 0.506850,	inner_angular_vel_radps = -9.102419,	outer_cos = 0.960857,	outer_sin = -0.277046,	outer_angular_vel_radps = -1.046046
+[LOOP] [NN] force_n = -28.788507,	torque_nm = -0.287885
+[LOOP] [FUNCTION] dt_s = 0.010231, cart_pos_m = -0.164819,	cart_vel_mps = 1.336960,	inner_cos = -0.799075,	inner_sin = 0.601232,	inner_angular_vel_radps = -11.071355,	outer_cos = 0.966976,	outer_sin = -0.254866,	outer_angular_vel_radps = 2.248822
+[LOOP] [NN] force_n = -31.529274,	torque_nm = -0.315293
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = -0.148715,	cart_vel_mps = 1.694090,	inner_cos = -0.710891,	inner_sin = 0.703302,	inner_angular_vel_radps = -13.115739,	outer_cos = 0.979570,	outer_sin = -0.201105,	outer_angular_vel_radps = 5.379129
+[LOOP] [NN] force_n = -32.305702,	torque_nm = -0.323057
+[LOOP] [FUNCTION] dt_s = 0.010238, cart_pos_m = -0.130578,	cart_vel_mps = 1.761681,	inner_cos = -0.597543,	inner_sin = 0.801836,	inner_angular_vel_radps = -14.628316,	outer_cos = 0.993032,	outer_sin = -0.117842,	outer_angular_vel_radps = 8.230989
+[LOOP] [NN] force_n = -21.450899,	torque_nm = -0.214509
+[LOOP] [FUNCTION] dt_s = 0.010362, cart_pos_m = -0.111082,	cart_vel_mps = 1.891590,	inner_cos = -0.481509,	inner_sin = 0.876441,	inner_angular_vel_radps = -13.281225,	outer_cos = 0.999265,	outer_sin = -0.038340,	outer_angular_vel_radps = 7.689871
+[LOOP] [NN] force_n = -13.527851,	torque_nm = -0.135279
+[LOOP] [FUNCTION] dt_s = 0.010264, cart_pos_m = -0.091911,	cart_vel_mps = 1.904054,	inner_cos = -0.353443,	inner_sin = 0.935456,	inner_angular_vel_radps = -13.704042,	outer_cos = 0.998941,	outer_sin = 0.046003,	outer_angular_vel_radps = 8.210136
+[LOOP] [NN] force_n = 7.875599,	torque_nm = 0.078756
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.072068,	cart_vel_mps = 1.865704,	inner_cos = -0.230309,	inner_sin = 0.973118,	inner_angular_vel_radps = -12.535181,	outer_cos = 0.993564,	outer_sin = 0.113271,	outer_angular_vel_radps = 6.579271
+[LOOP] [NN] force_n = 10.825172,	torque_nm = 0.108252
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = -0.053239,	cart_vel_mps = 1.843174,	inner_cos = -0.114030,	inner_sin = 0.993477,	inner_angular_vel_radps = -11.503517,	outer_cos = 0.986308,	outer_sin = 0.164913,	outer_angular_vel_radps = 5.088967
+[LOOP] [NN] force_n = 9.468010,	torque_nm = 0.094680
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = -0.036368,	cart_vel_mps = 1.558908,	inner_cos = -0.014569,	inner_sin = 0.999894,	inner_angular_vel_radps = -9.721049,	outer_cos = 0.977028,	outer_sin = 0.213110,	outer_angular_vel_radps = 4.791779
+[LOOP] [NN] force_n = -2.002257,	torque_nm = -0.020023
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.021081,	cart_vel_mps = 1.483647,	inner_cos = 0.083508,	inner_sin = 0.996507,	inner_angular_vel_radps = -9.561719,	outer_cos = 0.970403,	outer_sin = 0.241492,	outer_angular_vel_radps = 2.842804
+[LOOP] [NN] force_n = 4.013339,	torque_nm = 0.040133
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.006671,	cart_vel_mps = 1.366202,	inner_cos = 0.180780,	inner_sin = 0.983523,	inner_angular_vel_radps = -9.557058,	outer_cos = 0.961280,	outer_sin = 0.275572,	outer_angular_vel_radps = 3.439384
+[LOOP] [NN] force_n = 1.881832,	torque_nm = 0.018818
+[LOOP] [FUNCTION] dt_s = 0.010258, cart_pos_m = 0.007196,	cart_vel_mps = 1.357094,	inner_cos = 0.257093,	inner_sin = 0.966387,	inner_angular_vel_radps = -7.618758,	outer_cos = 0.958266,	outer_sin = 0.285878,	outer_angular_vel_radps = 1.046765
+[LOOP] [NN] force_n = 1.011152,	torque_nm = 0.010112
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.020628,	cart_vel_mps = 1.254509,	inner_cos = 0.336170,	inner_sin = 0.941801,	inner_angular_vel_radps = -8.076948,	outer_cos = 0.952375,	outer_sin = 0.304929,	outer_angular_vel_radps = 1.946551
+[LOOP] [NN] force_n = -0.534594,	torque_nm = -0.005346
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.033140,	cart_vel_mps = 1.236772,	inner_cos = 0.396109,	inner_sin = 0.918204,	inner_angular_vel_radps = -6.284919,	outer_cos = 0.953306,	outer_sin = 0.302006,	outer_angular_vel_radps = -0.299488
+[LOOP] [NN] force_n = 1.367308,	torque_nm = 0.013673
+[LOOP] [FUNCTION] dt_s = 0.010262, cart_pos_m = 0.045768,	cart_vel_mps = 1.199381,	inner_cos = 0.453036,	inner_sin = 0.891492,	inner_angular_vel_radps = -6.124703,	outer_cos = 0.954228,	outer_sin = 0.299080,	outer_angular_vel_radps = -0.298965
+[LOOP] [NN] force_n = 0.921424,	torque_nm = 0.009214
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = 0.057529,	cart_vel_mps = 1.143774,	inner_cos = 0.502878,	inner_sin = 0.864357,	inner_angular_vel_radps = -5.539720,	outer_cos = 0.958266,	outer_sin = 0.285878,	outer_angular_vel_radps = -1.348184
+[LOOP] [NN] force_n = 4.242486,	torque_nm = 0.042425
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.069312,	cart_vel_mps = 1.146651,	inner_cos = 0.544684,	inner_sin = 0.838641,	inner_angular_vel_radps = -4.783828,	outer_cos = 0.963776,	outer_sin = 0.266713,	outer_angular_vel_radps = -1.944086
+[LOOP] [NN] force_n = 5.267930,	torque_nm = 0.052679
+[LOOP] [FUNCTION] dt_s = 0.010537, cart_pos_m = 0.080520,	cart_vel_mps = 1.033999,	inner_cos = 0.586422,	inner_sin = 0.810006,	inner_angular_vel_radps = -4.802095,	outer_cos = 0.966584,	outer_sin = 0.256349,	outer_angular_vel_radps = -1.019046
+[LOOP] [NN] force_n = 2.219536,	torque_nm = 0.022195
+[LOOP] [FUNCTION] dt_s = 0.010209, cart_pos_m = 0.090513,	cart_vel_mps = 0.946754,	inner_cos = 0.618253,	inner_sin = 0.785979,	inner_angular_vel_radps = -3.905679,	outer_cos = 0.971504,	outer_sin = 0.237024,	outer_angular_vel_radps = -1.953227
+[LOOP] [NN] force_n = 4.450548,	torque_nm = 0.044505
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = 0.099932,	cart_vel_mps = 0.909842,	inner_cos = 0.652594,	inner_sin = 0.757708,	inner_angular_vel_radps = -4.333942,	outer_cos = 0.975365,	outer_sin = 0.220598,	outer_angular_vel_radps = -1.644384
+[LOOP] [NN] force_n = 5.988397,	torque_nm = 0.059884
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = 0.108703,	cart_vel_mps = 0.815886,	inner_cos = 0.684527,	inner_sin = 0.728988,	inner_angular_vel_radps = -4.188294,	outer_cos = 0.978948,	outer_sin = 0.204109,	outer_angular_vel_radps = -1.645829
+[LOOP] [NN] force_n = 6.972548,	torque_nm = 0.069725
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.116223,	cart_vel_mps = 0.699879,	inner_cos = 0.709815,	inner_sin = 0.704388,	inner_angular_vel_radps = -3.442384,	outer_cos = 0.982253,	outer_sin = 0.187562,	outer_angular_vel_radps = -1.646631
+[LOOP] [NN] force_n = 5.805752,	torque_nm = 0.058058
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.122714,	cart_vel_mps = 0.604964,	inner_cos = 0.738372,	inner_sin = 0.674393,	inner_angular_vel_radps = -4.039192,	outer_cos = 0.984749,	outer_sin = 0.173984,	outer_angular_vel_radps = -1.346740
+[LOOP] [NN] force_n = 8.318851,	torque_nm = 0.083189
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.128364,	cart_vel_mps = 0.512925,	inner_cos = 0.764675,	inner_sin = 0.644416,	inner_angular_vel_radps = -3.888514,	outer_cos = 0.986308,	outer_sin = 0.164913,	outer_angular_vel_radps = -0.897579
+[LOOP] [NN] force_n = 6.840416,	torque_nm = 0.068404
+[LOOP] [FUNCTION] dt_s = 0.010234, cart_pos_m = 0.132822,	cart_vel_mps = 0.384933,	inner_cos = 0.791640,	inner_sin = 0.610988,	inner_angular_vel_radps = -4.195657,	outer_cos = 0.987057,	outer_sin = 0.160372,	outer_angular_vel_radps = -0.449671
+[LOOP] [NN] force_n = 6.985850,	torque_nm = 0.069858
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = 0.136167,	cart_vel_mps = 0.289539,	inner_cos = 0.817145,	inner_sin = 0.576433,	inner_angular_vel_radps = -4.186639,	outer_cos = 0.987301,	outer_sin = 0.158858,	outer_angular_vel_radps = -0.149571
+[LOOP] [NN] force_n = 6.220238,	torque_nm = 0.062202
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.138343,	cart_vel_mps = 0.186475,	inner_cos = 0.845265,	inner_sin = 0.534347,	inner_angular_vel_radps = -4.939463,	outer_cos = 0.986308,	outer_sin = 0.164913,	outer_angular_vel_radps = 0.598976
+[LOOP] [NN] force_n = 6.010883,	torque_nm = 0.060109
+[LOOP] [FUNCTION] dt_s = 0.010513, cart_pos_m = 0.139543,	cart_vel_mps = 0.091559,	inner_cos = 0.872722,	inner_sin = 0.488217,	inner_angular_vel_radps = -5.104487,	outer_cos = 0.985014,	outer_sin = 0.172473,	outer_angular_vel_radps = 0.729558
+[LOOP] [NN] force_n = 6.068484,	torque_nm = 0.060685
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.139721,	cart_vel_mps = -0.005752,	inner_cos = 0.897664,	inner_sin = 0.440680,	inner_angular_vel_radps = -5.236481,	outer_cos = 0.982824,	outer_sin = 0.184548,	outer_angular_vel_radps = 1.197461
+[LOOP] [NN] force_n = 4.406600,	torque_nm = 0.044066
+[LOOP] [FUNCTION] dt_s = 0.010239, cart_pos_m = 0.139161,	cart_vel_mps = -0.067591,	inner_cos = 0.921217,	inner_sin = 0.389049,	inner_angular_vel_radps = -5.540284,	outer_cos = 0.979877,	outer_sin = 0.199602,	outer_angular_vel_radps = 1.498119
+[LOOP] [NN] force_n = 3.191192,	torque_nm = 0.031912
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = 0.138158,	cart_vel_mps = -0.115049,	inner_cos = 0.941803,	inner_sin = 0.336165,	inner_angular_vel_radps = -5.539722,	outer_cos = 0.976037,	outer_sin = 0.217604,	outer_angular_vel_radps = 1.797537
+[LOOP] [NN] force_n = 0.321809,	torque_nm = 0.003218
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.136765,	cart_vel_mps = -0.147166,	inner_cos = 0.957607,	inner_sin = 0.288079,	inner_angular_vel_radps = -4.936552,	outer_cos = 0.971504,	outer_sin = 0.237024,	outer_angular_vel_radps = 1.945413
+[LOOP] [NN] force_n = -3.896658,	torque_nm = -0.038967
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = 0.135204,	cart_vel_mps = -0.148604,	inner_cos = 0.972406,	inner_sin = 0.233293,	inner_angular_vel_radps = -5.532719,	outer_cos = 0.967366,	outer_sin = 0.253382,	outer_angular_vel_radps = 1.645669
+[LOOP] [NN] force_n = -3.105581,	torque_nm = -0.031056
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.134236,	cart_vel_mps = -0.064715,	inner_cos = 0.983801,	inner_sin = 0.179266,	inner_angular_vel_radps = -5.387522,	outer_cos = 0.963776,	outer_sin = 0.266713,	outer_angular_vel_radps = 1.347528
+[LOOP] [NN] force_n = -6.624501,	torque_nm = -0.066245
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.134213,	cart_vel_mps = 0.027324,	inner_cos = 0.989289,	inner_sin = 0.145969,	inner_angular_vel_radps = -3.290547,	outer_cos = 0.960857,	outer_sin = 0.277046,	outer_angular_vel_radps = 1.047171
+[LOOP] [NN] force_n = -12.254820,	torque_nm = -0.122548
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.135342,	cart_vel_mps = 0.153398,	inner_cos = 0.993477,	inner_sin = 0.114030,	inner_angular_vel_radps = -3.142845,	outer_cos = 0.960002,	outer_sin = 0.279993,	outer_angular_vel_radps = 0.299371
+[LOOP] [NN] force_n = -11.025045,	torque_nm = -0.110250
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.138089,	cart_vel_mps = 0.304399,	inner_cos = 0.995260,	inner_sin = 0.097251,	inner_angular_vel_radps = -1.646150,	outer_cos = 0.963366,	outer_sin = 0.268191,	outer_angular_vel_radps = -1.197226
+[LOOP] [NN] force_n = -9.824022,	torque_nm = -0.098240
+[LOOP] [FUNCTION] dt_s = 0.010235, cart_pos_m = 0.142133,	cart_vel_mps = 0.433350,	inner_cos = 0.996378,	inner_sin = 0.085030,	inner_angular_vel_radps = -1.198981,	outer_cos = 0.967366,	outer_sin = 0.253382,	outer_angular_vel_radps = -1.498705
+[LOOP] [NN] force_n = -9.851605,	torque_nm = -0.098516
+[LOOP] [FUNCTION] dt_s = 0.010267, cart_pos_m = 0.147359,	cart_vel_mps = 0.545522,	inner_cos = 0.996378,	inner_sin = 0.085030,	inner_angular_vel_radps = 0.000000,	outer_cos = 0.973644,	outer_sin = 0.228072,	outer_angular_vel_radps = -2.539671
+[LOOP] [NN] force_n = -6.909756,	torque_nm = -0.069098
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.153654,	cart_vel_mps = 0.649066,	inner_cos = 0.995260,	inner_sin = 0.097251,	inner_angular_vel_radps = 1.197460,	outer_cos = 0.980485,	outer_sin = 0.196595,	outer_angular_vel_radps = -3.142869
+[LOOP] [NN] force_n = -4.662297,	torque_nm = -0.046623
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.160929,	cart_vel_mps = 0.742543,	inner_cos = 0.993301,	inner_sin = 0.115554,	inner_angular_vel_radps = 1.796659,	outer_cos = 0.987057,	outer_sin = 0.160372,	outer_angular_vel_radps = -3.592710
+[LOOP] [NN] force_n = -1.550866,	torque_nm = -0.015509
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = 0.168790,	cart_vel_mps = 0.780413,	inner_cos = 0.990166,	inner_sin = 0.139896,	inner_angular_vel_radps = 2.392849,	outer_cos = 0.992666,	outer_sin = 0.120888,	outer_angular_vel_radps = -3.887731
+[LOOP] [NN] force_n = 1.041712,	torque_nm = 0.010417
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.176495,	cart_vel_mps = 0.736311,	inner_cos = 0.986182,	inner_sin = 0.165667,	inner_angular_vel_radps = 2.543635,	outer_cos = 0.996697,	outer_sin = 0.081211,	outer_angular_vel_radps = -3.889674
+[LOOP] [NN] force_n = 3.310605,	torque_nm = 0.033106
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.183777,	cart_vel_mps = 0.699879,	inner_cos = 0.982682,	inner_sin = 0.185299,	inner_angular_vel_radps = 1.945794,	outer_cos = 0.999011,	outer_sin = 0.044471,	outer_angular_vel_radps = -3.591659
+[LOOP] [NN] force_n = 5.998700,	torque_nm = 0.059987
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.190662,	cart_vel_mps = 0.655297,	inner_cos = 0.979724,	inner_sin = 0.200350,	inner_angular_vel_radps = 1.496512,	outer_cos = 0.999925,	outer_sin = 0.012271,	outer_angular_vel_radps = -3.142255
+[LOOP] [NN] force_n = 7.095401,	torque_nm = 0.070954
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.196646,	cart_vel_mps = 0.550316,	inner_cos = 0.976204,	inner_sin = 0.216853,	inner_angular_vel_radps = 1.645989,	outer_cos = 0.999925,	outer_sin = -0.012272,	outer_angular_vel_radps = -2.394019
+[LOOP] [NN] force_n = 4.505966,	torque_nm = 0.045060
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = 0.201467,	cart_vel_mps = 0.448210,	inner_cos = 0.975196,	inner_sin = 0.221343,	inner_angular_vel_radps = 0.448838,	outer_cos = 0.999529,	outer_sin = -0.030675,	outer_angular_vel_radps = -1.795253
+[LOOP] [NN] force_n = 6.236734,	torque_nm = 0.062367
+[LOOP] [FUNCTION] dt_s = 0.010233, cart_pos_m = 0.205213,	cart_vel_mps = 0.338435,	inner_cos = 0.975534,	inner_sin = 0.219847,	inner_angular_vel_radps = -0.149905,	outer_cos = 0.999011,	outer_sin = -0.044471,	outer_angular_vel_radps = -1.349105
+[LOOP] [NN] force_n = 6.844769,	torque_nm = 0.068448
+[LOOP] [FUNCTION] dt_s = 0.010140, cart_pos_m = 0.207976,	cart_vel_mps = 0.230577,	inner_cos = 0.977517,	inner_sin = 0.210859,	inner_angular_vel_radps = -0.907672,	outer_cos = 0.998559,	outer_sin = -0.053664,	outer_angular_vel_radps = -0.907668
+[LOOP] [NN] force_n = 6.482427,	torque_nm = 0.064824
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.209681,	cart_vel_mps = 0.123677,	inner_cos = 0.979416,	inner_sin = 0.201853,	inner_angular_vel_radps = -0.898455,	outer_cos = 0.998476,	outer_sin = -0.055195,	outer_angular_vel_radps = -0.149745
+[LOOP] [NN] force_n = 6.029248,	torque_nm = 0.060292
+[LOOP] [FUNCTION] dt_s = 0.010132, cart_pos_m = 0.210435,	cart_vel_mps = 0.038829,	inner_cos = 0.982682,	inner_sin = 0.185299,	inner_angular_vel_radps = -1.665321,	outer_cos = 0.998640,	outer_sin = -0.052132,	outer_angular_vel_radps = 0.302799
+[LOOP] [NN] force_n = 6.780142,	torque_nm = 0.067801
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.210145,	cart_vel_mps = -0.056086,	inner_cos = 0.986934,	inner_sin = 0.161127,	inner_angular_vel_radps = -2.394742,	outer_cos = 0.999078,	outer_sin = -0.042938,	outer_angular_vel_radps = 0.898103
+[LOOP] [NN] force_n = 6.048746,	torque_nm = 0.060487
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = 0.208946,	cart_vel_mps = -0.139496,	inner_cos = 0.991006,	inner_sin = 0.133818,	inner_angular_vel_radps = -2.695303,	outer_cos = 0.999481,	outer_sin = -0.032208,	outer_angular_vel_radps = 1.048292
+[LOOP] [NN] force_n = 5.812765,	torque_nm = 0.058128
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = 0.206876,	cart_vel_mps = -0.220989,	inner_cos = 0.995697,	inner_sin = 0.092670,	inner_angular_vel_radps = -4.037222,	outer_cos = 0.999882,	outer_sin = -0.015339,	outer_angular_vel_radps = 1.645182
+[LOOP] [NN] force_n = 0.706893,	torque_nm = 0.007069
+[LOOP] [FUNCTION] dt_s = 0.010119, cart_pos_m = 0.204327,	cart_vel_mps = -0.259818,	inner_cos = 0.998346,	inner_sin = 0.057490,	inner_angular_vel_radps = -3.485951,	outer_cos = 0.999995,	outer_sin = 0.003068,	outer_angular_vel_radps = 1.819010
+[LOOP] [NN] force_n = 2.703010,	torque_nm = 0.027030
+[LOOP] [FUNCTION] dt_s = 0.010260, cart_pos_m = 0.201586,	cart_vel_mps = -0.270844,	inner_cos = 0.999870,	inner_sin = 0.016103,	inner_angular_vel_radps = -4.035626,	outer_cos = 0.999699,	outer_sin = 0.024541,	outer_angular_vel_radps = 2.092996
+[LOOP] [NN] force_n = 0.069186,	torque_nm = 0.000692
+[LOOP] [FUNCTION] dt_s = 0.010653, cart_pos_m = 0.198629,	cart_vel_mps = -0.294333,	inner_cos = 0.999640,	inner_sin = -0.026844,	inner_angular_vel_radps = -4.030637,	outer_cos = 0.999011,	outer_sin = 0.044471,	outer_angular_vel_radps = 1.871819
+[LOOP] [NN] force_n = -1.103172,	torque_nm = -0.011032
+[LOOP] [FUNCTION] dt_s = 0.010218, cart_pos_m = 0.195688,	cart_vel_mps = -0.281869,	inner_cos = 0.997974,	inner_sin = -0.063620,	inner_angular_vel_radps = -3.602181,	outer_cos = 0.997925,	outer_sin = 0.064383,	outer_angular_vel_radps = 1.951505
+[LOOP] [NN] force_n = -1.123539,	torque_nm = -0.011235
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.193122,	cart_vel_mps = -0.249272,	inner_cos = 0.994956,	inner_sin = -0.100310,	inner_angular_vel_radps = -3.591310,	outer_cos = 0.996571,	outer_sin = 0.082740,	outer_angular_vel_radps = 1.795959
+[LOOP] [NN] force_n = -3.073338,	torque_nm = -0.030733
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.190855,	cart_vel_mps = -0.214757,	inner_cos = 0.990590,	inner_sin = -0.136863,	inner_angular_vel_radps = -3.590585,	outer_cos = 0.994879,	outer_sin = 0.101070,	outer_angular_vel_radps = 1.795609
+[LOOP] [NN] force_n = -5.084708,	torque_nm = -0.050847
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.189121,	cart_vel_mps = -0.153398,	inner_cos = 0.985146,	inner_sin = -0.171720,	inner_angular_vel_radps = -3.442406,	outer_cos = 0.992480,	outer_sin = 0.122411,	outer_angular_vel_radps = 2.095652
+[LOOP] [NN] force_n = -7.674291,	torque_nm = -0.076743
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = 0.188093,	cart_vel_mps = -0.070947,	inner_cos = 0.979723,	inner_sin = -0.200356,	inner_angular_vel_radps = -2.842505,	outer_cos = 0.990485,	outer_sin = 0.137620,	outer_angular_vel_radps = 1.496219
+[LOOP] [NN] force_n = -9.572961,	torque_nm = -0.095730
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.188334,	cart_vel_mps = 0.065194,	inner_cos = 0.974511,	inner_sin = -0.224339,	inner_angular_vel_radps = -2.394974,	outer_cos = 0.989177,	outer_sin = 0.146730,	outer_angular_vel_radps = 0.898147
+[LOOP] [NN] force_n = -12.185659,	torque_nm = -0.121857
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.190040,	cart_vel_mps = 0.213319,	inner_cos = 0.971321,	inner_sin = -0.237771,	inner_angular_vel_radps = -1.347002,	outer_cos = 0.988722,	outer_sin = 0.149764,	outer_angular_vel_radps = 0.299343
+[LOOP] [NN] force_n = -13.958702,	torque_nm = -0.139587
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.193146,	cart_vel_mps = 0.345625,	inner_cos = 0.970217,	inner_sin = -0.242239,	inner_angular_vel_radps = -0.449058,	outer_cos = 0.988950,	outer_sin = 0.148247,	outer_angular_vel_radps = -0.149687
+[LOOP] [NN] force_n = -14.823585,	torque_nm = -0.148236
+[LOOP] [FUNCTION] dt_s = 0.010258, cart_pos_m = 0.197909,	cart_vel_mps = 0.507172,	inner_cos = 0.969844,	inner_sin = -0.243727,	inner_angular_vel_radps = -0.149539,	outer_cos = 0.990695,	outer_sin = 0.136101,	outer_angular_vel_radps = -1.196246
+[LOOP] [NN] force_n = -17.381069,	torque_nm = -0.173811
+[LOOP] [FUNCTION] dt_s = 0.010499, cart_pos_m = 0.204698,	cart_vel_mps = 0.690291,	inner_cos = 0.973116,	inner_sin = -0.230315,	inner_angular_vel_radps = 1.314926,	outer_cos = 0.993032,	outer_sin = 0.117842,	outer_angular_vel_radps = -1.753194
+[LOOP] [NN] force_n = -15.782405,	torque_nm = -0.157824
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = 0.213324,	cart_vel_mps = 0.893064,	inner_cos = 0.979104,	inner_sin = -0.203361,	inner_angular_vel_radps = 2.695326,	outer_cos = 0.996045,	outer_sin = 0.088854,	outer_angular_vel_radps = -2.845025
+[LOOP] [NN] force_n = -13.046234,	torque_nm = -0.130462
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = 0.223943,	cart_vel_mps = 1.098714,	inner_cos = 0.986181,	inner_sin = -0.165672,	inner_angular_vel_radps = 3.743044,	outer_cos = 0.998941,	outer_sin = 0.046003,	outer_angular_vel_radps = -4.191973
+[LOOP] [NN] force_n = -10.023397,	torque_nm = -0.100234
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.236392,	cart_vel_mps = 1.237251,	inner_cos = 0.993301,	inner_sin = -0.115560,	inner_angular_vel_radps = 4.936575,	outer_cos = 0.999971,	outer_sin = -0.007670,	outer_angular_vel_radps = -5.235463
+[LOOP] [NN] force_n = -3.240012,	torque_nm = -0.032400
+[LOOP] [FUNCTION] dt_s = 0.010266, cart_pos_m = 0.249659,	cart_vel_mps = 1.335522,	inner_cos = 0.998600,	inner_sin = -0.052900,	inner_angular_vel_radps = 6.122315,	outer_cos = 0.997618,	outer_sin = -0.068974,	outer_angular_vel_radps = -5.973187
+[LOOP] [NN] force_n = 5.657449,	torque_nm = 0.056574
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = 0.263910,	cart_vel_mps = 1.381541,	inner_cos = 0.999894,	inner_sin = 0.014569,	inner_angular_vel_radps = 6.586316,	outer_cos = 0.990903,	outer_sin = -0.134581,	outer_angular_vel_radps = -6.436850
+[LOOP] [NN] force_n = 12.977077,	torque_nm = 0.129771
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.276809,	cart_vel_mps = 1.207051,	inner_cos = 0.997457,	inner_sin = 0.071267,	inner_angular_vel_radps = 5.530540,	outer_cos = 0.980785,	outer_sin = -0.195090,	outer_angular_vel_radps = -5.978429
+[LOOP] [NN] force_n = 17.729076,	torque_nm = 0.177291
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = 0.287928,	cart_vel_mps = 1.029205,	inner_cos = 0.993822,	inner_sin = 0.110982,	inner_angular_vel_radps = 3.892711,	outer_cos = 0.970031,	outer_sin = -0.242980,	outer_angular_vel_radps = -4.790361
+[LOOP] [NN] force_n = 17.779785,	torque_nm = 0.177798
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = 0.296539,	cart_vel_mps = 0.752609,	inner_cos = 0.990380,	inner_sin = 0.138377,	inner_angular_vel_radps = 2.692698,	outer_cos = 0.961280,	outer_sin = -0.275572,	outer_angular_vel_radps = -3.290857
+[LOOP] [NN] force_n = 16.399353,	torque_nm = 0.163994
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = 0.302286,	cart_vel_mps = 0.479369,	inner_cos = 0.989064,	inner_sin = 0.147486,	inner_angular_vel_radps = 0.897469,	outer_cos = 0.956940,	outer_sin = -0.290285,	outer_angular_vel_radps = -1.495778
+[LOOP] [NN] force_n = 11.207734,	torque_nm = 0.112077
+[LOOP] [FUNCTION] dt_s = 0.010225, cart_pos_m = 0.305510,	cart_vel_mps = 0.263174,	inner_cos = 0.990799,	inner_sin = 0.135338,	inner_angular_vel_radps = -1.200131,	outer_cos = 0.956940,	outer_sin = -0.290285,	outer_angular_vel_radps = 0.000000
+[LOOP] [NN] force_n = 5.088597,	torque_nm = 0.050886
+[LOOP] [FUNCTION] dt_s = 0.010151, cart_pos_m = 0.306774,	cart_vel_mps = 0.079575,	inner_cos = 0.994158,	inner_sin = 0.107932,	inner_angular_vel_radps = -2.719755,	outer_cos = 0.959139,	outer_sin = -0.282937,	outer_angular_vel_radps = 0.755572
+[LOOP] [NN] force_n = 1.934445,	torque_nm = 0.019344
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.306964,	cart_vel_mps = 0.006232,	inner_cos = 0.996881,	inner_sin = 0.078915,	inner_angular_vel_radps = -2.843914,	outer_cos = 0.961280,	outer_sin = -0.275572,	outer_angular_vel_radps = 0.748497
+[LOOP] [NN] force_n = 1.831708,	torque_nm = 0.018317
+[LOOP] [FUNCTION] dt_s = 0.010234, cart_pos_m = 0.306747,	cart_vel_mps = -0.023010,	inner_cos = 0.998906,	inner_sin = 0.046767,	inner_angular_vel_radps = -3.147145,	outer_cos = 0.962953,	outer_sin = -0.269668,	outer_angular_vel_radps = 0.599558
+[LOOP] [NN] force_n = 1.628144,	torque_nm = 0.016281
+[LOOP] [FUNCTION] dt_s = 0.010136, cart_pos_m = 0.306318,	cart_vel_mps = -0.048896,	inner_cos = 0.999894,	inner_sin = 0.014569,	inner_angular_vel_radps = -3.177596,	outer_cos = 0.963776,	outer_sin = -0.266713,	outer_angular_vel_radps = 0.302678
+[LOOP] [NN] force_n = 2.083612,	torque_nm = 0.020836
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.305692,	cart_vel_mps = -0.065674,	inner_cos = 0.999816,	inner_sin = -0.019177,	inner_angular_vel_radps = -3.291510,	outer_cos = 0.964184,	outer_sin = -0.265234,	outer_angular_vel_radps = 0.149642
+[LOOP] [NN] force_n = 2.011217,	torque_nm = 0.020112
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = 0.304981,	cart_vel_mps = -0.065194,	inner_cos = 0.998517,	inner_sin = -0.054432,	inner_angular_vel_radps = -3.444400,	outer_cos = 0.963776,	outer_sin = -0.266713,	outer_angular_vel_radps = -0.149788
+[LOOP] [NN] force_n = 2.081442,	torque_nm = 0.020814
+[LOOP] [FUNCTION] dt_s = 0.010265, cart_pos_m = 0.304332,	cart_vel_mps = -0.061839,	inner_cos = 0.995837,	inner_sin = -0.091148,	inner_angular_vel_radps = -3.585711,	outer_cos = 0.962121,	outer_sin = -0.272621,	outer_angular_vel_radps = -0.597748
+[LOOP] [NN] force_n = 2.473894,	torque_nm = 0.024739
+[LOOP] [FUNCTION] dt_s = 0.010236, cart_pos_m = 0.303590,	cart_vel_mps = -0.080055,	inner_cos = 0.992573,	inner_sin = -0.121652,	inner_angular_vel_radps = -2.996742,	outer_cos = 0.960002,	outer_sin = -0.279993,	outer_angular_vel_radps = -0.749300
+[LOOP] [NN] force_n = 3.058237,	torque_nm = 0.030582
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.302721,	cart_vel_mps = -0.092518,	inner_cos = 0.987664,	inner_sin = -0.156589,	inner_angular_vel_radps = -3.439050,	outer_cos = 0.957826,	outer_sin = -0.287347,	outer_angular_vel_radps = -0.747765
+[LOOP] [NN] force_n = 2.443684,	torque_nm = 0.024437
+[LOOP] [FUNCTION] dt_s = 0.010236, cart_pos_m = 0.301576,	cart_vel_mps = -0.123198,	inner_cos = 0.980934,	inner_sin = -0.194341,	inner_angular_vel_radps = -3.745627,	outer_cos = 0.956045,	outer_sin = -0.293219,	outer_angular_vel_radps = -0.599443
+[LOOP] [NN] force_n = 1.784356,	torque_nm = 0.017844
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = 0.300207,	cart_vel_mps = -0.135661,	inner_cos = 0.971685,	inner_sin = -0.236281,	inner_angular_vel_radps = -4.185411,	outer_cos = 0.955594,	outer_sin = -0.294685,	outer_angular_vel_radps = -0.149527
+[LOOP] [NN] force_n = 0.506411,	torque_nm = 0.005064
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.298709,	cart_vel_mps = -0.152919,	inner_cos = 0.959355,	inner_sin = -0.282203,	inner_angular_vel_radps = -4.639407,	outer_cos = 0.954686,	outer_sin = -0.297616,	outer_angular_vel_radps = -0.299425
+[LOOP] [NN] force_n = 0.199125,	torque_nm = 0.001991
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = 0.297104,	cart_vel_mps = -0.159151,	inner_cos = 0.946847,	inner_sin = -0.321684,	inner_angular_vel_radps = -4.038799,	outer_cos = 0.953768,	outer_sin = -0.300543,	outer_angular_vel_radps = -0.299257
+[LOOP] [NN] force_n = 1.174992,	torque_nm = 0.011750
+[LOOP] [FUNCTION] dt_s = 0.010267, cart_pos_m = 0.295601,	cart_vel_mps = -0.142373,	inner_cos = 0.929357,	inner_sin = -0.369182,	inner_angular_vel_radps = -4.928378,	outer_cos = 0.951906,	outer_sin = -0.306390,	outer_angular_vel_radps = -0.597629
+[LOOP] [NN] force_n = 0.729588,	torque_nm = 0.007296
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.294277,	cart_vel_mps = -0.131347,	inner_cos = 0.909486,	inner_sin = -0.415735,	inner_angular_vel_radps = -4.938022,	outer_cos = 0.950008,	outer_sin = -0.312225,	outer_angular_vel_radps = -0.598798
+[LOOP] [NN] force_n = 1.257104,	torque_nm = 0.012571
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = 0.292931,	cart_vel_mps = -0.137579,	inner_cos = 0.885866,	inner_sin = -0.463942,	inner_angular_vel_radps = -5.240056,	outer_cos = 0.947586,	outer_sin = -0.319502,	outer_angular_vel_radps = -0.748935
+[LOOP] [NN] force_n = 1.648979,	torque_nm = 0.016490
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.291476,	cart_vel_mps = -0.142373,	inner_cos = 0.858908,	inner_sin = -0.512130,	inner_angular_vel_radps = -5.384368,	outer_cos = 0.946601,	outer_sin = -0.322408,	outer_angular_vel_radps = -0.299285
+[LOOP] [NN] force_n = 1.593625,	torque_nm = 0.015936
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.290006,	cart_vel_mps = -0.148125,	inner_cos = 0.825887,	inner_sin = -0.563835,	inner_angular_vel_radps = -5.986033,	outer_cos = 0.945607,	outer_sin = -0.325310,	outer_angular_vel_radps = -0.299487
+[LOOP] [NN] force_n = 1.515597,	torque_nm = 0.015156
+[LOOP] [FUNCTION] dt_s = 0.010534, cart_pos_m = 0.288327,	cart_vel_mps = -0.171614,	inner_cos = 0.785979,	inner_sin = -0.618253,	inner_angular_vel_radps = -6.402498,	outer_cos = 0.945607,	outer_sin = -0.325310,	outer_angular_vel_radps = 0.000000
+[LOOP] [NN] force_n = 1.428520,	torque_nm = 0.014285
+[LOOP] [FUNCTION] dt_s = 0.010218, cart_pos_m = 0.286552,	cart_vel_mps = -0.162985,	inner_cos = 0.738368,	inner_sin = -0.674398,	inner_angular_vel_radps = -7.199504,	outer_cos = 0.949046,	outer_sin = -0.315138,	outer_angular_vel_radps = 1.050859
+[LOOP] [NN] force_n = 0.808347,	torque_nm = 0.008083
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.284907,	cart_vel_mps = -0.153398,	inner_cos = 0.684523,	inner_sin = -0.728992,	inner_angular_vel_radps = -7.472580,	outer_cos = 0.953768,	outer_sin = -0.300543,	outer_angular_vel_radps = 1.495923
+[LOOP] [NN] force_n = 1.818269,	torque_nm = 0.018183
+[LOOP] [FUNCTION] dt_s = 0.010232, cart_pos_m = 0.283346,	cart_vel_mps = -0.152919,	inner_cos = 0.621859,	inner_sin = -0.783130,	inner_angular_vel_radps = -8.086419,	outer_cos = 0.960431,	outer_sin = -0.278520,	outer_angular_vel_radps = 2.248601
+[LOOP] [NN] force_n = 2.559843,	torque_nm = 0.025598
+[LOOP] [FUNCTION] dt_s = 0.010263, cart_pos_m = 0.281725,	cart_vel_mps = -0.154836,	inner_cos = 0.553653,	inner_sin = -0.832747,	inner_angular_vel_radps = -8.210969,	outer_cos = 0.968522,	outer_sin = -0.248928,	outer_angular_vel_radps = 2.988873
+[LOOP] [NN] force_n = 3.412873,	torque_nm = 0.034129
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.280055,	cart_vel_mps = -0.167300,	inner_cos = 0.472070,	inner_sin = -0.881561,	inner_angular_vel_radps = -9.268327,	outer_cos = 0.977998,	outer_sin = -0.208612,	outer_angular_vel_radps = 4.041152
+[LOOP] [NN] force_n = 3.968761,	torque_nm = 0.039688
+[LOOP] [FUNCTION] dt_s = 0.010263, cart_pos_m = 0.278163,	cart_vel_mps = -0.182640,	inner_cos = 0.376294,	inner_sin = -0.926500,	inner_angular_vel_radps = -10.293965,	outer_cos = 0.987544,	outer_sin = -0.157343,	outer_angular_vel_radps = 5.079577
+[LOOP] [NN] force_n = 4.776011,	torque_nm = 0.047760
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = 0.276205,	cart_vel_mps = -0.195583,	inner_cos = 0.267449,	inner_sin = -0.963572,	inner_angular_vel_radps = -11.208285,	outer_cos = 0.995625,	outer_sin = -0.093436,	outer_angular_vel_radps = 6.286139
+[LOOP] [NN] force_n = 5.524374,	torque_nm = 0.055244
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.274058,	cart_vel_mps = -0.220989,	inner_cos = 0.152036,	inner_sin = -0.988375,	inner_angular_vel_radps = -11.501262,	outer_cos = 0.999831,	outer_sin = -0.018407,	outer_angular_vel_radps = 7.329132
+[LOOP] [NN] force_n = 6.046048,	torque_nm = 0.060460
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.271693,	cart_vel_mps = -0.245916,	inner_cos = 0.023772,	inner_sin = -0.999717,	inner_angular_vel_radps = -12.537612,	outer_cos = 0.997925,	outer_sin = 0.064383,	outer_angular_vel_radps = 8.073009
+[LOOP] [NN] force_n = 8.375862,	torque_nm = 0.083759
+[LOOP] [FUNCTION] dt_s = 0.010501, cart_pos_m = 0.268897,	cart_vel_mps = -0.267009,	inner_cos = -0.114036,	inner_sin = -0.993477,	inner_angular_vel_radps = -13.105423,	outer_cos = 0.988491,	outer_sin = 0.151281,	outer_angular_vel_radps = 8.315905
+[LOOP] [NN] force_n = 12.637576,	torque_nm = 0.126376
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.265590,	cart_vel_mps = -0.358089,	inner_cos = -0.249673,	inner_sin = -0.968330,	inner_angular_vel_radps = -13.421153,	outer_cos = 0.971866,	outer_sin = 0.235533,	outer_angular_vel_radps = 8.367229
+[LOOP] [NN] force_n = 17.219065,	torque_nm = 0.172191
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.261395,	cart_vel_mps = -0.483204,	inner_cos = -0.386226,	inner_sin = -0.922404,	inner_angular_vel_radps = -14.013551,	outer_cos = 0.950962,	outer_sin = 0.309309,	outer_angular_vel_radps = 7.472554
+[LOOP] [NN] force_n = 22.987749,	torque_nm = 0.229877
+[LOOP] [FUNCTION] dt_s = 0.010234, cart_pos_m = 0.255501,	cart_vel_mps = -0.635164,	inner_cos = -0.509493,	inner_sin = -0.860475,	inner_angular_vel_radps = -13.447327,	outer_cos = 0.931884,	outer_sin = 0.362756,	outer_angular_vel_radps = 5.542994
+[LOOP] [NN] force_n = 24.779648,	torque_nm = 0.247796
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = 0.247239,	cart_vel_mps = -0.889709,	inner_cos = -0.621863,	inner_sin = -0.783126,	inner_angular_vel_radps = -13.275506,	outer_cos = 0.922109,	outer_sin = 0.386931,	outer_angular_vel_radps = 2.543384
+[LOOP] [NN] force_n = 22.909143,	torque_nm = 0.229091
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.236710,	cart_vel_mps = -1.102069,	inner_cos = -0.704392,	inner_sin = -0.709811,	inner_angular_vel_radps = -10.752320,	outer_cos = 0.928506,	outer_sin = 0.371317,	outer_angular_vel_radps = -1.645989
+[LOOP] [NN] force_n = 7.723118,	torque_nm = 0.077231
+[LOOP] [FUNCTION] dt_s = 0.010238, cart_pos_m = 0.223312,	cart_vel_mps = -1.383938,	inner_cos = -0.769595,	inner_sin = -0.638532,	inner_angular_vel_radps = -9.424759,	outer_cos = 0.946601,	outer_sin = 0.322407,	outer_angular_vel_radps = -5.091995
+[LOOP] [NN] force_n = -13.160664,	torque_nm = -0.131607
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = 0.209175,	cart_vel_mps = -1.363805,	inner_cos = -0.823287,	inner_sin = -0.567625,	inner_angular_vel_radps = -8.666084,	outer_cos = 0.968139,	outer_sin = 0.250413,	outer_angular_vel_radps = -7.324105
+[LOOP] [NN] force_n = -18.863310,	torque_nm = -0.188633
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = 0.196455,	cart_vel_mps = -1.200340,	inner_cos = -0.876441,	inner_sin = -0.481509,	inner_angular_vel_radps = -9.851851,	outer_cos = 0.983937,	outer_sin = 0.178514,	outer_angular_vel_radps = -7.170753
+[LOOP] [NN] force_n = -15.230671,	torque_nm = -0.152307
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = 0.186466,	cart_vel_mps = -0.892106,	inner_cos = -0.925341,	inner_sin = -0.379135,	inner_angular_vel_radps = -11.064841,	outer_cos = 0.992480,	outer_sin = 0.122411,	outer_angular_vel_radps = -5.541321
+[LOOP] [NN] force_n = -6.279319,	torque_nm = -0.062793
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = 0.179379,	cart_vel_mps = -0.638999,	inner_cos = -0.969093,	inner_sin = -0.246696,	inner_angular_vel_radps = -13.586492,	outer_cos = 0.996941,	outer_sin = 0.078153,	outer_angular_vel_radps = -4.342437
+[LOOP] [NN] force_n = 5.564891,	torque_nm = 0.055649
+[LOOP] [FUNCTION] dt_s = 0.010270, cart_pos_m = 0.173969,	cart_vel_mps = -0.511007,	inner_cos = -0.995697,	inner_sin = -0.092670,	inner_angular_vel_radps = -15.173160,	outer_cos = 0.999142,	outer_sin = 0.041406,	outer_angular_vel_radps = -3.583965
+[LOOP] [NN] force_n = 13.947149,	torque_nm = 0.139471
+[LOOP] [FUNCTION] dt_s = 0.010264, cart_pos_m = 0.168338,	cart_vel_mps = -0.566614,	inner_cos = -0.998433,	inner_sin = 0.055964,	inner_angular_vel_radps = -14.443486,	outer_cos = 1.000000,	outer_sin = -0.000000,	outer_angular_vel_radps = -4.034060
+[LOOP] [NN] force_n = 13.550473,	torque_nm = 0.135505
+[LOOP] [FUNCTION] dt_s = 0.010230, cart_pos_m = 0.160971,	cart_vel_mps = -0.766511,	inner_cos = -0.980635,	inner_sin = 0.195845,	inner_angular_vel_radps = -13.749577,	outer_cos = 0.998640,	outer_sin = -0.052132,	outer_angular_vel_radps = -5.095963
+[LOOP] [NN] force_n = 12.549936,	torque_nm = 0.125499
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.152001,	cart_vel_mps = -0.930455,	inner_cos = -0.949286,	inner_sin = 0.314413,	inner_angular_vel_radps = -11.937857,	outer_cos = 0.993212,	outer_sin = -0.116319,	outer_angular_vel_radps = -6.278783
+[LOOP] [NN] force_n = 5.652220,	torque_nm = 0.056522
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.141560,	cart_vel_mps = -1.075704,	inner_cos = -0.910757,	inner_sin = 0.412942,	inner_angular_vel_radps = -10.312052,	outer_cos = 0.981964,	outer_sin = -0.189069,	outer_angular_vel_radps = -7.180532
+[LOOP] [NN] force_n = -2.230847,	torque_nm = -0.022308
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.129769,	cart_vel_mps = -1.181165,	inner_cos = -0.860475,	inner_sin = 0.509493,	inner_angular_vel_radps = -10.597400,	outer_cos = 0.965793,	outer_sin = -0.259313,	outer_angular_vel_radps = -7.022976
+[LOOP] [NN] force_n = -2.534854,	torque_nm = -0.025349
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.118247,	cart_vel_mps = -1.083853,	inner_cos = -0.804574,	inner_sin = 0.593852,	inner_angular_vel_radps = -9.866253,	outer_cos = 0.948561,	outer_sin = -0.316593,	outer_angular_vel_radps = -5.836545
+[LOOP] [NN] force_n = -6.423354,	torque_nm = -0.064234
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = 0.107475,	cart_vel_mps = -1.047421,	inner_cos = -0.734216,	inner_sin = 0.678916,	inner_angular_vel_radps = -10.767049,	outer_cos = 0.934093,	outer_sin = -0.357031,	outer_angular_vel_radps = -4.194419
+[LOOP] [NN] force_n = -4.602690,	torque_nm = -0.046027
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = 0.097074,	cart_vel_mps = -0.990376,	inner_cos = -0.650262,	inner_sin = 0.759710,	inner_angular_vel_radps = -11.335978,	outer_cos = 0.925631,	outer_sin = -0.378428,	outer_angular_vel_radps = -2.242243
+[LOOP] [NN] force_n = -6.291411,	torque_nm = -0.062914
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = 0.087592,	cart_vel_mps = -0.901214,	inner_cos = -0.554930,	inner_sin = 0.831897,	inner_angular_vel_radps = -11.660184,	outer_cos = 0.922109,	outer_sin = -0.386931,	outer_angular_vel_radps = -0.899068
+[LOOP] [NN] force_n = -10.438371,	torque_nm = -0.104384
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.078994,	cart_vel_mps = -0.818283,	inner_cos = -0.451663,	inner_sin = 0.892189,	inner_angular_vel_radps = -11.637429,	outer_cos = 0.923291,	outer_sin = -0.384100,	outer_angular_vel_radps = 0.299110
+[LOOP] [NN] force_n = -16.777460,	torque_nm = -0.167775
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = 0.071358,	cart_vel_mps = -0.705631,	inner_cos = -0.343378,	inner_sin = 0.939197,	inner_angular_vel_radps = -11.494553,	outer_cos = 0.931327,	outer_sin = -0.364185,	outer_angular_vel_radps = 2.094619
+[LOOP] [NN] force_n = -22.284275,	torque_nm = -0.222843
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.065532,	cart_vel_mps = -0.517239,	inner_cos = -0.228816,	inner_sin = 0.973470,	inner_angular_vel_radps = -11.644262,	outer_cos = 0.945607,	outer_sin = -0.325310,	outer_angular_vel_radps = 4.039182
+[LOOP] [NN] force_n = -24.580902,	torque_nm = -0.245809
+[LOOP] [FUNCTION] dt_s = 0.010272, cart_pos_m = 0.062382,	cart_vel_mps = -0.235850,	inner_cos = -0.107932,	inner_sin = 0.994158,	inner_angular_vel_radps = -11.916925,	outer_cos = 0.963366,	outer_sin = -0.268191,	outer_angular_vel_radps = 5.820635
+[LOOP] [NN] force_n = -20.162159,	torque_nm = -0.201622
+[LOOP] [FUNCTION] dt_s = 0.010229, cart_pos_m = 0.061882,	cart_vel_mps = 0.042184,	inner_cos = 0.005372,	inner_sin = 0.999986,	inner_angular_vel_radps = -11.073508,	outer_cos = 0.979260,	outer_sin = -0.202607,	outer_angular_vel_radps = 6.593404
+[LOOP] [NN] force_n = -12.245596,	torque_nm = -0.122456
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.063930,	cart_vel_mps = 0.274678,	inner_cos = 0.115560,	inner_sin = 0.993301,	inner_angular_vel_radps = -10.757580,	outer_cos = 0.991906,	outer_sin = -0.126977,	outer_angular_vel_radps = 7.478416
+[LOOP] [NN] force_n = 1.520032,	torque_nm = 0.015200
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = 0.067654,	cart_vel_mps = 0.376305,	inner_cos = 0.225834,	inner_sin = 0.974166,	inner_angular_vel_radps = -10.895748,	outer_cos = 0.998870,	outer_sin = -0.047535,	outer_angular_vel_radps = 7.769349
+[LOOP] [NN] force_n = 9.459200,	torque_nm = 0.094592
+[LOOP] [FUNCTION] dt_s = 0.010260, cart_pos_m = 0.071225,	cart_vel_mps = 0.328368,	inner_cos = 0.324588,	inner_sin = 0.945856,	inner_angular_vel_radps = -9.999591,	outer_cos = 0.999619,	outer_sin = 0.027608,	outer_angular_vel_radps = 7.319124
+[LOOP] [NN] force_n = 5.872705,	torque_nm = 0.058727
+[LOOP] [FUNCTION] dt_s = 0.010357, cart_pos_m = 0.073635,	cart_vel_mps = 0.185995,	inner_cos = 0.417129,	inner_sin = 0.908847,	inner_angular_vel_radps = -9.611233,	outer_cos = 0.995625,	outer_sin = 0.093436,	outer_angular_vel_radps = 6.364154
+[LOOP] [NN] force_n = 4.934042,	torque_nm = 0.049340
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = 0.074840,	cart_vel_mps = 0.088683,	inner_cos = 0.501552,	inner_sin = 0.865128,	inner_angular_vel_radps = -9.256609,	outer_cos = 0.986809,	outer_sin = 0.161886,	outer_angular_vel_radps = 6.723271
+[LOOP] [NN] force_n = 2.701739,	torque_nm = 0.027017
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = 0.075168,	cart_vel_mps = 0.015819,	inner_cos = 0.577690,	inner_sin = 0.816256,	inner_angular_vel_radps = -8.825442,	outer_cos = 0.976037,	outer_sin = 0.217604,	outer_angular_vel_radps = 5.539205
+[LOOP] [NN] force_n = 2.003677,	torque_nm = 0.020037
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.074868,	cart_vel_mps = -0.043143,	inner_cos = 0.643247,	inner_sin = 0.765659,	inner_angular_vel_radps = -8.071429,	outer_cos = 0.963366,	outer_sin = 0.268191,	outer_angular_vel_radps = 5.085538
+[LOOP] [NN] force_n = -1.522218,	torque_nm = -0.015222
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.074337,	cart_vel_mps = -0.054169,	inner_cos = 0.703302,	inner_sin = 0.710891,	inner_angular_vel_radps = -7.919979,	outer_cos = 0.949046,	outer_sin = 0.315138,	outer_angular_vel_radps = 4.785189
+[LOOP] [NN] force_n = -4.641213,	torque_nm = -0.046412
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = 0.073967,	cart_vel_mps = -0.024927,	inner_cos = 0.752684,	inner_sin = 0.658382,	inner_angular_vel_radps = -7.023655,	outer_cos = 0.935184,	outer_sin = 0.354163,	outer_angular_vel_radps = 4.037223
+[LOOP] [NN] force_n = -9.230229,	torque_nm = -0.092302
+[LOOP] [FUNCTION] dt_s = 0.010258, cart_pos_m = 0.074185,	cart_vel_mps = 0.042664,	inner_cos = 0.790702,	inner_sin = 0.612201,	inner_angular_vel_radps = -5.828594,	outer_cos = 0.923291,	outer_sin = 0.384100,	outer_angular_vel_radps = 3.139806
+[LOOP] [NN] force_n = -13.480748,	torque_nm = -0.134807
+[LOOP] [FUNCTION] dt_s = 0.010241, cart_pos_m = 0.075367,	cart_vel_mps = 0.143331,	inner_cos = 0.823287,	inner_sin = 0.567625,	inner_angular_vel_radps = -5.389627,	outer_cos = 0.917901,	outer_sin = 0.396810,	outer_angular_vel_radps = 1.348054
+[LOOP] [NN] force_n = -12.116500,	torque_nm = -0.121165
+[LOOP] [FUNCTION] dt_s = 0.010235, cart_pos_m = 0.078039,	cart_vel_mps = 0.320698,	inner_cos = 0.845265,	inner_sin = 0.534347,	inner_angular_vel_radps = -3.895751,	outer_cos = 0.916065,	outer_sin = 0.401030,	outer_angular_vel_radps = 0.449628
+[LOOP] [NN] force_n = -14.481441,	torque_nm = -0.144814
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = 0.082326,	cart_vel_mps = 0.476493,	inner_cos = 0.856545,	inner_sin = 0.516073,	inner_angular_vel_radps = -2.093996,	outer_cos = 0.921514,	outer_sin = 0.388345,	outer_angular_vel_radps = -1.346213
+[LOOP] [NN] force_n = -14.247808,	torque_nm = -0.142478
+[LOOP] [FUNCTION] dt_s = 0.010003, cart_pos_m = 0.088162,	cart_vel_mps = 0.643793,	inner_cos = 0.859695,	inner_sin = 0.510807,	inner_angular_vel_radps = -0.613404,	outer_cos = 0.934639,	outer_sin = 0.355598,	outer_angular_vel_radps = -3.526379
+[LOOP] [NN] force_n = -9.606284,	torque_nm = -0.096063
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = 0.095935,	cart_vel_mps = 0.805340,	inner_cos = 0.855752,	inner_sin = 0.517386,	inner_angular_vel_radps = 0.749009,	outer_cos = 0.950962,	outer_sin = 0.309309,	outer_angular_vel_radps = -4.791779
+[LOOP] [NN] force_n = -5.495720,	torque_nm = -0.054957
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.105249,	cart_vel_mps = 0.939084,	inner_cos = 0.841142,	inner_sin = 0.540814,	inner_angular_vel_radps = 2.693462,	outer_cos = 0.968903,	outer_sin = 0.247442,	outer_angular_vel_radps = -6.281201
+[LOOP] [NN] force_n = 1.793159,	torque_nm = 0.017932
+[LOOP] [FUNCTION] dt_s = 0.010262, cart_pos_m = 0.114917,	cart_vel_mps = 0.942439,	inner_cos = 0.819789,	inner_sin = 0.572666,	inner_angular_vel_radps = 3.736135,	outer_cos = 0.984210,	outer_sin = 0.177004,	outer_angular_vel_radps = -7.019574
+[LOOP] [NN] force_n = 9.540843,	torque_nm = 0.095408
+[LOOP] [FUNCTION] dt_s = 0.010240, cart_pos_m = 0.124203,	cart_vel_mps = 0.901693,	inner_cos = 0.800919,	inner_sin = 0.598773,	inner_angular_vel_radps = 3.145322,	outer_cos = 0.993907,	outer_sin = 0.110222,	outer_angular_vel_radps = -6.586292
+[LOOP] [NN] force_n = 13.704424,	torque_nm = 0.137044
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.132596,	cart_vel_mps = 0.771784,	inner_cos = 0.783130,	inner_sin = 0.621859,	inner_angular_vel_radps = 2.842787,	outer_cos = 0.999378,	outer_sin = 0.035274,	outer_angular_vel_radps = -7.325580
+[LOOP] [NN] force_n = 25.390953,	torque_nm = 0.253910
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.138914,	cart_vel_mps = 0.540728,	inner_cos = 0.768615,	inner_sin = 0.639712,	inner_angular_vel_radps = 2.244877,	outer_cos = 0.999882,	outer_sin = -0.015339,	outer_angular_vel_radps = -4.937035
+[LOOP] [NN] force_n = 20.504047,	torque_nm = 0.205040
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = 0.141829,	cart_vel_mps = 0.181681,	inner_cos = 0.756709,	inner_sin = 0.653751,	inner_angular_vel_radps = 1.796309,	outer_cos = 0.997925,	outer_sin = -0.064383,	outer_angular_vel_radps = -4.788491
+[LOOP] [NN] force_n = 25.290257,	torque_nm = 0.252903
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.142149,	cart_vel_mps = -0.070947,	inner_cos = 0.758712,	inner_sin = 0.651427,	inner_angular_vel_radps = -0.299489,	outer_cos = 0.994723,	outer_sin = -0.102596,	outer_angular_vel_radps = -3.742691
+[LOOP] [NN] force_n = 27.653454,	torque_nm = 0.276535
+[LOOP] [FUNCTION] dt_s = 0.010131, cart_pos_m = 0.138991,	cart_vel_mps = -0.399794,	inner_cos = 0.767632,	inner_sin = 0.640890,	inner_angular_vel_radps = -1.362692,	outer_cos = 0.991311,	outer_sin = -0.131540,	outer_angular_vel_radps = -2.876470
+[LOOP] [NN] force_n = 26.756550,	torque_nm = 0.267565
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.132721,	cart_vel_mps = -0.743981,	inner_cos = 0.779299,	inner_sin = 0.626652,	inner_angular_vel_radps = -1.796839,	outer_cos = 0.988258,	outer_sin = -0.152797,	outer_angular_vel_radps = -2.096259
+[LOOP] [NN] force_n = 24.039349,	torque_nm = 0.240393
+[LOOP] [FUNCTION] dt_s = 0.010266, cart_pos_m = 0.122501,	cart_vel_mps = -1.071869,	inner_cos = 0.801836,	inner_sin = 0.597544,	inner_angular_vel_radps = -3.585337,	outer_cos = 0.986054,	outer_sin = -0.166426,	outer_angular_vel_radps = -1.344767
+[LOOP] [NN] force_n = 18.873482,	torque_nm = 0.188735
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = 0.110004,	cart_vel_mps = -1.305322,	inner_cos = 0.831045,	inner_sin = 0.556205,	inner_angular_vel_radps = -4.942842,	outer_cos = 0.985539,	outer_sin = -0.169450,	outer_angular_vel_radps = -0.299694
+[LOOP] [NN] force_n = 11.058319,	torque_nm = 0.110583
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.094408,	cart_vel_mps = -1.571851,	inner_cos = 0.863588,	inner_sin = 0.504198,	inner_angular_vel_radps = -5.983673,	outer_cos = 0.985798,	outer_sin = -0.167938,	outer_angular_vel_radps = 0.149687
+[LOOP] [NN] force_n = 1.188684,	torque_nm = 0.011887
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.077840,	cart_vel_mps = -1.670601,	inner_cos = 0.893570,	inner_sin = 0.448924,	inner_angular_vel_radps = -6.129481,	outer_cos = 0.985539,	outer_sin = -0.169450,	outer_angular_vel_radps = -0.149600
+[LOOP] [NN] force_n = -3.821250,	torque_nm = -0.038213
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.060430,	cart_vel_mps = -1.684982,	inner_cos = 0.922406,	inner_sin = 0.386221,	inner_angular_vel_radps = -6.729881,	outer_cos = 0.986809,	outer_sin = -0.161886,	outer_angular_vel_radps = 0.748349
+[LOOP] [NN] force_n = -4.956018,	torque_nm = -0.049560
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = 0.044443,	cart_vel_mps = -1.530146,	inner_cos = 0.943340,	inner_sin = 0.331827,	inner_angular_vel_radps = -5.683169,	outer_cos = 0.984480,	outer_sin = -0.175494,	outer_angular_vel_radps = -1.346736
+[LOOP] [NN] force_n = -3.163941,	torque_nm = -0.031639
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = 0.028990,	cart_vel_mps = -1.464472,	inner_cos = 0.957164,	inner_sin = 0.289548,	inner_angular_vel_radps = -4.339025,	outer_cos = 0.981964,	outer_sin = -0.189069,	outer_angular_vel_radps = -1.346998
+[LOOP] [NN] force_n = 5.024790,	torque_nm = 0.050248
+[LOOP] [FUNCTION] dt_s = 0.010273, cart_pos_m = 0.014717,	cart_vel_mps = -1.385376,	inner_cos = 0.967561,	inner_sin = 0.252637,	inner_angular_vel_radps = -3.732136,	outer_cos = 0.977028,	outer_sin = -0.213110,	outer_angular_vel_radps = -2.388906
+[LOOP] [NN] force_n = 6.413382,	torque_nm = 0.064134
+[LOOP] [FUNCTION] dt_s = 0.010230, cart_pos_m = -0.000278,	cart_vel_mps = -1.473101,	inner_cos = 0.976204,	inner_sin = 0.216853,	inner_angular_vel_radps = -3.597955,	outer_cos = 0.971504,	outer_sin = -0.237024,	outer_angular_vel_radps = -2.398946
+[LOOP] [NN] force_n = 4.527520,	torque_nm = 0.045275
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = -0.015156,	cart_vel_mps = -1.453447,	inner_cos = 0.984075,	inner_sin = 0.177756,	inner_angular_vel_radps = -3.894992,	outer_cos = 0.964590,	outer_sin = -0.263755,	outer_angular_vel_radps = -2.696902
+[LOOP] [NN] force_n = 3.556845,	torque_nm = 0.035568
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.030803,	cart_vel_mps = -1.544048,	inner_cos = 0.990380,	inner_sin = 0.138377,	inner_angular_vel_radps = -3.887375,	outer_cos = 0.960002,	outer_sin = -0.279993,	outer_angular_vel_radps = -1.645020
+[LOOP] [NN] force_n = 9.565993,	torque_nm = 0.095660
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.046417,	cart_vel_mps = -1.542610,	inner_cos = 0.995408,	inner_sin = 0.095724,	inner_angular_vel_radps = -4.186251,	outer_cos = 0.952375,	outer_sin = -0.304929,	outer_angular_vel_radps = -2.542140
+[LOOP] [NN] force_n = 4.091966,	torque_nm = 0.040920
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = -0.063440,	cart_vel_mps = -1.686900,	inner_cos = 0.998600,	inner_sin = 0.052895,	inner_angular_vel_radps = -4.191949,	outer_cos = 0.946105,	outer_sin = -0.323859,	outer_angular_vel_radps = -1.946735
+[LOOP] [NN] force_n = 6.533689,	torque_nm = 0.065337
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = -0.080227,	cart_vel_mps = -1.646633,	inner_cos = 0.999986,	inner_sin = -0.005372,	inner_angular_vel_radps = -5.680978,	outer_cos = 0.937339,	outer_sin = -0.348419,	outer_angular_vel_radps = -2.542635
+[LOOP] [NN] force_n = -6.287849,	torque_nm = -0.062878
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.097811,	cart_vel_mps = -1.702239,	inner_cos = 0.998433,	inner_sin = -0.055964,	inner_angular_vel_radps = -4.937034,	outer_cos = 0.929641,	outer_sin = -0.368467,	outer_angular_vel_radps = -2.095236
+[LOOP] [NN] force_n = 3.839446,	torque_nm = 0.038394
+[LOOP] [FUNCTION] dt_s = 0.010261, cart_pos_m = -0.114386,	cart_vel_mps = -1.625061,	inner_cos = 0.994644,	inner_sin = -0.103362,	inner_angular_vel_radps = -4.632650,	outer_cos = 0.916679,	outer_sin = -0.399624,	outer_angular_vel_radps = -3.288292
+[LOOP] [NN] force_n = 0.492793,	torque_nm = 0.004928
+[LOOP] [FUNCTION] dt_s = 0.010230, cart_pos_m = -0.131265,	cart_vel_mps = -1.623623,	inner_cos = 0.988606,	inner_sin = -0.150526,	inner_angular_vel_radps = -4.646665,	outer_cos = 0.901349,	outer_sin = -0.433094,	outer_angular_vel_radps = -3.597970
+[LOOP] [NN] force_n = 0.006755,	torque_nm = 0.000068
+[LOOP] [FUNCTION] dt_s = 0.010134, cart_pos_m = -0.147138,	cart_vel_mps = -1.580480,	inner_cos = 0.980029,	inner_sin = -0.198853,	inner_angular_vel_radps = -4.841877,	outer_cos = 0.882643,	outer_sin = -0.470043,	outer_angular_vel_radps = -4.085813
+[LOOP] [NN] force_n = -2.500300,	torque_nm = -0.025003
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = -0.163303,	cart_vel_mps = -1.541171,	inner_cos = 0.969469,	inner_sin = -0.245214,	inner_angular_vel_radps = -4.639431,	outer_cos = 0.860867,	outer_sin = -0.508830,	outer_angular_vel_radps = -4.340311
+[LOOP] [NN] force_n = -1.707859,	torque_nm = -0.017079
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.178746,	cart_vel_mps = -1.524393,	inner_cos = 0.956717,	inner_sin = -0.291021,	inner_angular_vel_radps = -4.638955,	outer_cos = 0.832321,	outer_sin = -0.554294,	outer_angular_vel_radps = -5.236993
+[LOOP] [NN] force_n = -8.825627,	torque_nm = -0.088256
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.194039,	cart_vel_mps = -1.431396,	inner_cos = 0.943338,	inner_sin = -0.331833,	inner_angular_vel_radps = -4.189520,	outer_cos = 0.802293,	outer_sin = -0.596931,	outer_angular_vel_radps = -5.086518
+[LOOP] [NN] force_n = -5.984831,	torque_nm = -0.059848
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = -0.207324,	cart_vel_mps = -1.275601,	inner_cos = 0.928790,	inner_sin = -0.370608,	inner_angular_vel_radps = -4.041534,	outer_cos = 0.763188,	outer_sin = -0.646176,	outer_angular_vel_radps = -6.134876
+[LOOP] [NN] force_n = -11.801188,	torque_nm = -0.118012
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.219782,	cart_vel_mps = -1.160552,	inner_cos = 0.916371,	inner_sin = -0.400330,	inner_angular_vel_radps = -3.141951,	outer_cos = 0.714659,	outer_sin = -0.699473,	outer_angular_vel_radps = -7.027079
+[LOOP] [NN] force_n = -10.845093,	torque_nm = -0.108451
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.230238,	cart_vel_mps = -0.958259,	inner_cos = 0.907563,	inner_sin = -0.419916,	inner_angular_vel_radps = -2.095650,	outer_cos = 0.652011,	outer_sin = -0.758210,	outer_angular_vel_radps = -8.372917
+[LOOP] [NN] force_n = -11.086374,	torque_nm = -0.110864
+[LOOP] [FUNCTION] dt_s = 0.010262, cart_pos_m = -0.239013,	cart_vel_mps = -0.812531,	inner_cos = 0.899009,	inner_sin = -0.437929,	inner_angular_vel_radps = -1.943115,	outer_cos = 0.573297,	outer_sin = -0.819348,	outer_angular_vel_radps = -9.700215
+[LOOP] [NN] force_n = -15.213567,	torque_nm = -0.152136
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = -0.246253,	cart_vel_mps = -0.625097,	inner_cos = 0.896305,	inner_sin = -0.443437,	inner_angular_vel_radps = -0.599091,	outer_cos = 0.475450,	outer_sin = -0.879743,	outer_angular_vel_radps = -11.208250
+[LOOP] [NN] force_n = -16.550182,	torque_nm = -0.165502
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.251282,	cart_vel_mps = -0.408902,	inner_cos = 0.906271,	inner_sin = -0.422698,	inner_angular_vel_radps = 2.245073,	outer_cos = 0.349856,	outer_sin = -0.936803,	outer_angular_vel_radps = -13.428977
+[LOOP] [NN] force_n = -20.164640,	torque_nm = -0.201646
+[LOOP] [FUNCTION] dt_s = 0.010266, cart_pos_m = -0.253911,	cart_vel_mps = -0.164903,	inner_cos = 0.895624,	inner_sin = -0.444812,	inner_angular_vel_radps = -2.390518,	outer_cos = 0.198098,	outer_sin = -0.980182,	outer_angular_vel_radps = -15.326653
+[LOOP] [NN] force_n = -28.513128,	torque_nm = -0.285131
+[LOOP] [FUNCTION] dt_s = 0.010739, cart_pos_m = -0.253364,	cart_vel_mps = 0.154357,	inner_cos = 0.901679,	inner_sin = -0.432405,	inner_angular_vel_radps = 1.285519,	outer_cos = -0.001534,	outer_sin = -0.999999,	outer_angular_vel_radps = -18.586634
+[LOOP] [NN] force_n = -30.204180,	torque_nm = -0.302042
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = -0.249379,	cart_vel_mps = 0.545043,	inner_cos = 0.910757,	inner_sin = -0.412943,	inner_angular_vel_radps = 2.095855,	outer_cos = -0.220598,	outer_sin = -0.975365,	outer_angular_vel_radps = -21.384066
+[LOOP] [NN] force_n = -28.342112,	torque_nm = -0.283421
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.241231,	cart_vel_mps = 0.922306,	inner_cos = 0.925339,	inner_sin = -0.379140,	inner_angular_vel_radps = 3.590609,	outer_cos = -0.460539,	outer_sin = -0.887640,	outer_angular_vel_radps = -24.717802
+[LOOP] [NN] force_n = -26.322603,	torque_nm = -0.263226
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.229305,	cart_vel_mps = 1.240128,	inner_cos = 0.938137,	inner_sin = -0.346264,	inner_angular_vel_radps = 3.442047,	outer_cos = -0.687315,	outer_sin = -0.726359,	outer_angular_vel_radps = -26.890289
+[LOOP] [NN] force_n = -25.563223,	torque_nm = -0.255632
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.214052,	cart_vel_mps = 1.588629,	inner_cos = 0.950247,	inner_sin = -0.311499,	inner_angular_vel_radps = 3.588859,	outer_cos = -0.867809,	outer_sin = -0.496897,	outer_angular_vel_radps = -28.160734
+[LOOP] [NN] force_n = -24.632399,	torque_nm = -0.246324
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = -0.197222,	cart_vel_mps = 1.631293,	inner_cos = 0.960643,	inner_sin = -0.277786,	inner_angular_vel_radps = 3.444086,	outer_cos = -0.980182,	outer_sin = -0.198098,	outer_angular_vel_radps = -30.769175
+[LOOP] [NN] force_n = -21.263466,	torque_nm = -0.212635
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = -0.179767,	cart_vel_mps = 1.757367,	inner_cos = 0.967946,	inner_sin = -0.251158,	inner_angular_vel_radps = 2.692411,	outer_cos = -0.993212,	outer_sin = 0.116319,	outer_angular_vel_radps = -30.306911
+[LOOP] [NN] force_n = -14.186893,	torque_nm = -0.141869
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = -0.161691,	cart_vel_mps = 1.754011,	inner_cos = 0.975195,	inner_sin = -0.221348,	inner_angular_vel_radps = 2.994716,	outer_cos = -0.909806,	outer_sin = 0.415035,	outer_angular_vel_radps = -29.912130
+[LOOP] [NN] force_n = -10.633904,	torque_nm = -0.106339
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.142661,	cart_vel_mps = 1.888234,	inner_cos = 0.986434,	inner_sin = -0.164159,	inner_angular_vel_radps = 5.679847,	outer_cos = -0.732654,	outer_sin = 0.680601,	outer_angular_vel_radps = -30.724184
+[LOOP] [NN] force_n = -2.383612,	torque_nm = -0.023836
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = -0.123351,	cart_vel_mps = 1.945759,	inner_cos = 0.996759,	inner_sin = -0.080450,	inner_angular_vel_radps = 8.227777,	outer_cos = -0.474100,	outer_sin = 0.880471,	outer_angular_vel_radps = -31.478975
+[LOOP] [NN] force_n = 7.931456,	torque_nm = 0.079315
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.103413,	cart_vel_mps = 1.882003,	inner_cos = 0.999844,	inner_sin = 0.017637,	inner_angular_vel_radps = 9.563583,	outer_cos = -0.177004,	outer_sin = 0.984210,	outer_angular_vel_radps = -30.321697
+[LOOP] [NN] force_n = 10.867929,	torque_nm = 0.108679
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.084842,	cart_vel_mps = 1.794278,	inner_cos = 0.993123,	inner_sin = 0.117078,	inner_angular_vel_radps = 9.713473,	outer_cos = 0.148248,	outer_sin = 0.988950,	outer_angular_vel_radps = -31.318815
+[LOOP] [NN] force_n = 15.730062,	torque_nm = 0.157301
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.068472,	cart_vel_mps = 1.516244,	inner_cos = 0.976865,	inner_sin = 0.213857,	inner_angular_vel_radps = 9.557057,	outer_cos = 0.470043,	outer_sin = 0.882643,	outer_angular_vel_radps = -32.566269
+[LOOP] [NN] force_n = 25.234818,	torque_nm = 0.252348
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.054163,	cart_vel_mps = 1.304363,	inner_cos = 0.951200,	inner_sin = 0.308576,	inner_angular_vel_radps = 9.565430,	outer_cos = 0.748119,	outer_sin = 0.663564,	outer_angular_vel_radps = -34.002026
+[LOOP] [NN] force_n = 33.205498,	torque_nm = 0.332055
+[LOOP] [FUNCTION] dt_s = 0.010252, cart_pos_m = -0.043577,	cart_vel_mps = 0.909842,	inner_cos = 0.918206,	inner_sin = 0.396103,	inner_angular_vel_radps = 9.113963,	outer_cos = 0.928506,	outer_sin = 0.371317,	outer_angular_vel_radps = -33.001740
+[LOOP] [NN] force_n = 35.205494,	torque_nm = 0.352055
+[LOOP] [FUNCTION] dt_s = 0.010249, cart_pos_m = -0.037982,	cart_vel_mps = 0.373429,	inner_cos = 0.883005,	inner_sin = 0.469364,	inner_angular_vel_radps = 7.923841,	outer_cos = 0.998476,	outer_sin = 0.055195,	outer_angular_vel_radps = -31.173971
+[LOOP] [NN] force_n = 27.191631,	torque_nm = 0.271916
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.036847,	cart_vel_mps = -0.002876,	inner_cos = 0.865131,	inner_sin = 0.501547,	inner_angular_vel_radps = 3.591661,	outer_cos = 0.972227,	outer_sin = -0.234042,	outer_angular_vel_radps = -28.039371
+[LOOP] [NN] force_n = -5.819325,	torque_nm = -0.058193
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.039565,	cart_vel_mps = -0.342749,	inner_cos = 0.854161,	inner_sin = 0.520009,	inner_angular_vel_radps = 2.093604,	outer_cos = 0.874587,	outer_sin = -0.484869,	outer_angular_vel_radps = -26.002998
+[LOOP] [NN] force_n = -21.504932,	torque_nm = -0.215049
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.042276,	cart_vel_mps = -0.266050,	inner_cos = 0.852561,	inner_sin = 0.522627,	inner_angular_vel_radps = 0.299404,	outer_cos = 0.722128,	outer_sin = -0.691759,	outer_angular_vel_radps = -24.872227
+[LOOP] [NN] force_n = -26.717909,	torque_nm = -0.267179
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = -0.042596,	cart_vel_mps = 0.070467,	inner_cos = 0.849339,	inner_sin = 0.527848,	inner_angular_vel_radps = 0.598333,	outer_cos = 0.538880,	outer_sin = -0.842383,	outer_angular_vel_radps = -22.967627
+[LOOP] [NN] force_n = -27.277414,	torque_nm = -0.272774
+[LOOP] [FUNCTION] dt_s = 0.010233, cart_pos_m = -0.039958,	cart_vel_mps = 0.367676,	inner_cos = 0.840311,	inner_sin = 0.542104,	inner_angular_vel_radps = 1.648862,	outer_cos = 0.323859,	outer_sin = -0.946105,	outer_angular_vel_radps = -23.162668
+[LOOP] [NN] force_n = -24.092052,	torque_nm = -0.240921
+[LOOP] [FUNCTION] dt_s = 0.010267, cart_pos_m = -0.033621,	cart_vel_mps = 0.720971,	inner_cos = 0.818028,	inner_sin = 0.575179,	inner_angular_vel_radps = 3.883611,	outer_cos = 0.075094,	outer_sin = -0.997176,	outer_angular_vel_radps = -24.534706
+[LOOP] [NN] force_n = -24.150915,	torque_nm = -0.241509
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = -0.023630,	cart_vel_mps = 1.073787,	inner_cos = 0.792576,	inner_sin = 0.609773,	inner_angular_vel_radps = 4.189086,	outer_cos = -0.173984,	outer_sin = -0.984748,	outer_angular_vel_radps = -24.140642
+[LOOP] [NN] force_n = -23.138809,	torque_nm = -0.231388
+[LOOP] [FUNCTION] dt_s = 0.010239, cart_pos_m = -0.010571,	cart_vel_mps = 1.354218,	inner_cos = 0.754700,	inner_sin = 0.656070,	inner_angular_vel_radps = 5.839413,	outer_cos = -0.420609,	outer_sin = -0.907242,	outer_angular_vel_radps = -25.036497
+[LOOP] [NN] force_n = -26.399738,	torque_nm = -0.263997
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.005487,	cart_vel_mps = 1.692173,	inner_cos = 0.704392,	inner_sin = 0.709811,	inner_angular_vel_radps = 7.172128,	outer_cos = -0.645005,	outer_sin = -0.764179,	outer_angular_vel_radps = -25.714602
+[LOOP] [NN] force_n = -28.006327,	torque_nm = -0.280063
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.024266,	cart_vel_mps = 1.837901,	inner_cos = 0.642071,	inner_sin = 0.766645,	inner_angular_vel_radps = 8.224567,	outer_cos = -0.825456,	outer_sin = -0.564466,	outer_angular_vel_radps = -26.030920
+[LOOP] [NN] force_n = -26.968246,	torque_nm = -0.269682
+[LOOP] [FUNCTION] dt_s = 0.010258, cart_pos_m = 0.043927,	cart_vel_mps = 1.968289,	inner_cos = 0.571413,	inner_sin = 0.820663,	inner_angular_vel_radps = 8.661874,	outer_cos = -0.944100,	outer_sin = -0.329658,	outer_angular_vel_radps = -25.423487
+[LOOP] [NN] force_n = -22.236053,	torque_nm = -0.222361
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.063981,	cart_vel_mps = 2.008556,	inner_cos = 0.493568,	inner_sin = 0.869707,	inner_angular_vel_radps = 8.971103,	outer_cos = -0.997618,	outer_sin = -0.068974,	outer_angular_vel_radps = -25.744703
+[LOOP] [NN] force_n = -10.051697,	torque_nm = -0.100517
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.085566,	cart_vel_mps = 2.091487,	inner_cos = 0.408747,	inner_sin = 0.912648,	inner_angular_vel_radps = 9.270139,	outer_cos = -0.978317,	outer_sin = 0.207111,	outer_angular_vel_radps = -26.756834
+[LOOP] [NN] force_n = 9.563643,	torque_nm = 0.095636
+[LOOP] [FUNCTION] dt_s = 0.010663, cart_pos_m = 0.108066,	cart_vel_mps = 2.154764,	inner_cos = 0.289553,	inner_sin = 0.957162,	inner_angular_vel_radps = 11.908170,	outer_cos = -0.868571,	outer_sin = 0.495565,	outer_angular_vel_radps = -28.596939
+[LOOP] [NN] force_n = 27.531971,	torque_nm = 0.275320
+[LOOP] [FUNCTION] dt_s = 0.010347, cart_pos_m = 0.128843,	cart_vel_mps = 1.960140,	inner_cos = 0.156589,	inner_sin = 0.987664,	inner_angular_vel_radps = 13.153629,	outer_cos = -0.673829,	outer_sin = 0.738887,	outer_angular_vel_radps = -29.752565
+[LOOP] [NN] force_n = 34.619579,	torque_nm = 0.346196
+[LOOP] [FUNCTION] dt_s = 0.010243, cart_pos_m = 0.146058,	cart_vel_mps = 1.526790,	inner_cos = 0.016109,	inner_sin = 0.999870,	inner_angular_vel_radps = 13.732125,	outer_cos = -0.424780,	outer_sin = 0.905297,	outer_angular_vel_radps = -28.912529
+[LOOP] [NN] force_n = 35.303707,	torque_nm = 0.353037
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.157978,	cart_vel_mps = 1.033999,	inner_cos = -0.147486,	inner_sin = 0.989064,	inner_angular_vel_radps = 15.950794,	outer_cos = -0.130019,	outer_sin = 0.991511,	outer_angular_vel_radps = -29.623962
+[LOOP] [NN] force_n = 34.439415,	torque_nm = 0.344394
+[LOOP] [FUNCTION] dt_s = 0.010253, cart_pos_m = 0.165012,	cart_vel_mps = 0.519157,	inner_cos = -0.328931,	inner_sin = 0.944354,	inner_angular_vel_radps = 18.146416,	outer_cos = 0.192080,	outer_sin = 0.981379,	outer_angular_vel_radps = -31.019997
+[LOOP] [NN] force_n = 32.143501,	torque_nm = 0.321435
+[LOOP] [FUNCTION] dt_s = 0.010259, cart_pos_m = 0.167199,	cart_vel_mps = 0.023010,	inner_cos = -0.518698,	inner_sin = 0.854958,	inner_angular_vel_radps = 20.334530,	outer_cos = 0.507509,	outer_sin = 0.861646,	outer_angular_vel_radps = -32.415764
+[LOOP] [NN] force_n = 22.198399,	torque_nm = 0.221984
+[LOOP] [FUNCTION] dt_s = 0.010239, cart_pos_m = 0.164502,	cart_vel_mps = -0.366238,	inner_cos = -0.704388,	inner_sin = 0.709815,	inner_angular_vel_radps = 22.857887,	outer_cos = 0.795837,	outer_sin = 0.605511,	outer_angular_vel_radps = -36.959457
+[LOOP] [NN] force_n = 17.119596,	torque_nm = 0.171196
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.157264,	cart_vel_mps = -0.784727,	inner_cos = -0.874213,	inner_sin = 0.485543,	inner_angular_vel_radps = 27.188555,	outer_cos = 0.985014,	outer_sin = 0.172473,	outer_angular_vel_radps = -44.823940
+[LOOP] [NN] force_n = 8.091262,	torque_nm = 0.080913
+[LOOP] [FUNCTION] dt_s = 0.010262, cart_pos_m = 0.147287,	cart_vel_mps = -1.045024,	inner_cos = -0.980934,	inner_sin = 0.194341,	inner_angular_vel_radps = 29.856745,	outer_cos = 0.941544,	outer_sin = -0.336890,	outer_angular_vel_radps = -48.161385
+[LOOP] [NN] force_n = -25.245853,	torque_nm = -0.252459
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.135948,	cart_vel_mps = -1.128434,	inner_cos = -0.994644,	inner_sin = -0.103356,	inner_angular_vel_radps = 28.761036,	outer_cos = 0.697277,	outer_sin = -0.716801,	outer_angular_vel_radps = -42.943024
+[LOOP] [NN] force_n = -32.039173,	torque_nm = -0.320392
+[LOOP] [FUNCTION] dt_s = 0.010003, cart_pos_m = 0.127483,	cart_vel_mps = -0.756923,	inner_cos = -0.939197,	inner_sin = -0.343378,	inner_angular_vel_radps = 24.439436,	outer_cos = 0.452350,	outer_sin = -0.891841,	outer_angular_vel_radps = -29.752649
+[LOOP] [NN] force_n = -33.244442,	torque_nm = -0.332444
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.123514,	cart_vel_mps = -0.258380,	inner_cos = -0.849339,	inner_sin = -0.527848,	inner_angular_vel_radps = 19.913080,	outer_cos = 0.251898,	outer_sin = -0.967754,	outer_angular_vel_radps = -20.791250
+[LOOP] [NN] force_n = -31.652851,	torque_nm = -0.316528
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.124228,	cart_vel_mps = 0.185516,	inner_cos = -0.750660,	inner_sin = -0.660688,	inner_angular_vel_radps = 16.095366,	outer_cos = 0.108697,	outer_sin = -0.994075,	outer_angular_vel_radps = -14.172639
+[LOOP] [NN] force_n = -24.799206,	torque_nm = -0.247992
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = 0.129571,	cart_vel_mps = 0.663926,	inner_cos = -0.672129,	inner_sin = -0.740434,	inner_angular_vel_radps = 10.910613,	outer_cos = 0.039873,	outer_sin = -0.999205,	outer_angular_vel_radps = -6.734467
+[LOOP] [NN] force_n = -5.105836,	torque_nm = -0.051058
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.138802,	cart_vel_mps = 1.017701,	inner_cos = -0.609777,	inner_sin = -0.792573,	inner_angular_vel_radps = 7.923089,	outer_cos = 0.016873,	outer_sin = -0.999858,	outer_angular_vel_radps = -2.244647
+[LOOP] [NN] force_n = 6.974959,	torque_nm = 0.069750
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = 0.148418,	cart_vel_mps = 0.937167,	inner_cos = -0.530456,	inner_sin = -0.847712,	inner_angular_vel_radps = 9.407256,	outer_cos = -0.047536,	outer_sin = -0.998870,	outer_angular_vel_radps = -6.276952
+[LOOP] [NN] force_n = 2.667128,	torque_nm = 0.026671
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.157133,	cart_vel_mps = 0.836020,	inner_cos = -0.426864,	inner_sin = -0.904316,	inner_angular_vel_radps = 11.502433,	outer_cos = -0.149765,	outer_sin = -0.988722,	outer_angular_vel_radps = -10.014232
+[LOOP] [NN] force_n = -3.304382,	torque_nm = -0.033044
+[LOOP] [FUNCTION] dt_s = 0.010244, cart_pos_m = 0.165666,	cart_vel_mps = 0.836020,	inner_cos = -0.330385,	inner_sin = -0.943846,	inner_angular_vel_radps = 10.164127,	outer_cos = -0.228072,	outer_sin = -0.973644,	outer_angular_vel_radps = -7.778449
+[LOOP] [NN] force_n = 4.139115,	torque_nm = 0.041391
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.174140,	cart_vel_mps = 0.813010,	inner_cos = -0.260057,	inner_sin = -0.965593,	inner_angular_vel_radps = 7.174207,	outer_cos = -0.242980,	outer_sin = -0.970031,	outer_angular_vel_radps = -1.495928
+[LOOP] [NN] force_n = 16.923105,	torque_nm = 0.169231
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = 0.181764,	cart_vel_mps = 0.697962,	inner_cos = -0.195845,	inner_sin = -0.980635,	inner_angular_vel_radps = 6.430588,	outer_cos = -0.205610,	outer_sin = -0.978634,	outer_angular_vel_radps = 3.740497
+[LOOP] [NN] force_n = 21.674995,	torque_nm = 0.216750
+[LOOP] [FUNCTION] dt_s = 0.010237, cart_pos_m = 0.187466,	cart_vel_mps = 0.482245,	inner_cos = -0.158104,	inner_sin = -0.987423,	inner_angular_vel_radps = 3.745260,	outer_cos = -0.117842,	outer_sin = -0.993032,	outer_angular_vel_radps = 8.679649
+[LOOP] [NN] force_n = 20.408333,	torque_nm = 0.204083
+[LOOP] [FUNCTION] dt_s = 0.010260, cart_pos_m = 0.190430,	cart_vel_mps = 0.162986,	inner_cos = -0.147492,	inner_sin = -0.989063,	inner_angular_vel_radps = 1.046559,	outer_cos = 0.046003,	outer_sin = -0.998941,	outer_angular_vel_radps = 15.925921
+[LOOP] [NN] force_n = 17.412451,	torque_nm = 0.174125
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.190438,	cart_vel_mps = -0.081972,	inner_cos = -0.135343,	inner_sin = -0.990799,	inner_angular_vel_radps = 1.196759,	outer_cos = 0.234042,	outer_sin = -0.972227,	outer_angular_vel_radps = 18.438534
+[LOOP] [NN] force_n = 15.828553,	torque_nm = 0.158286
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = 0.187851,	cart_vel_mps = -0.294332,	inner_cos = -0.120129,	inner_sin = -0.992758,	inner_angular_vel_radps = 1.495782,	outer_cos = 0.416430,	outer_sin = -0.909168,	outer_angular_vel_radps = 18.730410
+[LOOP] [NN] force_n = 13.902958,	torque_nm = 0.139030
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.183492,	cart_vel_mps = -0.491353,	inner_cos = -0.107938,	inner_sin = -0.994158,	inner_angular_vel_radps = 1.197461,	outer_cos = 0.591997,	outer_sin = -0.805940,	outer_angular_vel_radps = 19.770405
+[LOOP] [NN] force_n = 12.506866,	torque_nm = 0.125069
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = 0.177830,	cart_vel_mps = -0.589144,	inner_cos = -0.136863,	inner_sin = -0.990590,	inner_angular_vel_radps = -2.845302,	outer_cos = 0.774953,	outer_sin = -0.632019,	outer_angular_vel_radps = 24.449621
+[LOOP] [NN] force_n = -1.098966,	torque_nm = -0.010990
+[LOOP] [FUNCTION] dt_s = 0.010269, cart_pos_m = 0.171245,	cart_vel_mps = -0.653380,	inner_cos = -0.206364,	inner_sin = -0.978475,	inner_angular_vel_radps = -6.865788,	outer_cos = 0.934639,	outer_sin = -0.355598,	outer_angular_vel_radps = 30.688271
+[LOOP] [NN] force_n = -16.578848,	torque_nm = -0.165788
+[LOOP] [FUNCTION] dt_s = 0.010235, cart_pos_m = 0.165064,	cart_vel_mps = -0.574284,	inner_cos = -0.283675,	inner_sin = -0.958921,	inner_angular_vel_radps = -7.785264,	outer_cos = 0.999905,	outer_sin = -0.013805,	outer_angular_vel_radps = 33.479305
+[LOOP] [NN] force_n = -11.724239,	torque_nm = -0.117242
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = 0.161144,	cart_vel_mps = -0.314945,	inner_cos = -0.360613,	inner_sin = -0.932715,	inner_angular_vel_radps = -7.924637,	outer_cos = 0.942573,	outer_sin = 0.333999,	outer_angular_vel_radps = 33.858337
+[LOOP] [NN] force_n = 10.835913,	torque_nm = 0.108359
+[LOOP] [FUNCTION] dt_s = 0.010246, cart_pos_m = 0.159509,	cart_vel_mps = -0.115048,	inner_cos = -0.446185,	inner_sin = -0.894941,	inner_angular_vel_radps = -9.119267,	outer_cos = 0.774953,	outer_sin = 0.632019,	outer_angular_vel_radps = 32.880138
+[LOOP] [NN] force_n = 34.414982,	torque_nm = 0.344150
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = 0.157354,	cart_vel_mps = -0.267488,	inner_cos = -0.521323,	inner_sin = -0.853359,	inner_angular_vel_radps = -8.377029,	outer_cos = 0.541462,	outer_sin = 0.840725,	outer_angular_vel_radps = 30.200026
+[LOOP] [NN] force_n = 38.698681,	torque_nm = 0.386987
+[LOOP] [FUNCTION] dt_s = 0.010271, cart_pos_m = 0.151923,	cart_vel_mps = -0.719533,	inner_cos = -0.558757,	inner_sin = -0.829331,	inner_angular_vel_radps = -4.329755,	outer_cos = 0.316593,	outer_sin = 0.948561,	outer_angular_vel_radps = 24.091312
+[LOOP] [NN] force_n = 38.192398,	torque_nm = 0.381924
+[LOOP] [FUNCTION] dt_s = 0.010236, cart_pos_m = 0.141654,	cart_vel_mps = -1.136104,	inner_cos = -0.580192,	inner_sin = -0.814480,	inner_angular_vel_radps = -2.547315,	outer_cos = 0.122411,	outer_sin = 0.992480,	outer_angular_vel_radps = 19.353117
+[LOOP] [NN] force_n = 37.857433,	torque_nm = 0.378574
+[LOOP] [FUNCTION] dt_s = 0.010262, cart_pos_m = 0.127563,	cart_vel_mps = -1.436669,	inner_cos = -0.592617,	inner_sin = -0.805484,	inner_angular_vel_radps = -1.494762,	outer_cos = -0.027608,	outer_sin = 0.999619,	outer_angular_vel_radps = 14.594082
+[LOOP] [NN] force_n = 36.410309,	torque_nm = 0.364103
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = 0.113038,	cart_vel_mps = -1.357093,	inner_cos = -0.615838,	inner_sin = -0.787873,	inner_angular_vel_radps = -2.844469,	outer_cos = -0.178514,	outer_sin = 0.983937,	outer_angular_vel_radps = 14.766325
+[LOOP] [NN] force_n = 36.463531,	torque_nm = 0.364635
+[LOOP] [FUNCTION] dt_s = 0.010264, cart_pos_m = 0.098137,	cart_vel_mps = -1.506177,	inner_cos = -0.639716,	inner_sin = -0.768611,	inner_angular_vel_radps = -2.988590,	outer_cos = -0.310767,	outer_sin = 0.950486,	outer_angular_vel_radps = 13.259984
+[LOOP] [NN] force_n = 35.259346,	torque_nm = 0.352593
+[LOOP] [FUNCTION] dt_s = 0.010231, cart_pos_m = 0.082589,	cart_vel_mps = -1.538774,	inner_cos = -0.638537,	inner_sin = -0.769592,	inner_angular_vel_radps = 0.149934,	outer_cos = -0.403839,	outer_sin = 0.914830,	outer_angular_vel_radps = 9.729638
+[LOOP] [NN] force_n = 32.198902,	torque_nm = 0.321989
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = 0.065635,	cart_vel_mps = -1.703677,	inner_cos = -0.630236,	inner_sin = -0.776404,	inner_angular_vel_radps = 1.047173,	outer_cos = -0.470043,	outer_sin = 0.882643,	outer_angular_vel_radps = 7.174202
+[LOOP] [NN] force_n = 29.438145,	torque_nm = 0.294381
+[LOOP] [FUNCTION] dt_s = 0.010242, cart_pos_m = 0.048090,	cart_vel_mps = -1.713265,	inner_cos = -0.610992,	inner_sin = -0.791636,	inner_angular_vel_radps = 2.396141,	outer_cos = -0.532403,	outer_sin = 0.846491,	outer_angular_vel_radps = 7.033278
+[LOOP] [NN] force_n = 28.130205,	torque_nm = 0.281302
+[LOOP] [FUNCTION] dt_s = 0.010668, cart_pos_m = 0.029184,	cart_vel_mps = -1.827834,	inner_cos = -0.614629,	inner_sin = -0.788816,	inner_angular_vel_radps = -0.431378,	outer_cos = -0.604289,	outer_sin = 0.796765,	outer_angular_vel_radps = 8.185727
+[LOOP] [NN] force_n = 28.749966,	torque_nm = 0.287500
+[LOOP] [FUNCTION] dt_s = 0.010232, cart_pos_m = 0.009961,	cart_vel_mps = -1.903574,	inner_cos = -0.637355,	inner_sin = -0.770570,	inner_angular_vel_radps = -2.848083,	outer_cos = -0.677222,	outer_sin = 0.735779,	outer_angular_vel_radps = 9.281032
+[LOOP] [NN] force_n = 28.846991,	torque_nm = 0.288470
+[LOOP] [FUNCTION] dt_s = 0.010339, cart_pos_m = -0.010278,	cart_vel_mps = -1.941924,	inner_cos = -0.666430,	inner_sin = -0.745567,	inner_angular_vel_radps = -3.708313,	outer_cos = -0.750152,	outer_sin = 0.661266,	outer_angular_vel_radps = 10.070767
+[LOOP] [NN] force_n = 28.252039,	torque_nm = 0.282520
+[LOOP] [FUNCTION] dt_s = 0.010265, cart_pos_m = -0.031284,	cart_vel_mps = -2.074230,	inner_cos = -0.681165,	inner_sin = -0.732130,	inner_angular_vel_radps = -1.942567,	outer_cos = -0.791169,	outer_sin = 0.611597,	outer_angular_vel_radps = 6.272051
+[LOOP] [NN] force_n = 22.927561,	torque_nm = 0.229276
+[LOOP] [FUNCTION] dt_s = 0.010251, cart_pos_m = -0.052824,	cart_vel_mps = -2.157161,	inner_cos = -0.692315,	inner_sin = -0.721595,	inner_angular_vel_radps = -1.496367,	outer_cos = -0.810457,	outer_sin = 0.585798,	outer_angular_vel_radps = 3.141947
+[LOOP] [NN] force_n = 13.013786,	torque_nm = 0.130138
+[LOOP] [FUNCTION] dt_s = 0.010245, cart_pos_m = -0.075732,	cart_vel_mps = -2.192634,	inner_cos = -0.692315,	inner_sin = -0.721595,	inner_angular_vel_radps = 0.000000,	outer_cos = -0.829761,	outer_sin = 0.558119,	outer_angular_vel_radps = 3.293420
+[LOOP] [NN] force_n = 12.920155,	torque_nm = 0.129202
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.099153,	cart_vel_mps = -2.299054,	inner_cos = -0.704392,	inner_sin = -0.709811,	inner_angular_vel_radps = -1.646585,	outer_cos = -0.855354,	outer_sin = 0.518044,	outer_angular_vel_radps = 4.638977
+[LOOP] [NN] force_n = 12.835087,	torque_nm = 0.128351
+[LOOP] [FUNCTION] dt_s = 0.010247, cart_pos_m = -0.123288,	cart_vel_mps = -2.429442,	inner_cos = -0.726888,	inner_sin = -0.686756,	inner_angular_vel_radps = -3.143173,	outer_cos = -0.883363,	outer_sin = 0.468689,	outer_angular_vel_radps = 5.535939
+[LOOP] [NN] force_n = 11.268473,	torque_nm = 0.112685
+[LOOP] [FUNCTION] dt_s = 0.010254, cart_pos_m = -0.147704,	cart_vel_mps = -2.403556,	inner_cos = -0.755706,	inner_sin = -0.654911,	inner_angular_vel_radps = -4.187480,	outer_cos = -0.904644,	outer_sin = 0.426168,	outer_angular_vel_radps = 4.635808
+[LOOP] [NN] force_n = 7.510727,	torque_nm = 0.075107
+[LOOP] [FUNCTION] dt_s = 0.010250, cart_pos_m = -0.172872,	cart_vel_mps = -2.439509,	inner_cos = -0.779299,	inner_sin = -0.626652,	inner_angular_vel_radps = -3.590956,	outer_cos = -0.918508,	outer_sin = 0.395402,	outer_angular_vel_radps = 3.291809
+[LOOP] [NN] force_n = 2.205308,	torque_nm = 0.022053
+[LOOP] [FUNCTION] dt_s = 0.010005, cart_pos_m = -0.198179,	cart_vel_mps = -2.484570,	inner_cos = -0.805488,	inner_sin = -0.592612,	inner_angular_vel_radps = -4.291691,	outer_cos = -0.930767,	outer_sin = 0.365613,	outer_angular_vel_radps = 3.219203
+[LOOP] [NN] force_n = 0.303002,	torque_nm = 0.003030
+[LOOP] [FUNCTION] dt_s = 0.010248, cart_pos_m = -0.223509,	cart_vel_mps = -2.488405,	inner_cos = -0.834442,	inner_sin = -0.551096,	inner_angular_vel_radps = -4.937494,	outer_cos = -0.945107,	outer_sin = 0.326761,	outer_angular_vel_radps = 4.040349
+[LOOP] [NN] force_n = 1.430201,	torque_nm = 0.014302
+[LOOP] [FUNCTION] dt_s = 0.010266, cart_pos_m = -0.248773,	cart_vel_mps = -2.537779,	inner_cos = -0.860478,	inner_sin = -0.509488,	inner_angular_vel_radps = -4.779641,	outer_cos = -0.959139,	outer_sin = 0.282937,	outer_angular_vel_radps = 4.481134
+[LOOP] [NN] force_n = 0.306125,	torque_nm = 0.003061
+[LOOP] [FUNCTION] dt_s = 0.010219, cart_pos_m = -0.273168,	cart_vel_mps = -2.369521,	inner_cos = -0.884441,	inner_sin = -0.466652,	inner_angular_vel_radps = -4.801626,	outer_cos = -0.969657,	outer_sin = 0.244468,	outer_angular_vel_radps = 3.901829
+[LOOP] [NN] force_n = -1.185776,	torque_nm = -0.011858
+[LOOP] [FUNCTION] dt_s = 0.010256, cart_pos_m = -0.297094,	cart_vel_mps = -2.274606,	inner_cos = -0.915141,	inner_sin = -0.403134,	inner_angular_vel_radps = -6.874444,	outer_cos = -0.980785,	outer_sin = 0.195090,	outer_angular_vel_radps = 4.933688
+[LOOP] [NN] force_n = 2.010466,	torque_nm = 0.020105
+[LOOP] [FUNCTION] dt_s = 0.010255, cart_pos_m = -0.320891,	cart_vel_mps = -2.269812,	inner_cos = -0.946849,	inner_sin = -0.321679,	inner_angular_vel_radps = -8.515435,	outer_cos = -0.991108,	outer_sin = 0.133061,	outer_angular_vel_radps = 6.128883
+[LOOP] [NN] force_n = 3.759254,	torque_nm = 0.037593
+[LOOP] [FUNCTION] dt_s = 0.010257, cart_pos_m = -0.343709,	cart_vel_mps = -2.280358,	inner_cos = -0.970218,	inner_sin = -0.242233,	inner_angular_vel_radps = -8.066689,	outer_cos = -0.998023,	outer_sin = 0.062852,	outer_angular_vel_radps = 6.873796
+[LOOP] [NN] force_n = 2.424734,	torque_nm = 0.024247

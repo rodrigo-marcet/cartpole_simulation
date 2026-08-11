@@ -36,7 +36,7 @@ parser.add_argument(
 )
 parser.add_argument("--max_steps", type=int, default=250, help="Safety cap on steps per force.")
 parser.add_argument(
-    "--out_dir", type=str, default=None, help="Output folder (default: simulations/output/motor_curve/)."
+    "--out_dir", type=str, default=None, help="Output folder (default: single_cartpole/output/motor_curve/)."
 )
 
 AppLauncher.add_app_launcher_args(parser)
@@ -88,9 +88,9 @@ POLE_HANG = math.pi  # pole hanging straight down (0 = upright)
 
 
 def _out_dir(name):
-    """scripts/skrl/simulations/output/<name>/ (created), anchored to the repo, not cwd."""
+    """scripts/simulations/single_cartpole/output/<name>/ (created), anchored to the repo, not cwd."""
     d = os.path.dirname(os.path.abspath(__file__))
-    while os.path.basename(d) != "simulations" and os.path.dirname(d) != d:
+    while os.path.basename(d) != "single_cartpole" and os.path.dirname(d) != d:
         d = os.path.dirname(d)
     out = os.path.join(d, "output", name)
     os.makedirs(out, exist_ok=True)

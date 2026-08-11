@@ -83,9 +83,9 @@ CSV_ROLLOUT = "rollout.csv"
 
 
 def _out_dir(name):
-    """scripts/skrl/simulations/output/<name>/ (created), anchored to the repo, not cwd."""
+    """scripts/simulations/single_cartpole/output/<name>/ (created), anchored to the repo, not cwd."""
     d = os.path.dirname(os.path.abspath(__file__))
-    while os.path.basename(d) != "simulations" and os.path.dirname(d) != d:
+    while os.path.basename(d) != "single_cartpole" and os.path.dirname(d) != d:
         d = os.path.dirname(d)
     out = os.path.join(d, "output", name)
     os.makedirs(out, exist_ok=True)
@@ -93,9 +93,9 @@ def _out_dir(name):
 
 
 def _in_dir():
-    """scripts/skrl/simulations/inputs/ , anchored to the repo, not cwd."""
+    """scripts/simulations/inputs/ , anchored to the repo, not cwd."""
     d = os.path.dirname(os.path.abspath(__file__))
-    while os.path.basename(d) != "simulations" and os.path.dirname(d) != d:
+    while os.path.basename(d) != "single_cartpole" and os.path.dirname(d) != d:
         d = os.path.dirname(d)
     return os.path.join(d, "inputs")
 

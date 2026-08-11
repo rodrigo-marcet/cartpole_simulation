@@ -85,9 +85,9 @@ CSV_PATH_NOISY = "free_swing_noisy.csv"  # policy-observed sensor values
 
 
 def _out_dir(name):
-    """scripts/skrl/simulations/output/<name>/ (created), anchored to the repo, not cwd."""
+    """scripts/simulations/single_cartpole/output/<name>/ (created), anchored to the repo, not cwd."""
     d = os.path.dirname(os.path.abspath(__file__))
-    while os.path.basename(d) != "simulations" and os.path.dirname(d) != d:
+    while os.path.basename(d) != "single_cartpole" and os.path.dirname(d) != d:
         d = os.path.dirname(d)
     out = os.path.join(d, "output", name)
     os.makedirs(out, exist_ok=True)

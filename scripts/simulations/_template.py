@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""Template for the scripts/skrl/simulations probes. Copy it and fill the four ★SLOTS★: ★1 KNOBS,
+"""Template for the scripts/simulations probes. Copy it and fill the four ★SLOTS★: ★1 KNOBS,
 ★2 _freeze_dr, ★3 PROBE BODY (one of the 3 patterns marked below), ★4 this docstring (keep it a few
 lines: what it measures, how to read the result, output file). Everything else is the shared harness
 -- keep it identical across probes. Keep docstrings/comments short.
@@ -88,7 +88,7 @@ CSV_PATH_NOISY = "<probe>_noisy.csv"  # policy-observed sensor values (standardi
 
 
 def _out_dir(name):
-    """scripts/skrl/simulations/output/<name>/ (created), anchored to the repo, not cwd."""
+    """scripts/simulations/output/<name>/ (created), anchored to the repo, not cwd."""
     d = os.path.dirname(os.path.abspath(__file__))
     while os.path.basename(d) != "simulations" and os.path.dirname(d) != d:
         d = os.path.dirname(d)
