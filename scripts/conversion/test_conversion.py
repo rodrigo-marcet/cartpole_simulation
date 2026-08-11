@@ -12,32 +12,16 @@ import numpy as np
 import tensorflow as tf
 import torch
 import torch.nn as nn
-
-OBS_SIZE = 5
-
-# ── architecture ──────────────────────────────────────────────────────────────
-
-
-def build_model() -> nn.Module:
-    return nn.Sequential(nn.Linear(OBS_SIZE, 32), nn.ELU(), nn.Linear(32, 32), nn.ELU(), nn.Linear(32, 1), nn.Tanh())
-
+from architectures import build_model, remap_state_dict
 
 # ── loaders ───────────────────────────────────────────────────────────────────
 
 
-def load_pytorch(pt_path: str) -> nn.Module:
+def load_pytorch(pt_path: str, net_type: str) -> nn.Module:
     checkpoint = torch.load(pt_path, map_location="cpu")
     policy_state = checkpoint["policy"]
-    stripped = {
-        "0.weight": policy_state["net_container.0.weight"],
-        "0.bias": policy_state["net_container.0.bias"],
-        "2.weight": policy_state["net_container.2.weight"],
-        "2.bias": policy_state["net_container.2.bias"],
-        "4.weight": policy_state["policy_layer.weight"],
-        "4.bias": policy_state["policy_layer.bias"],
-    }
-    model = build_model()
-    model.load_state_dict(stripped)
+    model = build_model(net_type)
+    model.load_state_dict(remap_state_dict(model, policy_state))
     model.eval()
     return model
 
@@ -71,13 +55,20 @@ def main():
         "-n", "--num-samples", type=int, default=1000, help="Number of random test inputs (default: 1000)"
     )
     parser.add_argument("--seed", type=int, default=42, help="RNG seed (default: 42)")
+    parser.add_argument(
+        "--type",
+        dest="net_type",
+        required=True,
+        choices=["single", "double"],
+        help="Network architecture: single (5 obs) or double (8 obs)",
+    )
     args = parser.parse_args()
 
     rng = np.random.default_rng(args.seed)
 
     print(f"\nLoading PyTorch checkpoint : {args.input}")
     try:
-        pt_model = load_pytorch(args.input)
+        pt_model = load_pytorch(args.input, args.net_type)
     except Exception as e:
         print(f"  ERROR loading .pt: {e}", file=sys.stderr)
         sys.exit(1)
@@ -93,18 +84,24 @@ def main():
         sys.exit(1)
     print("  OK\n")
 
-    # ── single hand-picked input ──────────────────────────────────────────────
-    single = np.array([[0.0, 1.0, 0.0, 0.0, 0.0]], dtype=np.float32)  # pole upright
+    # ── single hand-picked input (upright reference, per architecture) ─────────
+    sanity = {
+        "single": np.array([[0.0, 1.0, 0.0, 0.0, 0.0]], dtype=np.float32),  # sin=0,cos=1,dθ=0,x=0,ẋ=0
+        "double": np.array(
+            [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0]], dtype=np.float32
+        ),  # x,ẋ,isin,icos,iθ̇,osin,ocos,oθ̇
+    }
+    single = sanity[args.net_type]
     pt_single = run_pytorch(pt_model, single)
     tfl_single = run_tflite(args.conversion, single)
-    print("── Sanity check (pole upright: sin=0, cos=1, dθ=0, x=0, ẋ=0) ──")
+    print(f"── Sanity check (upright reference input, --type {args.net_type}) ──")
     print(f"  PyTorch : {pt_single.flat[0]:+.6f}")
     print(f"  TFLite  : {tfl_single.flat[0]:+.6f}")
     print(f"  Diff    : {abs(pt_single.flat[0] - tfl_single.flat[0]):.2e}\n")
 
     # ── bulk random test ──────────────────────────────────────────────────────
     print(f"── Random test ({args.num_samples} samples, seed={args.seed}) ──")
-    inputs = rng.standard_normal((args.num_samples, 1, OBS_SIZE)).astype(np.float32)
+    inputs = rng.standard_normal((args.num_samples, 1, pt_model[0].in_features)).astype(np.float32)
 
     pt_outs = np.array([run_pytorch(pt_model, x).flat[0] for x in inputs])
     tfl_outs = np.array([run_tflite(args.conversion, x).flat[0] for x in inputs])

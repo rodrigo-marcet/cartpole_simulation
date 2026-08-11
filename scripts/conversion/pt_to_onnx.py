@@ -1,7 +1,7 @@
 import argparse
 
 import torch
-import torch.nn as nn
+from architectures import build_model, remap_state_dict
 
 # -----------------------------------------------------------------------------
 # Example:
@@ -29,18 +29,21 @@ parser.add_argument(
     help="Path to output .onnx file",
 )
 
+parser.add_argument(
+    "--type",
+    dest="net_type",
+    required=True,
+    choices=["single", "double"],
+    help="Network architecture: single (5 obs) or double (8 obs)",
+)
+
 args = parser.parse_args()
 
 checkpoint_path = args.input
 output_path = args.output
 
-obs_size = 5
-action_size = 1
-
-# Reconstruct network
-model = nn.Sequential(
-    nn.Linear(obs_size, 32), nn.ELU(), nn.Linear(32, 32), nn.ELU(), nn.Linear(32, action_size), nn.Tanh()
-)
+# Reconstruct network for the selected architecture
+model = build_model(args.net_type)
 
 # Load checkpoint
 checkpoint = torch.load(checkpoint_path)
@@ -50,20 +53,11 @@ print(checkpoint["policy"].keys())
 
 policy_state = checkpoint["policy"]
 
-# Remap weights
-stripped = {
-    "0.weight": policy_state["net_container.0.weight"],
-    "0.bias": policy_state["net_container.0.bias"],
-    "2.weight": policy_state["net_container.2.weight"],
-    "2.bias": policy_state["net_container.2.bias"],
-    "4.weight": policy_state["policy_layer.weight"],
-    "4.bias": policy_state["policy_layer.bias"],
-}
-
-model.load_state_dict(stripped)
+# Remap skrl weights onto the Sequential and load
+model.load_state_dict(remap_state_dict(model, policy_state))
 model.eval()
 
-dummy_input = torch.randn(1, obs_size)
+dummy_input = torch.randn(1, model[0].in_features)
 
 # Export ONNX
 torch.onnx.export(
