@@ -1,8 +1,3 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
 from __future__ import annotations
 
 import math
@@ -282,10 +277,6 @@ def swingup_reward_unified(
     cart_vel_margin: float = 0.6,
     cart_pos_margin: float = 0.15,
 ) -> torch.Tensor:
-    """Single-net swing-up + balance. Energy shaping drives the pole up; a smooth, damped basin makes
-    upright-and-still strictly better than merely orbiting, so one policy both swings up and balances.
-    Only omega_n is needed for the energy term (E/mgl = 0.5*(w/wn)^2 + cos(theta), = 1 at rest upright).
-    """
     asset: Articulation = env.scene[pole_cfg.name]
     pole_pos = asset.data.joint_pos[:, pole_cfg.joint_ids[0]]
     pole_vel = asset.data.joint_vel[:, pole_cfg.joint_ids[0]]
@@ -317,14 +308,6 @@ def swingup_reward_quadratic(
     w_effort: float = 0.2,
     x_max: float = 0.35,
 ) -> torch.Tensor:
-    """Dense LQR-like cost for single-net swing-up + balance (Manrique Escobar et al., Appl. Sci.
-    2020): reward = 1 - normalized quadratic cost on pole angle (deviation from upright), cart
-    position, and control effort. Unlike an energy/basin BONUS, this cost is paid every step the
-    pole is off-upright or the cart is off-center or effort is nonzero, so a limit-cycle 'orbit'
-    (which must keep pumping) is strictly worse than settling upright-and-centered at ~zero effort
-    -- the balanced state is the unique optimum and there is no cycle to farm. Weights are on
-    normalized [0,1] terms, so they compare directly; sum ~1 keeps the reward in ~[0,1].
-    """
     asset: Articulation = env.scene[pole_cfg.name]
     pole_pos = asset.data.joint_pos[:, pole_cfg.joint_ids[0]]
     cart_pos = env.scene[cart_cfg.name].data.joint_pos[:, cart_cfg.joint_ids[0]]

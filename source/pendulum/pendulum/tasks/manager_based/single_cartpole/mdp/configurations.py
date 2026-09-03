@@ -1,5 +1,3 @@
-"""Configuration for a simple Cartpole robot."""
-
 import os
 
 import isaaclab.sim as sim_utils

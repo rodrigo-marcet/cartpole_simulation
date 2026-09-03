@@ -1,20 +1,7 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""Reward terms for the double cart-pole swing-up.
-
-The reward is the multiplicative form from Lee, Ju & Lee, "Transition Control of a Double-Inverted
-Pendulum System Using Sim2Real Reinforcement Learning", Machines 2025, 13, 186 -- the only published
-end-to-end RL swing-up of a CART double pendulum on real hardware, at a 100 Hz policy rate, with no
-LQR handoff. Constants are theirs where the units match and rescaled where they don't.
-Rewards read ground-truth joint_pos, so observation noise never enters here.
-"""
-
 from __future__ import annotations
 
 import math
+from functools import cache
 from typing import TYPE_CHECKING
 
 import torch
@@ -60,31 +47,12 @@ def multiplicative_swingup_reward(
     ipole_cfg: SceneEntityCfg,
     opole_cfg: SceneEntityCfg,
     cart_cfg: SceneEntityCfg,
-    # k_effort: float = 0.7792,
-    k_effort: float = 0.25,
+    k_effort: float = 0.7792,
+    # k_effort: float = 0.25,
     k_cart: float = 0.5,
     k_ivel: float = 0.02,
     k_ovel: float = 0.02,
 ) -> torch.Tensor:
-    """Lee et al. (Machines 2025) eq. (8)-(9): the product of six [0,1] terms, so reward is in [0,1].
-
-        Ru = exp(-k_effort*|u|)          Ry  = exp(-k_cart*|x|)
-        Rt1 = 0.5 + 0.5*cos(th1)         Rt2 = 0.5 + 0.5*cos(th2)
-        Rw1 = exp(-k_ivel*|w1|)          Rw2 = exp(-k_ovel*|w2|)
-        reward = Ru * Ry * Rt1 * Rt2 * Rw1 * Rw2
-
-    Their targets for the up-up equilibrium are th1* = th2* = 0, which is already our convention, and
-    th2 is RELATIVE for them too. The product is what makes the relative angle safe here: it is 1 only
-    when both links are up, and ~0 at every non-goal corner, so unlike an additive quadratic it never
-    ranks a higher configuration as worse. It also self-gates the velocity terms -- near the bottom
-    Rt1 ~ 0 swamps them, so pumping is effectively free without needing an explicit height gate.
-
-    Constants: k_ivel, k_ovel and k_cart are theirs verbatim (rad/s and metres match our units).
-    k_effort is CONVERTED, not guessed: their u is a cart acceleration in m/s^2, ours is a normalized
-    action, and |u| = (F_max / m_translating) * |a| = (40 / 0.77) * |a| = 51.95 * |a|, so
-    k_effort = 0.015 * 51.95 = 0.7792. Full effort then gives Ru = 0.459.
-    POSITIVE reward, so it pairs with the rail termination.
-    """
     th1, th2, w1, w2, x, u, _ = _unpack(env, ipole_cfg, opole_cfg, cart_cfg)
 
     r_u = torch.exp(-k_effort * u.abs())
@@ -122,3 +90,36 @@ def double_swingup_reward_quadratic(
 
     cost = w_ipole * (th1 / math.pi) ** 2 + w_opole * (th2 / math.pi) ** 2 + w_cart * (x / x_max) ** 2 + w_effort * u**2
     return 1.0 - cost
+
+
+X_LIM_DEFAULT = 0.35  # cart termination bound; sets the reachable region the reward is scaled over
+
+
+@cache
+def _goal_dist_max(w_x: float, goal_half_width: float, x_lim: float, l1: float, l2: float) -> float:
+    h = l1 + l2
+    phi = torch.linspace(0.0, math.pi / 2, 2001, dtype=torch.float64)
+    dx = (x_lim + h * torch.cos(phi) - goal_half_width).clamp_min(0.0)
+    return float(torch.sqrt(w_x * dx**2 + (-h * torch.sin(phi) - h) ** 2).max())
+
+
+def tip_position_reward(
+    env: ManagerBasedRLEnv,
+    ipole_cfg: SceneEntityCfg,
+    opole_cfg: SceneEntityCfg,
+    cart_cfg: SceneEntityCfg,
+    w_x: float = 0.178,
+    goal_half_width: float = 0.05,
+    l1: float = L1_DEFAULT,
+    l2: float = L2_DEFAULT,
+    x_lim: float = X_LIM_DEFAULT,
+) -> torch.Tensor:
+    th1, th2, _, _, x, _, _ = _unpack(env, ipole_cfg, opole_cfg, cart_cfg)
+
+    tip_x = x + l1 * torch.sin(th1) + l2 * torch.sin(th1 + th2)
+    tip_y = l1 * torch.cos(th1) + l2 * torch.cos(th1 + th2)
+
+    dx = (tip_x.abs() - goal_half_width).clamp_min(0.0)
+    d = torch.sqrt(w_x * dx**2 + (tip_y - (l1 + l2)) ** 2)
+
+    return (1.0 - d / _goal_dist_max(w_x, goal_half_width, x_lim, l1, l2)).clamp_min(0.0)

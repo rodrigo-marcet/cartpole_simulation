@@ -1,10 +1,3 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""Reset events specific to the double cart-pole."""
-
 from __future__ import annotations
 
 import math
@@ -28,8 +21,6 @@ def reset_double_poles_graded(
     opole_cfg: SceneEntityCfg,
     near_fraction: float = 0.2,
     mid_fraction: float = 0.2,
-    # near_pos_range: tuple[float, float] = (-0.15, 0.15),
-    # near_vel_range: tuple[float, float] = (-0.5, 0.5),
     near_pos_range: tuple[float, float] = (-0.1, 0.1),
     near_vel_range: tuple[float, float] = (-0.2, 0.2),
     mid_ipos_range: tuple[float, float] = (0.5 * math.pi, 1.5 * math.pi),
@@ -40,21 +31,6 @@ def reset_double_poles_graded(
     far_opos_std: float = 0.10,
     far_vel_std: float = 0.05,
 ) -> None:
-    """Three-tier reverse curriculum on both revolute joints, sampled jointly per env.
-
-    near : both links close to upright -> the policy practises the catch every episode
-    mid  : inner anywhere in the upper/lower half, outer roughly aligned -> bridges the two
-    far  : hanging with symmetry-breaking noise (dm_control's swing_up reset, incl. its wider
-           sigma on the second link)
-
-    Deliberately NOT a full-circle uniform reset: sampling both angles uniformly with large
-    velocities is mostly unrecoverable chaos and wastes the batch. Offsets are added to the joints'
-    default positions (0 == upright), so `far` centres the inner link at pi. The cart is left to a
-    separate reset term.
-
-    Using this REQUIRES removing `pole_fell` from the terminations: the mid and far tiers start at or
-    below the tip threshold, so every one of those episodes would terminate on step 1.
-    """
     robot: Articulation = env.scene[ipole_cfg.name]
     i_idx = robot.find_joints(ipole_cfg.joint_names)[0][0]
     o_idx = robot.find_joints(opole_cfg.joint_names)[0][0]

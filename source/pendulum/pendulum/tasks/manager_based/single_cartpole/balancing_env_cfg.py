@@ -1,14 +1,3 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""Balancing task: pole starts near-upright, reward keeps it upright and the cart centered.
-
-Everything shared lives in cartpole_env_cfg.py; this module only defines the balancing deltas,
-including bumping the action scale to 40 (vs the base/swing-up 30).
-"""
-
 import math
 
 from isaaclab.managers import EventTermCfg as EventTerm
@@ -50,41 +39,33 @@ class BalancingEventCfg(CartpoleEventCfg):
 class BalancingRewardsCfg:
     """Upright-balance shaping: keep the pole up, the cart centered, motions small."""
 
-    # (1) constant running reward
     alive = RewTerm(func=mdp.is_alive, weight=1.0)
-    # (2) failure penalty
     terminating = RewTerm(func=mdp.is_terminated, weight=-2.0)
-    # (3) primary task: keep pole upright
     pole_pos = RewTerm(
         func=mdp.joint_pos_target_l2,
         weight=-1.0,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "target": 0.0},
     )
-    # (4) lower cart velocity
     cart_vel = RewTerm(
         func=mdp.joint_vel_l1,
         weight=-0.01,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
     )
-    # (5) lower pole angular velocity
     pole_vel = RewTerm(
         func=mdp.joint_vel_l1,
         weight=-0.005,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"])},
     )
-    # (6) keep the cart near the middle
     cart_pos = RewTerm(
         func=mdp.joint_pos_target_l1,
         weight=-1.0,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "target": 0.0},
     )
-    # (7) penalize large effort commands directly
     effort_penalty = RewTerm(
         func=mdp.joint_effort_l2,
         weight=-0.05,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
     )
-    # (8) penalize rapid changes between consecutive actions (jerk)
     action_rate = RewTerm(
         func=mdp.action_rate_l2,
         weight=-0.01,
@@ -117,5 +98,4 @@ class BalancingEnvCfg(CartpoleEnvCfg):
 
     def __post_init__(self) -> None:
         super().__post_init__()
-        # balancing drives harder than swing-up
         self.actions.joint_effort.scale = 40.0

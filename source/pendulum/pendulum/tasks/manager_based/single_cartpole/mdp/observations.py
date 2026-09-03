@@ -1,8 +1,3 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
 from __future__ import annotations
 
 import math
@@ -62,10 +57,10 @@ def cart_vel_noisy(
 ) -> torch.Tensor:
     vel = mdp.joint_vel_rel(env, asset_cfg)
 
-    tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks  # ≈ 3.83e-6 m
+    tick_size_m = 2.0 * math.pi * pulley_radius_m / ticks
 
     pll_kp = 2.0 * encoder_bandwidth_hz
-    vel_noise_per_tick = pll_kp * tick_size_m  # ≈ 0.00766 m/s per tick
+    vel_noise_per_tick = pll_kp * tick_size_m
 
     return add_encoder_tick_noise(vel, vel_noise_per_tick, max_ticks=max_pos_ticks)
 

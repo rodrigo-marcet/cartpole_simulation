@@ -45,19 +45,23 @@ memory:
 # https://skrl.readthedocs.io/en/latest/api/agents/ppo.html
 agent:
   class: PPO
-  rollouts: 32
+  rollouts: 64
+  # rollouts: 32
   learning_epochs: 8
   mini_batches: 8
-  # discount_factor: 0.997
   # discount_factor: 0.99
   # discount_factor: 0.995
-  discount_factor: 1.0
+  # discount_factor: 0.997
+  discount_factor: 0.998
+  # discount_factor: 1.0
   lambda: 0.95
+  # lambda: 0.999
   learning_rate: 3.0e-04
   learning_rate_scheduler: KLAdaptiveLR
   learning_rate_scheduler_kwargs:
     kl_threshold: 0.008
-  state_preprocessor: RunningStandardScaler
+  # state_preprocessor: RunningStandardScaler
+  state_preprocessor: null
   state_preprocessor_kwargs: null
   value_preprocessor: RunningStandardScaler
   value_preprocessor_kwargs: null
@@ -87,5 +91,7 @@ agent:
 # https://skrl.readthedocs.io/en/latest/api/trainers/sequential.html
 trainer:
   class: SequentialTrainer
-  timesteps: 60000
+  # timesteps: 60000
+  # timesteps: 150000
+  timesteps: 1000
   environment_info: log

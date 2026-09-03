@@ -1,16 +1,3 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""MDP terms for the double_cartpole task.
-
-The observation noise and the custom reset/friction events are REUSED from single_cartpole: it is
-the same physical rig and the same encoders (the ipole_to_opole sensor is identical to cart_to_ipole
-and to the single cartpole's revolute-joint sensor), so the noise profiles are identical. Only the
-robot configuration (double_pendulum.usda) and the double-pendulum rewards are defined locally.
-"""
-
 from isaaclab.envs.mdp import (
     JointEffortActionCfg,
     joint_pos_rel,
@@ -59,3 +46,4 @@ from .configurations import *  # noqa: F401, F403
 from .observations import *  # noqa: F401, F403
 from .terminations import *  # noqa: F401, F403
 from .events import *  # noqa: F401, F403
+from .actions import *  # noqa: F401, F403

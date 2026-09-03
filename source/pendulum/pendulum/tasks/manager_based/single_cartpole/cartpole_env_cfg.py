@@ -1,22 +1,3 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""Shared cart-pole configuration for the single_cartpole task family.
-
-Both tasks (Swingup-Cartpole-v0, Balancing-Cartpole-v0) run the SAME rig, observations,
-actions, domain randomization and sim settings -- all defined here. The two tasks differ
-in only four things, which live in their own modules (swingup_env_cfg.py / balancing_env_cfg.py):
-  1. action scale        (swingup 30, balancing 40)
-  2. pole reset          (swingup starts hanging, balancing starts near-upright)
-  3. rewards             (energy-pump swing-up vs upright-balance shaping)
-  4. terminations        (cart bounds; balancing also has a pole-angle limit)
-
-The `reset_pole_position` event is the only per-task EVENT, so `CartpoleEventCfg` below holds
-every shared event and each task subclasses it to add its own `reset_pole_position`.
-"""
-
 import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
 from isaaclab.envs import ManagerBasedRLEnvCfg
@@ -39,14 +20,46 @@ class CartpoleSceneCfg(InteractiveSceneCfg):
 
     ground = AssetBaseCfg(
         prim_path="/World/ground",
-        spawn=sim_utils.GroundPlaneCfg(size=(100.0, 100.0)),
+        spawn=sim_utils.MeshCuboidCfg(
+            size=(1000.0, 1000.0, 0.05),
+            visual_material=sim_utils.MdlFileCfg(
+                mdl_path="E:/youtube/videos/8.Pendulum/media/materials/ground_material.mdl",
+                project_uvw=True,
+                texture_scale=(0.1, 0.1),
+            ),
+            collision_props=sim_utils.CollisionPropertiesCfg(),
+            rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
+            physics_material=sim_utils.RigidBodyMaterialCfg(
+                friction_combine_mode="multiply",
+                restitution_combine_mode="multiply",
+                static_friction=1.0,
+                dynamic_friction=1.0,
+            ),
+        ),
     )
 
     robot: ArticulationCfg = mdp.FUSION_CARTPOLE_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
     dome_light = AssetBaseCfg(
         prim_path="/World/DomeLight",
-        spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
+        spawn=sim_utils.DomeLightCfg(
+            intensity=1000.0,
+            texture_file="E:/youtube/videos/8.Pendulum/media/materials/sky.hdr",
+            texture_format="latlong",
+        ),
+    )
+
+    front_light = AssetBaseCfg(
+        prim_path="/World/FrontLight",
+        spawn=sim_utils.DistantLightCfg(
+            color=(2.0, 2.0, 2.0),
+            intensity=3000.0,
+        ),
+        init_state=AssetBaseCfg.InitialStateCfg(
+            # rot=euler_deg_to_quat(67.0, -14.0, 90.0),
+            rot=(0.71488, 0.32137, 0.40919, -0.46715)
+            # rot=(67.0, -14.0, 90.0),
+        ),
     )
 
 
@@ -55,12 +68,6 @@ class CartpoleSceneCfg(InteractiveSceneCfg):
 ##
 @configclass
 class ActionsCfg:
-    """Action specifications for the MDP.
-
-    Base scale is 30 (the value the deployed swing-up policy was trained with).
-    BalancingEnvCfg bumps this to 40 in its __post_init__.
-    """
-
     joint_effort = mdp.JointEffortActionCfg(asset_name="robot", joint_names=["slider_to_cart"], scale=40.0)
 
 
@@ -102,20 +109,13 @@ class ObservationsCfg:
 
 @configclass
 class CartpoleEventCfg:
-    """Shared reset + domain-randomization events (identical across both tasks).
-
-    Subclasses add the one per-task event, `reset_pole_position`. The friction-effort term MUST
-    stay before the slider-armature term: randomize_slider_friction_effort writes the friction via
-    the Isaac Lab wrapper (updating asset.data), and a later randomize_joint_parameters rewrites the
-    whole joint-props array from that buffer -- reversing the order would clobber the friction.
-    """
-
     randomize_cart_mass = EventTerm(
         func=mdp.randomize_rigid_body_mass,
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=["cart_1"]),
             "mass_distribution_params": (0.20, 0.01),
+            # "mass_distribution_params": (0.20, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -127,6 +127,7 @@ class CartpoleEventCfg:
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=["shaft_1"]),
             "mass_distribution_params": (0.080, 0.004),
+            # "mass_distribution_params": (0.080, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -137,6 +138,7 @@ class CartpoleEventCfg:
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=["pendulum_1"]),
             "mass_distribution_params": (0.020, 0.001),
+            # "mass_distribution_params": (0.020, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -147,6 +149,7 @@ class CartpoleEventCfg:
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=["weight_1"]),
             "mass_distribution_params": (0.030, 0.0015),
+            # "mass_distribution_params": (0.030, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -160,6 +163,9 @@ class CartpoleEventCfg:
             "static_range": (1.7, 2.0),
             "dynamic_params": (1.41, 0.15),
             "viscous_value": 0.48,
+            # "static_range": (1.85, 1.85),
+            # "dynamic_params": (1.41, 0.0),
+            # "viscous_value": 0.48,
         },
     )
 
@@ -169,6 +175,7 @@ class CartpoleEventCfg:
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
             "armature_distribution_params": (0.37, 0.05),
+            # "armature_distribution_params": (0.37, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -179,7 +186,8 @@ class CartpoleEventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "friction_distribution_params": (1.5e-5, 3.9e-6),
+            # "friction_distribution_params": (1.5e-5, 3.9e-6),
+            "friction_distribution_params": (1.5e-5, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -191,6 +199,7 @@ class CartpoleEventCfg:
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
             "damping_distribution_params": (7.5e-6, 2.25e-06),
+            # "damping_distribution_params": (7.5e-6, 0.0),
             "operation": "abs",
             "distribution": "gaussian",
         },
@@ -200,6 +209,7 @@ class CartpoleEventCfg:
         func=mdp.randomize_pole_vel_noise_std,
         mode="reset",
         params={"mean": 0.4, "std": 0.122, "clip": (0.05, 0.8)},
+        # params={"mean": 0.4, "std": 0.0, "clip": (0.05, 0.8)},
     )
 
 
@@ -208,9 +218,6 @@ class CartpoleEventCfg:
 ##
 @configclass
 class CartpoleEnvCfg(ManagerBasedRLEnvCfg):
-    """Shared base env cfg. Subclasses set `events`, `rewards`, `terminations`
-    (and BalancingEnvCfg overrides the action scale)."""
-
     scene: CartpoleSceneCfg = CartpoleSceneCfg(num_envs=4096, env_spacing=1.0)
     observations: ObservationsCfg = ObservationsCfg()
     actions: ActionsCfg = ActionsCfg()
@@ -218,6 +225,13 @@ class CartpoleEnvCfg(ManagerBasedRLEnvCfg):
     def __post_init__(self) -> None:
         self.decimation = 10
         self.episode_length_s = 5
-        self.viewer.eye = (8.0, 0.0, 5.0)
+        self.viewer.eye = (0.0, -1.0, 2.1)
+        self.viewer.lookat = (0.0, 0.0, 2.0)
+        self.viewer.resolution = (1920, 1080)
         self.sim.dt = 1 / 1000
+        self.sim.render = sim_utils.RenderCfg(
+            rendering_mode="quality",
+            antialiasing_mode="DLAA",
+            enable_dl_denoiser=True,
+        )
         self.sim.render_interval = self.decimation

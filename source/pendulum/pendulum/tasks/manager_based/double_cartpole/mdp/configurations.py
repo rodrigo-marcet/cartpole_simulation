@@ -1,5 +1,3 @@
-"""Configuration for the double cart-pole robot (double_pendulum.usda)."""
-
 import os
 
 import isaaclab.sim as sim_utils
@@ -28,13 +26,11 @@ DOUBLE_PENDULUM_CFG = ArticulationCfg(
             stabilization_threshold=0.001,
         ),
     ),
-    # joint_pos 0 for both revolute joints == fully upright; keep 0 so joint_pos_rel == absolute angle.
     init_state=ArticulationCfg.InitialStateCfg(
         pos=(0.0, 0.0, 2.0),
         joint_pos={"slider_to_cart": 0.0, "cart_to_ipole": 0.0, "ipole_to_opole": 0.0},
     ),
     actuators={
-        # same physical cart + motor as the single cartpole
         "cart_actuator": DCMotorCfg(
             joint_names_expr=["slider_to_cart"],
             saturation_effort=62.8,
@@ -44,7 +40,6 @@ DOUBLE_PENDULUM_CFG = ArticulationCfg(
             effort_limit_sim=40.0,
             armature=0.37,
         ),
-        # both pendulum joints are passive (underactuated); tiny damping, DR varies it per-episode
         "pole_actuator": ImplicitActuatorCfg(
             joint_names_expr=["cart_to_ipole", "ipole_to_opole"],
             effort_limit_sim=1000.0,

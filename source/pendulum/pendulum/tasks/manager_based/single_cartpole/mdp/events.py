@@ -91,11 +91,6 @@ def reset_joints_by_offset_mixed(
     far_pos_range: tuple[float, float],
     far_vel_range: tuple[float, float],
 ) -> None:
-    """Reverse-curriculum reset: per env, with probability `near_fraction` start NEAR the default
-    (near_* ranges, e.g. near-upright + low velocity so the policy practices balancing) else use
-    the wide swing-up ranges (far_*). Offsets are added to the joint's default position/velocity;
-    only asset_cfg's joints are written, so this composes with the cart reset event.
-    """
     asset: Articulation = env.scene[asset_cfg.name]
     ids, _ = asset.find_joints(asset_cfg.joint_names)
     pos = asset.data.default_joint_pos[env_ids][:, ids].clone()
