@@ -4,13 +4,10 @@
 
 ## Demo
 
-<!-- Video: embed a YouTube thumbnail that links to the video -->
 [![Watch the demo](YOUTUBE_THUMBNAIL_URL)](YOUTUBE_VIDEO_URL)
 
-<!-- Or an inline GIF for a quick loop -->
 ![Demo GIF](docs/demo.gif)
 
-<!-- Static photos of the sim / result -->
 <p align="center">
   <img src="docs/sim.png" width="600" alt="[Project] simulation screenshot">
 </p>
