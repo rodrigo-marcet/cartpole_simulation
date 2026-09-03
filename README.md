@@ -1,135 +1,49 @@
-# Template for Isaac Lab Projects
+# Self-Balancing Double and Single Pendulum Isaac Lab Environment
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+## Demo
+
+<!-- Video: embed a YouTube thumbnail that links to the video -->
+[![Watch the demo](YOUTUBE_THUMBNAIL_URL)](YOUTUBE_VIDEO_URL)
+
+<!-- Or an inline GIF for a quick loop -->
+![Demo GIF](docs/demo.gif)
+
+<!-- Static photos of the sim / result -->
+<p align="center">
+  <img src="docs/sim.png" width="600" alt="[Project] simulation screenshot">
+</p>
 
 ## Overview
 
-This project/repository serves as a template for building projects or extensions based on Isaac Lab.
-It allows you to develop in an isolated environment, outside of the core Isaac Lab repository.
+Isaac Lab extension and training environment for self-balancing single and double inverted pendulums (cartpoles). It defines the tasks, MDP (rewards, observations, terminations, events), and robot assets used to train swing-up and balancing policies with reinforcement learning, plus the scripts to calibrate the sim against the real rig and export trained policies for embedded deployment. It is the training-side counterpart to the [firmware repo](https://github.com/rodrigo-marcet/cartpole), which runs the exported policies on the physical hardware.
 
-**Key Features:**
+## How It Works
 
-- `Isolation` Work outside the core Isaac Lab repository, ensuring that your development efforts remain self-contained.
-- `Flexibility` This template is set up to allow your code to be run as an extension in Omniverse.
+Each pendulum variant (single and double cartpole) is a manager-based Isaac Lab task, registered as a Gym environment and trained with `skrl` (PPO). Reset distributions, reward shaping, and domain randomization are tuned to close the sim-to-real gap. Once a policy converges, the conversion pipeline exports it from PyTorch to ONNX to TFLite to a C header, ready to be dropped into the firmware.
 
-**Keywords:** extension, template, isaaclab
+## Related
 
-## Installation
+* Firmware / embedded deployment: [pendulum firmware repo](FIRMWARE_REPO_URL)
 
-- Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
-  We recommend using the conda or uv installation as it simplifies calling Python scripts from the terminal.
+## Getting Started
 
-- Clone or copy this project/repository separately from the Isaac Lab installation (i.e. outside the `IsaacLab` directory):
-
-- Using a python interpreter that has Isaac Lab installed, install the library in editable mode using:
-
-    ```bash
-    # use 'PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-    python -m pip install -e source/pendulum
-
-- Verify that the extension is correctly installed by:
-
-    - Listing the available tasks:
-
-        Note: It the task name changes, it may be necessary to update the search pattern `"Template-"`
-        (in the `scripts/list_envs.py` file) so that it can be listed.
-
-        ```bash
-        # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-        python scripts/list_envs.py
-        ```
-
-    - Running a task:
-
-        ```bash
-        # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-        python scripts/<RL_LIBRARY>/train.py --task=<TASK_NAME>
-        ```
-
-    - Running a task with dummy agents:
-
-        These include dummy agents that output zero or random agents. They are useful to ensure that the environments are configured correctly.
-
-        - Zero-action agent
-
-            ```bash
-            # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-            python scripts/zero_agent.py --task=<TASK_NAME>
-            ```
-        - Random-action agent
-
-            ```bash
-            # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-            python scripts/random_agent.py --task=<TASK_NAME>
-            ```
-
-### Set up IDE (Optional)
-
-To setup the IDE, please follow these instructions:
-
-- Run VSCode Tasks, by pressing `Ctrl+Shift+P`, selecting `Tasks: Run Task` and running the `setup_python_env` in the drop down menu.
-  When running this task, you will be prompted to add the absolute path to your Isaac Sim installation.
-
-If everything executes correctly, it should create a file .python.env in the `.vscode` directory.
-The file contains the python paths to all the extensions provided by Isaac Sim and Omniverse.
-This helps in indexing all the python modules for intelligent suggestions while writing code.
-
-### Setup as Omniverse Extension (Optional)
-
-We provide an example UI extension that will load upon enabling your extension defined in `source/pendulum/pendulum/ui_extension_example.py`.
-
-To enable your extension, follow these steps:
-
-1. **Add the search path of this project/repository** to the extension manager:
-    - Navigate to the extension manager using `Window` -> `Extensions`.
-    - Click on the **Hamburger Icon**, then go to `Settings`.
-    - In the `Extension Search Paths`, enter the absolute path to the `source` directory of this project/repository.
-    - If not already present, in the `Extension Search Paths`, enter the path that leads to Isaac Lab's extension directory directory (`IsaacLab/source`)
-    - Click on the **Hamburger Icon**, then click `Refresh`.
-
-2. **Search and enable your extension**:
-    - Find your extension under the `Third Party` category.
-    - Toggle it to enable your extension.
-
-## Code formatting
-
-We have a pre-commit template to automatically format your code.
-To install pre-commit:
+* Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
 
 ```bash
-pip install pre-commit
+git clone https://github.com/rodrigo-marcet/cartpole_simulation.git
+cd cartpole_simulation
+
+# use 'PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab isn't in a venv/conda env
+python -m pip install -e source/pendulum
+
+# train the double cartpole swing-up task
+python scripts/skrl/train.py --task=Swingup-DoubleCartpole-v0
 ```
 
-Then you can run pre-commit with:
+See [`source/pendulum`](source/pendulum) for task and MDP details, and [`scripts/conversion`](scripts/conversion) for exporting a trained policy to the firmware.
 
-```bash
-pre-commit run --all-files
-```
+## License
 
-## Troubleshooting
-
-### Pylance Missing Indexing of Extensions
-
-In some VsCode versions, the indexing of part of the extensions is missing.
-In this case, add the path to your extension in `.vscode/settings.json` under the key `"python.analysis.extraPaths"`.
-
-```json
-{
-    "python.analysis.extraPaths": [
-        "<path-to-ext-repo>/source/pendulum"
-    ]
-}
-```
-
-### Pylance Crash
-
-If you encounter a crash in `pylance`, it is probable that too many files are indexed and you run out of memory.
-A possible solution is to exclude some of omniverse packages that are not used in your project.
-To do so, modify `.vscode/settings.json` and comment out packages under the key `"python.analysis.extraPaths"`
-Some examples of packages that can likely be excluded are:
-
-```json
-"<path-to-isaac-sim>/extscache/omni.anim.*"         // Animation packages
-"<path-to-isaac-sim>/extscache/omni.kit.*"          // Kit UI tools
-"<path-to-isaac-sim>/extscache/omni.graph.*"        // Graph UI tools
-"<path-to-isaac-sim>/extscache/omni.services.*"     // Services tools
-...
-```
+Distributed under the [MIT](LICENSE) License. See [`LICENSE`](LICENSE) for details.
