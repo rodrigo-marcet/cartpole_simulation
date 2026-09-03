@@ -1,17 +1,3 @@
-# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
-"""
-Script to play a checkpoint of an RL agent from skrl.
-
-Visit the skrl documentation (https://skrl.readthedocs.io) to see the examples structured in
-a more user-friendly way.
-"""
-
-"""Launch Isaac Sim Simulator first."""
-
 import argparse
 import sys
 
@@ -131,14 +117,6 @@ else:
 
 
 def _freeze_dr(env_cfg):
-    """Freeze the RIG (physics + sensor noise) DR to its nominal midpoint, per env.
-
-    The START-STATE resets (pole position/velocity, cart position) are LEFT RANDOMIZED on
-    purpose, so the policy is still tested from the normal variety of initial conditions --
-    only the rig parameters are pinned. static range -> midpoint; gaussians -> (center, std=0);
-    the per-episode pole-noise std -> its mean (noise stays ON, just not randomized). Edits
-    env_cfg in memory, so the config file is untouched.
-    """
     ev = getattr(env_cfg, "events", None)
     if ev is None:
         print("[freeze_dr] no events on env_cfg; nothing to freeze.")
@@ -162,14 +140,10 @@ def _freeze_dr(env_cfg):
     def get(name):
         return getattr(ev, name, None)
 
-    # NOTE: reset_cart_position / reset_pole_position are deliberately NOT frozen -- the pole
-    # still starts across its configured range (pi +/- 0.5) so the policy faces varied swing-ups.
-    # slider friction: static range -> midpoint; dynamic -> center (std 0); viscous unchanged
     t = get("randomize_slider_friction")
     if t:
         mid_range(t, "static_range")
         zero_std(t, "dynamic_params")
-    # gaussian (center, std) terms -> (center, 0)
     for nm, key in (
         ("randomize_slider_armature", "armature_distribution_params"),
         ("randomize_cart_mass", "mass_distribution_params"),
@@ -182,11 +156,9 @@ def _freeze_dr(env_cfg):
         t = get(nm)
         if t:
             zero_std(t, key)
-    # per-episode pole-velocity noise std -> its mean (noise still applied at the midpoint level)
     t = get("randomize_pole_vel_noise")
     if t and "std" in t.params:
         t.params["std"] = 0.0
-    print("[freeze_dr] DR frozen to midpoint -- every env is the nominal rig (noise kept at its mean).")
 
 
 @hydra_task_config(args_cli.task, agent_cfg_entry_point)
@@ -273,58 +245,15 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
     experiment_cfg["agent"]["experiment"]["checkpoint_interval"] = 0  # don't generate checkpoints
     runner = Runner(env, experiment_cfg)
 
-    print(f"[INFO] Loading model checkpoint from: {resume_path}")
     runner.agent.load(resume_path)
-    # set agent to evaluation mode
     runner.agent.set_running_mode("eval")
-    probe = torch.tensor([[-0.345092, -2.589072, -0.53195, 0.84678, 24.96285]], device=runner.agent.device)
-    sp = runner.agent._state_preprocessor
-    print("CLIP_THRESHOLD:", getattr(sp, "clip_threshold", None))  # is it really 5.0?
-    print("EPSILON       :", getattr(sp, "epsilon", None))
-    print("MEAN:", sp.running_mean.flatten().tolist())
-    print("VAR :", sp.running_variance.flatten().tolist())
-    print("PLAY SCALED:", sp(probe).flatten().tolist())  # what the net actually receives
-    print(runner.agent.policy)  # the REAL architecture
-    e = env.unwrapped
-    print("PLAY decimation:", e.cfg.decimation, "| sim.dt:", e.physics_dt, "| step_dt:", e.step_dt)
-    print("PLAY resume_path:", resume_path)
 
-    # reset environment
     obs, _ = env.reset()
-    print("play masses:", env.unwrapped.scene["robot"].root_physx_view.get_masses()[:5].tolist())
-    print("play inertias:", env.unwrapped.scene["robot"].root_physx_view.get_inertias()[:5].tolist())
-    rb = env.unwrapped.scene["robot"]
-    v = rb.root_physx_view
-    print("PLAY friction :", v.get_dof_friction_coefficients()[0].tolist())
-    print("PLAY armature :", v.get_dof_armatures()[0].tolist())
-    print("PLAY stiffness:", v.get_dof_stiffnesses()[0].tolist())
-    print("PLAY damping  :", v.get_dof_dampings()[0].tolist())
-    print("PLAY max_vel  :", v.get_dof_max_velocities()[0].tolist())
-    print("PLAY max_force:", v.get_dof_max_forces()[0].tolist())
-
-    v = env.unwrapped.scene["robot"].root_physx_view
-    try:
-        print("PLAY solver_pos_iters:", int(v.get_solver_position_iteration_counts()[0]))
-        print("PLAY solver_vel_iters:", int(v.get_solver_velocity_iteration_counts()[0]))
-    except Exception as e:
-        print("PLAY solver iters: <unavailable>", e)
-    try:
-        pc = env.unwrapped.sim.get_physics_context()
-        print(
-            "PLAY gpu_dynamics:",
-            pc.is_gpu_dynamics_enabled(),
-            "| solver_type:",
-            pc.get_solver_type(),
-            "| gravity:",
-            pc.get_gravity(),
-        )
-    except Exception as e:
-        print("PLAY physics_context: <unavailable>", e)
 
     timestep = 0
     # simulate environment
 
-    sidx = env.unwrapped.scene["robot"].find_joints("slider_to_cart")[0][0]  # MINE
+    # sidx = env.unwrapped.scene["robot"].find_joints("slider_to_cart")[0][0]  # MINE
 
     while simulation_app.is_running():
         start_time = time.time()
@@ -342,11 +271,11 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, expe
             # env stepping
             obs, _, _, _, _ = env.step(actions)
 
-            rb = env.unwrapped.scene["robot"]
-            sidx = rb.find_joints("slider_to_cart")[0][0]  # MINE
-            print(
-                "PLAY cart_vel:", rb.data.joint_vel[0, sidx].item(), "applied:", rb.data.applied_torque[0, sidx].item()
-            )  # MINE
+            # rb = env.unwrapped.scene["robot"]
+            # sidx = rb.find_joints("slider_to_cart")[0][0]  # MINE
+            # print(
+            #     "cart_vel:", rb.data.joint_vel[0, sidx].item(), "applied:", rb.data.applied_torque[0, sidx].item()
+            # )
 
         if args_cli.video:
             timestep += 1
