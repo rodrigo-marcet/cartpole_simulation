@@ -81,3 +81,7 @@ tests/
 venv/
 .vscode/
 **/*.csv
+**/inputs
+**/outputs
+**/input
+**/output
