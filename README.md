@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 <p align="center">
-  <img src="docs/sim.png" width="600" alt="[Project] simulation screenshot">
+  <img src="docs/sim.gif" width="600" alt="[Project] simulation screenshot">
 </p>
 
 ## Overview
