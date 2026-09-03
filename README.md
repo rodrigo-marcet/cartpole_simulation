@@ -2,12 +2,6 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Demo
-
-[![Watch the demo](YOUTUBE_THUMBNAIL_URL)](YOUTUBE_VIDEO_URL)
-
-![Demo GIF](docs/demo.gif)
-
 <p align="center">
   <img src="docs/sim.png" width="600" alt="[Project] simulation screenshot">
 </p>
@@ -15,6 +9,8 @@
 ## Overview
 
 Isaac Lab extension and training environment for self-balancing single and double inverted pendulums (cartpoles). It defines the tasks, MDP (rewards, observations, terminations, events), and robot assets used to train swing-up and balancing policies with reinforcement learning, plus the scripts to calibrate the sim against the real rig and export trained policies for embedded deployment. It is the training-side counterpart to the [firmware repo](https://github.com/rodrigo-marcet/cartpole), which runs the exported policies on the physical hardware.
+
+📺 Watch here: https://youtu.be/dMohMW29gSM
 
 ## How It Works
 
